@@ -1,2 +1,2 @@
-# ProjectNetcracker
+# StudyProject
 Repository for project work
