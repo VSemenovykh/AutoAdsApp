@@ -1,2 +1,2 @@
-#Study project
+# Study project
 Repository for project work
