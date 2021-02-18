@@ -19,4 +19,5 @@
     - delete a specific car from the list of auto ads 
 - possibility of registration and authorization
 
+## Data model auto
 ![screenshot-diagram](https://user-images.githubusercontent.com/71659506/108228392-df70d180-714f-11eb-9553-3fc005151973.JPG)
