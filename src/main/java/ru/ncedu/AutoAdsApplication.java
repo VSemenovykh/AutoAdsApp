@@ -1,7 +1,6 @@
 package ru.ncedu;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,10 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.ncedu.entity.User;
 import ru.ncedu.repository.UserRepository;
 
+@Slf4j
 @SpringBootApplication
 public class AutoAdsApplication   implements CommandLineRunner {
-
-    private static final Logger log = LoggerFactory.getLogger(AutoAdsApplication.class);
 
     @Autowired
     private UserRepository repository;
