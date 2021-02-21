@@ -1,8 +1,15 @@
 package ru.ncedu.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "brand")
 public class Brand {
     @Id
@@ -17,5 +24,4 @@ public class Brand {
 
     @Column(name = "year")
     private int year;
-
 }

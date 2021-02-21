@@ -1,11 +1,17 @@
 package ru.ncedu.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.ncedu.model.*;
 
 import javax.persistence.*;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "auto")
 public class Auto {
     @Id
@@ -32,6 +38,4 @@ public class Auto {
 
     @Column(name = "body_style")
     private String bodyStyleType;
-
-
 }
