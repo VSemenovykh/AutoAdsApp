@@ -1,7 +1,6 @@
 package ru.ncedu;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,11 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.ncedu.entity.User;
 import ru.ncedu.repository.UserRepository;
 
+@Slf4j
 @SpringBootApplication
 public class AutoAdsApplication   implements CommandLineRunner {
-
-    private static final Logger log = LoggerFactory.getLogger(AutoAdsApplication.class);
-
     @Autowired
     private UserRepository repository;
     public static void main(String[] args) {
@@ -24,9 +21,10 @@ public class AutoAdsApplication   implements CommandLineRunner {
     public void run(String... args) {
         log.info("StartApplication...");
 
-        repository.save(new User("Pety","client"));
-        repository.save(new User("Mary","admin"));
-        repository.save(new User("Sasha","client"));
+        /*to check the connection with postgres*/
+        repository.save(new User(1L,"Pety","client"));
+        repository.save(new User(2L,"Mary","admin"));
+        repository.save(new User(3L,"Sasha","client"));
 
         System.out.println("\nfindAll()");
         repository.findAll().forEach(x -> System.out.println(x));
