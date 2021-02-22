@@ -1,16 +1,18 @@
 package ru.ncedu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
+@Entity 
+@Table(name = "motor", schema = "public")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "motor")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Motor {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -21,4 +23,11 @@ public class Motor {
 
     @Column(name = "volume")
     private double volume;
+
+
+//    @ManyToOne(optional=false, cascade=CascadeType.ALL)
+//    @JoinColumn(name="id_motor")
+//   // @Fetch(FetchMode.JOIN)
+//    private Auto auto;
+  
 }

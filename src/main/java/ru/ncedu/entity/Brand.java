@@ -1,16 +1,20 @@
 package ru.ncedu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
+import java.util.List;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import ru.ncedu.entity.Auto;
 
 @Entity
+@Table(name = "brand", schema = "public")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "brand")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Brand {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -23,5 +27,10 @@ public class Brand {
     private String nameModel;
 
     @Column(name = "year")
-    private int year;
+    private String year;
+
+//    @ManyToOne(optional=false, cascade=CascadeType.ALL)
+//    @JoinColumn(name="id_brand")
+////    @Fetch(FetchMode.JOIN)
+//    private Auto auto;
 }
