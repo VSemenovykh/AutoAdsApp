@@ -24,7 +24,6 @@ public class Motor {
     @Column(name = "volume")
     private double volume;
 
-
 //    @ManyToOne(optional=false, cascade=CascadeType.ALL)
 //    @JoinColumn(name="id_motor")
 //   // @Fetch(FetchMode.JOIN)

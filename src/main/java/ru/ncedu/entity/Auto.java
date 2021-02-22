@@ -48,4 +48,5 @@ public class Auto {
 //
 //      @OneToMany(mappedBy="auto")//EAGER
 //      private List<Motor> motor;
+
 }

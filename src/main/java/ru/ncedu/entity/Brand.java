@@ -33,4 +33,5 @@ public class Brand {
 //    @JoinColumn(name="id_brand")
 ////    @Fetch(FetchMode.JOIN)
 //    private Auto auto;
+
 }
