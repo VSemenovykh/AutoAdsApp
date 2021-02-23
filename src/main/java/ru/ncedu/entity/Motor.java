@@ -7,13 +7,16 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity 
 @Table(name = "motor", schema = "public")
 @Data
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Motor {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Motor implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -24,9 +27,7 @@ public class Motor {
     @Column(name = "volume")
     private double volume;
 
-//    @ManyToOne(optional=false, cascade=CascadeType.ALL)
-//    @JoinColumn(name="id_motor")
-//   // @Fetch(FetchMode.JOIN)
-//    private Auto auto;
+    @Column(name = "id_auto")
+    private Long idAuto;
   
 }

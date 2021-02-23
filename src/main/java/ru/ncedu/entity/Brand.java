@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.annotations.Fetch;
@@ -15,7 +16,9 @@ import ru.ncedu.entity.Auto;
 @Table(name = "brand", schema = "public")
 @Data
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Brand {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Brand implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -29,9 +32,7 @@ public class Brand {
     @Column(name = "year")
     private String year;
 
-//    @ManyToOne(optional=false, cascade=CascadeType.ALL)
-//    @JoinColumn(name="id_brand")
-////    @Fetch(FetchMode.JOIN)
-//    private Auto auto;
+    @Column(name = "id_auto")
+    private Long idAuto;
 
 }

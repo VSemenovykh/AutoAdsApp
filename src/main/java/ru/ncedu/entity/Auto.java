@@ -11,13 +11,16 @@ import ru.ncedu.model.BodyStyle;
 import ru.ncedu.model.Drive;
 import ru.ncedu.model.Transmission;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "auto",schema = "public")
 @Data
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Auto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Auto implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -42,11 +45,5 @@ public class Auto {
 
     @Column(name = "body_style")
     private String bodyStyle;
-
-//      @OneToMany(mappedBy="auto")// fetch=FetchType.LAZY EAGER
-//      private List<Brand> brand;
-//
-//      @OneToMany(mappedBy="auto")//EAGER
-//      private List<Motor> motor;
 
 }

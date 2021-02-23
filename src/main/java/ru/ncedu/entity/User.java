@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Table(name = "user_role")
 @Data
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
