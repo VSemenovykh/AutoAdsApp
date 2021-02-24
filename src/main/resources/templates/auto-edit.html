@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${add} ? 'Create a auto' : 'Edit a auto'" />
+    <link rel="stylesheet" type="text/css" th:href="@{static/style.css}"/>
+</head>
+<body>
+<h1 th:text="${add} ? 'Create a Contact:' : 'Edit a Contact:'" />
+<a th:href="@{/auto}">Back to auto List</a>
+<br/><br/>
+    <form th:action="${add} ? @{/auto/add} : @{/auto/{autoId}/edit(autoId=${auto.id})}"
+            method="POST">
+        <table border="0">
+            <tr th:if="${brand.id}" />
+            <h3>Brand car</h3>
+            <tr>
+                <td>Id auto</td>
+                <td>:</td>
+                <td><input type="number" th:field="*{brand.idAuto}" /></td>
+            </tr>
+            <tr>
+                <td>Brand</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{brand.nameBrand}" /></td>
+            </tr>
+            <tr>
+                <td>Motor</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{brand.nameModel}" /></td>
+            </tr>
+            <tr>
+                <td>Year</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{brand.year}" /></td>
+            </tr>
+        </table>
+        <table border="0">
+            <h3>Auto</h3>
+            <tr th:if="${auto.id}">
+                <td>ID</td>
+                <td>:</td>
+               <!-- <td th:utext="${auto.id}">...</td> -->
+                <td><input type="number" th:field="*{auto.id}" /></td>
+            </tr>
+            <tr>
+                <td>Id brand</td>
+                <td>:</td>
+                <td><input type="number" th:field="*{auto.idBrand}" /></td>
+            </tr>
+            <tr>
+                <td>Id motor</td>
+                <td>:</td>
+                <td><input type="number" th:field="*{auto.idMotor}" /></td>
+            </tr>
+            <tr>
+                <td>Color</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{auto.color}" /></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>:</td>
+                <td><input type="number" th:field="*{auto.price}" /></td>
+            </tr>
+            <tr>
+            <tr>
+                <td>Drive type</td>
+                <td>:</td>
+            <td><input type="text" th:field="*{auto.drive}" /></td>
+            </tr>
+            <tr>
+                <td>Transmission type</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{auto.transmission}" /></td>
+            </tr>
+            <tr>
+                <td>Body sryle</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{auto.bodyStyle}" /></td>
+            </tr>
+        </table>
+        <table>
+            <h3>Motor</h3>
+            <tr th:if="${motor.id}" />
+            <tr>
+                 <td>Id auto</td>
+                 <td>:</td>
+                 <td><input type="number" th:field="*{motor.idAuto}" /></td>
+            </tr>
+            <tr>
+                 <td>Motor type</td>
+                 <td>:</td>
+                 <td><input type="text" th:field="*{motor.motorType}" /></td>
+            </tr>
+            <tr>
+                 <td>Volume</td>
+                 <td>:</td>
+                 <td><input type="number" th:field="*{motor.volume}" /></td>
+            </tr>
+        </table>
+        <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+    </form>
+</body>
+</html>
