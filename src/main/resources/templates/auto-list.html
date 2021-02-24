@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Auto join list</title>
+    <link rel="stylesheet" type="text/css" th:href="@{static/style.css}"/>
+</head>
+<body>
+<h1>Auto list</h1>
+<div>
+    <nobr>
+        <a th:href="@{/auto/add}">Add auto</a>
+    </nobr>
+</div>
+<div style="text-align:center">
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>brand</th>
+            <th>model</th>
+            <th>year</th>
+            <th>color</th>
+            <th>price</th>
+            <th>motor type</th>
+            <th>volume</th>
+            <th>drive type</th>
+            <th>transmission type</th>
+            <th>body style</th>
+        </tr>
+        <tr th:each ="auto : ${listAutoJoin}">
+            <td><a th:href="@{/auto/{autoId}(autoId=${auto.id})}" th:utext="${auto.id}">...</a></td>
+            <td><a th:href="@{/auto/{autoId}(autoId=${auto.id})}" th:utext="${auto.nameBrand}">...</a></td>
+            <td><a th:href="@{/auto/{autoId}(autoId=${auto.id})}" th:utext="${auto.nameModel}">...</a></td>
+            <td th:utext="${auto.year}"></td>
+            <td th:utext="${auto.color}"></td>
+            <td th:utext="${auto.price}"></td>
+            <td th:utext="${auto.motorType}"></td>
+            <td th:utext="${auto.volume}"></td>
+            <td th:utext="${auto.driveType}"></td>
+            <td th:utext="${auto.transmission}"></td>
+            <td th:utext="${auto.bodyStyle}"></td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<div>
+    <nobr>
+        <span th:if="${hasPrev}"><a th:href="@{/auto?page={prev}(prev=${prev})}">Prev</a>&nbsp;&nbsp;&nbsp;</span>
+        <span th:if="${hasNext}"><a th:href="@{/auto?page={next}(next=${next})}">Next</a></span>
+    </nobr>
+</div>
+</body>
+</html>

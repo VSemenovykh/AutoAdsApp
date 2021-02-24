@@ -1,8 +1,8 @@
-package ru.ncedu.model;
+package ru.ncedu.model;	
 
-public enum Drive {
-     RWD     //real wheel drive 
-    ,FWD   //front wheel drive 
-    ,AWD;   //four wheel drive 
+public enum Drive {	
+     RWD     //REARWHEELDRIVE	
+    ,FRWD   //FRONTWHEELDRIVE	
+    ,FWD;   //FOURWHEELDRIVE	
 
 }

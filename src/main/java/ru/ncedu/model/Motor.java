@@ -1,31 +1,15 @@
-package ru.ncedu.model;
+package ru.ncedu.model;	
 
-public class Motor {
-    private int id;
-    private Fuel motorType;
-    private double volume;
+import lombok.AllArgsConstructor;	
+import lombok.Data;	
+import lombok.NoArgsConstructor;	
 
-    public int getId() {
-        return id;
-    }
+@Data	
+@AllArgsConstructor	
+@NoArgsConstructor	
+public class Motor {	
+    private int id;	
+    private Fuel motorType;	
+    private double volume;	
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Fuel getMotorType() {
-        return motorType;
-    }
-
-    public void setMotorType(Fuel motorType) {
-        this.motorType = motorType;
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
 }

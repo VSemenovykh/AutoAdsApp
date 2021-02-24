@@ -1,8 +1,8 @@
-package ru.ncedu.model;
+package ru.ncedu.model;	
 
-public enum Transmission {
-    HYBRID,
-    AUTOMATIC,
-    MANUAL,
-    CVT;
+public enum Transmission {	
+    HYBRID,	
+    AUTOMATIC,	
+    MANUAL,	
+    CVT;	
 }
