@@ -10,12 +10,20 @@ import java.io.Serializable;
 @AllArgsConstructor	
 @NoArgsConstructor	
 public class Auto {
+
     private int id;	
-    private Brand brand;	
-    private String color;	
-    private double price;	
-    private Motor motor;	
-    private Transmission transmissionType;	
-    private Drive driveType;	
-    private BodyStyle bodyStyleType;	
+
+    private Brand brand;
+
+    private String color;
+
+    private double price;
+
+    private Motor motor;
+
+    private Transmission transmissionType;
+
+    private Drive driveType;
+
+    private BodyStyle bodyStyleType;
 }

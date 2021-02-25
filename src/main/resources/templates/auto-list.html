@@ -2,17 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Auto join list</title>
+    <title>List of list</title>
     <link rel="stylesheet" type="text/css" th:href="@{static/style.css}"/>
 </head>
 <body>
-<h1>Auto list</h1>
-<div>
+<h1 align="center">Auto list</h1>
+<div align="center">
     <nobr>
         <a th:href="@{/auto/add}">Add auto</a>
     </nobr>
 </div>
-<div style="text-align:center">
+<div align="center">
     <table border="1">
         <tr>
             <th>id</th>
@@ -39,6 +39,7 @@
             <td th:utext="${auto.driveType}"></td>
             <td th:utext="${auto.transmission}"></td>
             <td th:utext="${auto.bodyStyle}"></td>
+            <td><a th:href="@{/auto/{autoId}/edit(autoId=${auto.id})}">Edit</a></td>
         </tr>
     </table>
 </div>

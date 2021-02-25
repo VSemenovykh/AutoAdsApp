@@ -5,22 +5,21 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.Fetch;
 import javax.persistence.FetchType;
-
 import org.hibernate.annotations.FetchMode;
 import ru.ncedu.model.BodyStyle;
 import ru.ncedu.model.Drive;
 import ru.ncedu.model.Transmission;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table(name = "auto",schema = "public")
+@Table(name = "auto")
 @Data
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Auto implements Serializable {
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -38,12 +37,20 @@ public class Auto implements Serializable {
     private Long idMotor;
 
     @Column(name = "transmission_type")
-    private String transmission;
+    private String transmissionType;
 
     @Column(name = "drive_type")
-    private String drive;
+    private String driveType;
 
     @Column(name = "body_style")
-    private String bodyStyle;
+    private String bodyStyleType;
 
+    @Transient
+    private Drive drive;
+
+    @Transient
+    private Transmission transmission;
+
+    @Transient
+    private BodyStyle body;
 }

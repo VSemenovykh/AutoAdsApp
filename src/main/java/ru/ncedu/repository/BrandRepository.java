@@ -11,7 +11,10 @@ import java.util.List;
 
 @Repository	
 public interface BrandRepository extends PagingAndSortingRepository<Brand, Long>, JpaSpecificationExecutor<Brand> {
+
     List<Brand> findAll();
-    Brand findBrandByIdAuto(Long idAuto);
-    void deleteByIdAuto(Long idAuto);
+
+    Brand findBrandById(Long idBrand);
+
+    void deleteById(Long idBrand);
 }

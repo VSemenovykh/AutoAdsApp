@@ -16,6 +16,7 @@ import java.util.List;
 @Service
 @Transactional
 public class AutoServiceImp implements AutoService {
+
 	@Autowired
 	AutoRepository autorepository;
 
@@ -58,5 +59,4 @@ public class AutoServiceImp implements AutoService {
     public void delete(Long id){
 		autorepository.deleteById(id);
 	}
-
 }

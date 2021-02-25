@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Auto</title>
+    <link rel="stylesheet" type="text/css" th:href="@{static/style.css}"/>
 </head>
 <body>
 <h1>View auto</h1>
@@ -10,7 +11,7 @@
 <br/><br/>
 <div th:if="${auto}">
     <table border="0">
-        <tr>
+        <tr th:if="${auto.id}">
             <td>ID</td>
             <td>:</td>
             <td th:utext="${auto.getId()}">...</td>
@@ -53,28 +54,27 @@
         <tr>
             <td>Drive type</td>
             <td>:</td>
-            <td> <input type="text" th:value="${auto.getDrive()}" name="drive"/></td>
+            <td><input type="text" th:value="${auto.getDriveType()}"></td>
         </tr>
         <tr>
             <td>Transmission type</td>
             <td>:</td>
-            <td> <input type="text" th:value="${auto.getTransmission()}" name="transmission"/></td>
+            <td><input type="text" th:value="${auto.getTransmissionType()}"></td>
         </tr>
         <tr>
             <td>Body sryle</td>
             <td>:</td>
-            <td> <input type="text" th:value="${auto.getBodyStyle()}" name="bodyStyle"/></td>
+            <td class="form-group"> <input type="text" th:value="${auto.getBodyStyleType()}" name="bodyStyle"/></td>
         </tr>
     </table>
     <br/><br/>
     <div th:if="not ${allowDelete}">
-      <!--  <a th:href="@{/auto/{autoId}/edit(autoId=${auto.id})}">Edit</a> -->
-        <a th:href="@{/auto/{autoId}/delete(autoId=${auto.id})}">Delete</a>
+        <a th:href="@{/auto/{autoId}/edit(autoId=${auto.id})}">Edit</a>
+        <a th:href="@{/auto/{autoId}/delete(autoId=${auto.id})}"> | Delete</a>
     </div>
     <form th:if="${allowDelete}" th:action="@{/auto/{autoId}/delete(autoId=${auto.id})}" method="POST">
-        Delete this contact? <input type="submit" th:value="Yes" />
+        Delete this auto? <input type="submit" th:value="Yes" />
     </form>
-</div>
 </div>
 </body>
 </html>
