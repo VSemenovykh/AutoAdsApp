@@ -56,7 +56,7 @@ public class MotorServiceImp implements MotorService{
     }
 
     @Override
-    public void delete(Long idAuto){
-        motorRepository.deleteById(idAuto);
+    public void delete(Long id){
+        motorRepository.deleteById(id);
     }
 }
