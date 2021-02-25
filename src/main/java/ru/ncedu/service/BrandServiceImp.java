@@ -56,7 +56,7 @@ public class BrandServiceImp implements BrandService{
     }
 
     @Override
-    public void delete(Long idAuto){
-        brandRepository.deleteById(idAuto);
+    public void delete(Long id){
+        brandRepository.deleteById(id);
     }
 }
