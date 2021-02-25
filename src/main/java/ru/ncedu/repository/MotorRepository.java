@@ -17,4 +17,5 @@ public interface MotorRepository extends PagingAndSortingRepository<Motor, Long>
     Motor findMotorById(Long idMotor);
 
     void deleteById(Long idMotor);
+
 }

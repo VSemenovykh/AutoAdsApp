@@ -111,10 +111,11 @@ public class AddEditController{
 
             return "auto-edit";
         }
+
     }
 
     @GetMapping(value = {"/auto/{autoId}/delete"})
-    public String showDeleteContactById(Model model, @PathVariable long autoId) {
+    public String showDeleteAutoById(Model model, @PathVariable long autoId) {
 
         Auto auto = autoService.findById(autoId);
         Brand brand = brandService.findBrandByIdBrand(auto.getIdBrand());
@@ -129,7 +130,7 @@ public class AddEditController{
     }
 
     @PostMapping(value = {"/auto/{autoId}/delete"})
-    public String deleteContactById(Model model, @PathVariable long autoId) {
+    public String deleteAutoById(Model model, @PathVariable long autoId) {
 
         Auto auto = autoService.findById(autoId);
         auto.setIdBrand(0L);

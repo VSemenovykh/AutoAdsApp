@@ -26,4 +26,5 @@ public class Auto {
     private Drive driveType;
 
     private BodyStyle bodyStyleType;
+
 }

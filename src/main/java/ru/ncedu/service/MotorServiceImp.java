@@ -6,10 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 import ru.ncedu.entity.Motor;
-import ru.ncedu.exception.BadResourceException;
-import ru.ncedu.exception.ResourceNotFoundException;
 import ru.ncedu.repository.MotorRepository;
 
 import java.util.ArrayList;
@@ -27,10 +24,6 @@ public class MotorServiceImp implements MotorService{
         return motorRepository.findAll();
     }
 
-    private boolean existsById(Long id) {
-        return motorRepository.existsById(id);
-    }
-
     @Override
     public List<Motor> findAll(int pageNumber, int rowPerPage) {
         List<Motor> contacts = new ArrayList<>();
@@ -46,51 +39,25 @@ public class MotorServiceImp implements MotorService{
     }
 
     @Override
-    public Motor findById(Long id) throws ResourceNotFoundException {
-
+    public Motor findById(Long id){
         Motor motor = motorRepository.findById(id).orElse(null);
-
-        if (motor==null) {
-
-            throw new ResourceNotFoundException("Cannot find motor with id: " + id);
-
-        }else{
-
-            return motor;
-        }
-    }
-
-    @Override
-    public Motor findMotorByIdMotor(Long idAuto){
-        Motor motor = motorRepository.findMotorById(idAuto);
         return motor;
     }
 
     @Override
-    public void update(Motor motor) throws BadResourceException, ResourceNotFoundException {
-
-        if (!StringUtils.isEmpty(motor.getMotorType())) {
-            if (!existsById(motor.getId())) {
-
-                throw new ResourceNotFoundException("Cannot find motor with id: " + motor.getId());
-            }
-            motorRepository.save(motor);
-
-        }else{
-            BadResourceException exc = new BadResourceException("Failed to save motor");
-            exc.addErrorMessage("Motor is null or empty");
-            throw exc;
-        }
+    public Motor findMotorByIdMotor(Long idMotor){
+        Motor motor = motorRepository.findMotorById(idMotor);
+        return motor;
     }
 
     @Override
-    public void delete(Long id) throws ResourceNotFoundException {
-
-        if (!existsById(id)) {
-            throw new ResourceNotFoundException("Cannot find motor with id: " + id);
-        }
-        else {
-            motorRepository.deleteById(id);
-        }
+    public void update(Motor motor){
+        motorRepository.save(motor);
     }
+
+    @Override
+    public void delete(Long idMotor){
+        motorRepository.deleteById(idMotor);
+    }
+
 }

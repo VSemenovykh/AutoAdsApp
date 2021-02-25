@@ -14,4 +14,5 @@ public interface AutoRepository extends PagingAndSortingRepository<Auto, Long>, 
 	List<Auto> findAll();
 
 	void deleteById(Long id);
+
 }

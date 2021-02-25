@@ -12,5 +12,7 @@ import java.util.List;
 
 @Repository	
 public interface UserRepository extends PagingAndSortingRepository<User, Long>, JpaSpecificationExecutor<User> {
+
     public List<User> findByName(String name);
+
 }

@@ -27,18 +27,5 @@ public class AutoAdsApplication implements WebMvcConfigurer, CommandLineRunner{
     public void run(String... args){
 
         log.info("StartApplication...");
-
-        repository.save(new User("Pety","client"));
-        repository.save(new User("Mary","admin"));
-        repository.save(new User("Sasha","client"));
-
-        System.out.println("\nfindAll()");
-        repository.findAll().forEach(x -> System.out.println(x));
-
-        System.out.println("\nfindById(1L)");
-        repository.findById(1l).ifPresent(x -> System.out.println(x));
-
-        System.out.println("\nfindByName('Node')");
-        repository.findByName("Mary").forEach(x -> System.out.println(x));
     }
 }

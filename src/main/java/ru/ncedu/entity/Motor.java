@@ -29,4 +29,5 @@ public class Motor implements Serializable {
 
     @Transient
      private Fuel fuel;
+
 }

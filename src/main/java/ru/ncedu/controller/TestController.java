@@ -16,5 +16,6 @@ public class TestController {
     @PostMapping	
     public String testPostMapping() {	
         return "index";	
-    }	
+    }
+
 }
