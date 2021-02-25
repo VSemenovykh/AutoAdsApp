@@ -19,5 +19,5 @@ public interface BrandService {
 
     Brand findBrandByIdBrand(Long idAuto);
 
-    void delete(Long idAuto);
+    void delete(Long id);
 }
