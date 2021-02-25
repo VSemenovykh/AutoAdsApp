@@ -20,5 +20,5 @@ public interface MotorService {
 
     Motor findMotorByIdMotor(Long idAuto);
 
-    void delete(Long idAuto);
+    void delete(Long id);
 }
