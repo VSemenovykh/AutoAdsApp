@@ -3,8 +3,6 @@ package ru.ncedu.service;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
-import ru.ncedu.exception.BadResourceException;
-import ru.ncedu.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -16,11 +14,12 @@ public interface MotorService {
 
     Motor save(Motor motor);
 
-    Motor findById(Long id) throws ResourceNotFoundException;
+    Motor findById(Long id);
 
-    void update(Motor motor) throws ResourceNotFoundException, BadResourceException;
+    void update(Motor motor);
 
-    Motor findMotorByIdMotor(Long idAuto);
+    Motor findMotorByIdMotor(Long idMotor);
 
-    void delete(Long id) throws ResourceNotFoundException;
+    void delete(Long idMotor);
+
 }

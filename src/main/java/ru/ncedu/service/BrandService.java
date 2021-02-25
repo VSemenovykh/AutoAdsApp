@@ -2,9 +2,6 @@ package ru.ncedu.service;
 
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
-import ru.ncedu.exception.BadResourceException;
-import ru.ncedu.exception.ResourceAlreadyExistsException;
-import ru.ncedu.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -14,13 +11,13 @@ public interface BrandService {
 
     List<Brand> findAll(int pageNumber, int rowPerPage);
 
-    Brand save(Brand brand) throws BadResourceException, ResourceAlreadyExistsException;
+    Brand save(Brand brand);
 
-    Brand findById(Long id) throws ResourceNotFoundException;
+    Brand findById(Long id);
 
-    void update(Brand brand) throws BadResourceException, ResourceNotFoundException;
+    void update(Brand brand);
 
-    Brand findBrandByIdBrand(Long idAuto);
+    Brand findBrandByIdBrand(Long idBrand);
 
-    void delete(Long id) throws ResourceNotFoundException;
+    void delete(Long idBrand);
 }

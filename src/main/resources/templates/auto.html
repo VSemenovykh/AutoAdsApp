@@ -6,76 +6,75 @@
     <link rel="stylesheet" type="text/css" th:href="@{static/style.css}"/>
 </head>
 <body>
-<h1>View auto</h1>
-<a th:href="@{/auto}">Back to auto List</a>
-<br/><br/>
-<div th:if="${auto}">
-    <table border="0">
-        <tr th:if="${auto.id}">
-            <td>ID</td>
-            <td>:</td>
-            <td th:utext="${auto.getId()}">...</td>
-        </tr>
-        <tr>
-            <td>Brand</td>
-            <td>:</td>
-            <td><input type="text" th:value="${brand.getNameBrand()}" name="brand"/></td>
-        </tr>
-        <tr>
-            <td>Model</td>
-            <td>:</td>
-            <td> <input type="text" th:value="${brand.getNameModel()}" name="model"/></td>
-        </tr>
-        <tr>
-            <td>Year</td>
-            <td>:</td>
-            <td> <input type="text" th:value="${brand.getYear()}" name="year"/></td>
-        </tr>
-        <tr>
-            <td>Color</td>
-            <td>:</td>
-            <td> <input type="text" th:value="${auto.getColor()}" name="color"/></td>
-        </tr>
-        <tr>
-            <td>Price</td>
-            <td>:</td>
-            <td> <input type="text" th:value="${auto.getPrice()}" name="price"/></td>
-        </tr>
-        <tr>
-            <td>Motor type</td>
-            <td>:</td>
-            <td> <input type="text" th:value="${motor.getMotorType()}" name="motorType"/></td>
-        </tr>
-        <tr>
-            <td>Volume</td>
-            <td>:</td>
-            <td> <input type="text" th:value="${motor.getVolume()}" name="volume"/></td>
-        </tr>
-        <tr>
-            <td>Drive type</td>
-            <td>:</td>
-            <td><input type="text" th:value="${auto.getDriveType()}"></td>
-        </tr>
-        <tr>
-            <td>Transmission type</td>
-            <td>:</td>
-            <td><input type="text" th:value="${auto.getTransmissionType()}"></td>
-        </tr>
-        <tr>
-            <td>Body sryle</td>
-            <td>:</td>
-            <td class="form-group"> <input type="text" th:value="${auto.getBodyStyleType()}" name="bodyStyle"/></td>
-        </tr>
-    </table>
+    <h1>View auto</h1>
+    <a th:href="@{/auto}">Back to auto List</a>
     <br/><br/>
-    <div th:if="not ${allowDelete}">
-        <a th:href="@{/auto/{autoId}/edit(autoId=${auto.id})}">Edit</a>
-        <a th:href="@{/auto/{autoId}/delete(autoId=${auto.id})}"> | Delete</a>
+    <div th:if="${auto}">
+        <table border="0">
+            <tr th:if="${auto.id}">
+                <td>ID</td>
+                <td>:</td>
+                <td th:utext="${auto.getId()}">...</td>
+            </tr>
+            <tr>
+                <td>Brand</td>
+                <td>:</td>
+                <td><input type="text" th:value="${brand.getNameBrand()}" name="brand"/></td>
+            </tr>
+            <tr>
+                <td>Model</td>
+                <td>:</td>
+                <td> <input type="text" th:value="${brand.getNameModel()}" name="model"/></td>
+            </tr>
+            <tr>
+                <td>Year</td>
+                <td>:</td>
+                <td> <input type="text" th:value="${brand.getYear()}" name="year"/></td>
+            </tr>
+            <tr>
+                <td>Color</td>
+                <td>:</td>
+                <td> <input type="text" th:value="${auto.getColor()}" name="color"/></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>:</td>
+                <td> <input type="text" th:value="${auto.getPrice()}" name="price"/></td>
+            </tr>
+            <tr>
+                <td>Motor type</td>
+                <td>:</td>
+                <td> <input type="text" th:value="${motor.getMotorType()}" name="motorType"/></td>
+            </tr>
+            <tr>
+                <td>Volume</td>
+                <td>:</td>
+                <td> <input type="text" th:value="${motor.getVolume()}" name="volume"/></td>
+            </tr>
+            <tr>
+                <td>Drive type</td>
+                <td>:</td>
+                <td><input type="text" th:value="${auto.getDriveType()}"></td>
+            </tr>
+            <tr>
+                <td>Transmission type</td>
+                <td>:</td>
+                <td><input type="text" th:value="${auto.getTransmissionType()}"></td>
+            </tr>
+            <tr>
+                <td>Body sryle</td>
+                <td>:</td>
+                <td class="form-group"> <input type="text" th:value="${auto.getBodyStyleType()}" name="bodyStyle"/></td>
+            </tr>
+        </table>
+        <br/><br/>
+        <div th:if="not ${allowDelete}">
+            <a th:href="@{/auto/{autoId}/edit(autoId=${auto.id})}">Edit</a>
+            <a th:href="@{/auto/{autoId}/delete(autoId=${auto.id})}"> | Delete</a>
+        </div>
+        <form th:if="${allowDelete}" th:action="@{/auto/{autoId}/delete(autoId=${auto.id})}" method="POST">
+            Delete this auto? <input type="submit" th:value="Yes" />
+        </form>
     </div>
-    <form th:if="${allowDelete}" th:action="@{/auto/{autoId}/delete(autoId=${auto.id})}" method="POST">
-        Delete this auto? <input type="submit" th:value="Yes" />
-    </form>
-</div>
-<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
 </body>
 </html>

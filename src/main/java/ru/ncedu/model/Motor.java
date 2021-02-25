@@ -14,4 +14,5 @@ public class Motor{
     private Fuel motorType;
 
     private double volume;
+
 }

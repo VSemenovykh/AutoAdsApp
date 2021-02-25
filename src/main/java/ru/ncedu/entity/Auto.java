@@ -53,4 +53,5 @@ public class Auto implements Serializable {
 
     @Transient
     private BodyStyle body;
+
 }

@@ -17,4 +17,5 @@ public interface BrandRepository extends PagingAndSortingRepository<Brand, Long>
     Brand findBrandById(Long idBrand);
 
     void deleteById(Long idBrand);
+
 }

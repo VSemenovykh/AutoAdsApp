@@ -28,4 +28,5 @@ public class Brand implements Serializable{
 
     @Column(name = "year")
     private String year;
+
 }
