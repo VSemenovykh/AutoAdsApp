@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import ru.ncedu.entity.Auto;
+import ru.ncedu.exception.BadResourceException;
+import ru.ncedu.exception.ResourceAlreadyExistsException;
+import ru.ncedu.exception.ResourceNotFoundException;
 import ru.ncedu.repository.AutoRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,17 +28,24 @@ public class AutoServiceImp implements AutoService {
 		return autorepository.findAll();
 	}
 
+	private boolean existsById(Long id) {
+		return autorepository.existsById(id);
+	}
+
 	@Override
-	public List<Auto> findAll(int pageNumber, int rowPerPage) {
+	public List<Auto> findAll(int pageNumber, int rowPerPage){
+
 		List<Auto> contacts = new ArrayList<>();
-		Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
-				Sort.by("id").ascending());
+
+		Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage, Sort.by("id").ascending());
+
 		autorepository.findAll(sortedByIdAsc).forEach(contacts::add);
+
 		return contacts;
 	}
 
 	@Override
-	public Auto save(Auto auto){
+	public Auto save(Auto auto) {
 			return autorepository.save(auto);
 	}
 
@@ -45,18 +55,34 @@ public class AutoServiceImp implements AutoService {
 	}
 
 	@Override
-	public Auto findById(Long id){
+	public Auto findById(Long id) throws ResourceNotFoundException {
+
 		Auto auto = autorepository.findById(id).orElse(null);
-		return auto;
+
+		if (auto==null) {
+
+			throw new ResourceNotFoundException("Cannot find auto with id: " + id);
+
+		}else{
+
+			return auto;
+		}
 	}
 
 	@Override
 	public void update(Auto auto){
+
 			autorepository.save(auto);
 	}
 
 	@Override
-    public void delete(Long id){
-		autorepository.deleteById(id);
+    public void delete(Long id) throws ResourceNotFoundException{
+
+		if (!existsById(id)) {
+			throw new ResourceNotFoundException("Cannot find auto with id: " + id);
+		}
+		else {
+			autorepository.deleteById(id);
+		}
 	}
 }
