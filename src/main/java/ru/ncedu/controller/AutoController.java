@@ -1,13 +1,14 @@
 package ru.ncedu.controller;	
 
-import org.springframework.beans.factory.annotation.Autowired;	
-import org.springframework.stereotype.Controller;	
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;	
 import org.springframework.web.bind.annotation.*;	
 import ru.ncedu.entity.Auto;	
 import ru.ncedu.entity.Brand;	
-import ru.ncedu.entity.Motor;	
-import ru.ncedu.model.AutoJoin;	
+import ru.ncedu.entity.Motor;
+import ru.ncedu.exception.ResourceNotFoundException;
+import ru.ncedu.model.AutoJoin;
 import ru.ncedu.service.AutoService;	
 import ru.ncedu.service.BrandService;	
 import ru.ncedu.service.MotorService;	
@@ -30,7 +31,7 @@ public class AutoController {
     MotorService motorService;	
 
     @GetMapping("/auto")
-    public String displayListCarsJoin(Model model,  @RequestParam(value = "page", defaultValue = "1") int pageNumber){
+    public String displayListCarsJoin(Model model,  @RequestParam(value = "page", defaultValue = "1") int pageNumber) throws ResourceNotFoundException {
 
         List<Auto> auto = autoService.findAll(pageNumber, ROW_PER_PAGE);
         List<Brand> brand = brandService.findAll(pageNumber, ROW_PER_PAGE);

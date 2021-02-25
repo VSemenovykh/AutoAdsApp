@@ -76,5 +76,6 @@
         Delete this auto? <input type="submit" th:value="Yes" />
     </form>
 </div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
 </body>
 </html>

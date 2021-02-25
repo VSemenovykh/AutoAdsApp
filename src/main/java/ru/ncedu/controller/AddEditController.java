@@ -1,5 +1,7 @@
 package ru.ncedu.controller;
 
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
+import ru.ncedu.exception.ResourceNotFoundException;
 import ru.ncedu.service.AutoService;
 import ru.ncedu.service.BrandService;
 import ru.ncedu.service.MotorService;
 
 @Controller
+@Slf4j
 public class AddEditController{
 
     @Autowired
@@ -52,6 +56,12 @@ public class AddEditController{
             return "redirect:/auto/" + String.valueOf(newAuto.getId());
 
         }catch (Exception ex) {
+            // log exception first,
+            // then show error
+            String errorMessage = ex.getMessage();
+            log.error(errorMessage);
+
+            model.addAttribute("errorMessage", errorMessage);
             model.addAttribute("add", true);
 
             return "auto-edit";
@@ -59,11 +69,20 @@ public class AddEditController{
     }
 
     @GetMapping(value = "/auto/{autoId}")
-    public String getShowAutoById(Model model, @PathVariable long autoId) {
+    public String getShowAutoById(Model model, @PathVariable long autoId) throws ResourceNotFoundException {
 
-        Auto auto = autoService.findById(autoId);
-        Brand brand = brandService.findById(auto.getIdBrand());
-        Motor motor = motorService.findById(auto.getIdMotor());
+        Auto auto = null;
+        Brand brand = null;
+        Motor motor = null;
+
+        try {
+            auto = autoService.findById(autoId);
+            brand = brandService.findById(auto.getIdBrand());
+            motor = motorService.findById(auto.getIdMotor());
+
+        } catch (ResourceNotFoundException ex) {
+            model.addAttribute("errorMessage", "Contact not found");
+        }
 
         model.addAttribute("auto", auto);
         model.addAttribute("brand", brand);
@@ -73,16 +92,25 @@ public class AddEditController{
     }
 
     @GetMapping(value = {"/auto/{autoId}/edit"})
-    public String showEditAuto(Model model, @PathVariable long autoId) {
+    public String showEditAuto(Model model, @PathVariable long autoId) throws ResourceNotFoundException {
 
-        Auto auto = autoService.findById(autoId);
+        Auto auto = null;
+        Brand brand = null;
+        Motor motor = null;
 
-        auto.setDriveType(auto.getDriveType());
-        auto.setTransmissionType(auto.getTransmissionType());
-        auto.setBodyStyleType(auto.getBodyStyleType());
+        try {
+            auto = autoService.findById(autoId);
 
-        Brand brand = brandService.findById(auto.getIdBrand());
-        Motor motor =  motorService.findById(auto.getIdMotor());
+            auto.setDriveType(auto.getDriveType());
+            auto.setTransmissionType(auto.getTransmissionType());
+            auto.setBodyStyleType(auto.getBodyStyleType());
+
+            brand = brandService.findById(auto.getIdBrand());
+            motor =  motorService.findById(auto.getIdMotor());
+
+        } catch (ResourceNotFoundException ex) {
+            model.addAttribute("errorMessage", "auto not found");
+        }
 
         model.addAttribute("add", false);
         model.addAttribute("auto", auto);
@@ -106,7 +134,12 @@ public class AddEditController{
             return "redirect:/auto/" + String.valueOf(auto.getId());
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            // log exception first,
+            // then show error
+            String errorMessage = ex.getMessage();
+            log.error(errorMessage);
+            model.addAttribute("errorMessage", errorMessage);
+
             model.addAttribute("add", false);
 
             return "auto-edit";
@@ -114,11 +147,20 @@ public class AddEditController{
     }
 
     @GetMapping(value = {"/auto/{autoId}/delete"})
-    public String showDeleteContactById(Model model, @PathVariable long autoId) {
+    public String showDeleteAutoById(Model model, @PathVariable long autoId) throws ResourceNotFoundException {
 
-        Auto auto = autoService.findById(autoId);
-        Brand brand = brandService.findBrandByIdBrand(auto.getIdBrand());
-        Motor motor = motorService.findMotorByIdMotor(auto.getIdMotor());
+        Auto auto = null;
+        Brand brand = null;
+        Motor motor = null;
+
+        try {
+            auto = autoService.findById(autoId);
+            brand = brandService.findBrandByIdBrand(auto.getIdBrand());
+            motor = motorService.findMotorByIdMotor(auto.getIdMotor());
+
+        } catch (ResourceNotFoundException ex) {
+            model.addAttribute("errorMessage", "Auto not found");
+        }
 
         model.addAttribute("allowDelete", true);
         model.addAttribute("auto", auto);
@@ -128,15 +170,25 @@ public class AddEditController{
         return "auto";
     }
 
+    @SneakyThrows
     @PostMapping(value = {"/auto/{autoId}/delete"})
-    public String deleteContactById(Model model, @PathVariable long autoId) {
+    public String deleteAutoById(Model model, @PathVariable long autoId) throws ResourceNotFoundException {
 
-        Auto auto = autoService.findById(autoId);
-        auto.setIdBrand(0L);
-        auto.setIdMotor(0L);
+        try {
+            Auto auto = autoService.findById(autoId);
+            auto.setIdBrand(0L);
+            auto.setIdMotor(0L);
 
-        autoService.delete(autoId);
+            autoService.delete(autoId);
 
-        return "redirect:/auto";
+            return "redirect:/auto";
+        } catch (ResourceNotFoundException ex) {
+
+            String errorMessage = ex.getMessage();
+            log.error(errorMessage);
+            model.addAttribute("errorMessage", errorMessage);
+
+            return "auto";
+        }
     }
 }
