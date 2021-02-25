@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository	
 public interface AutoRepository extends PagingAndSortingRepository<Auto, Long>, JpaSpecificationExecutor<Auto> {
+
 	List<Auto> findAll();
+
 	void deleteById(Long id);
 }

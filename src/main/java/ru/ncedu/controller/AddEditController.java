@@ -15,7 +15,7 @@ import ru.ncedu.service.BrandService;
 import ru.ncedu.service.MotorService;
 
 @Controller
-public class AddEditController {
+public class AddEditController{
 
     @Autowired
     AutoService autoService;
@@ -28,89 +28,94 @@ public class AddEditController {
 
     @GetMapping(value = {"/auto/add"})
     public String showAddAuto(Model model) {
-        Auto auto = new Auto();
-        Brand brand = new Brand();
-        Motor motor = new Motor();
+
+        Brand brand = brandService.findBrandByIdBrand( new Auto().getIdBrand());
+        Motor motor = motorService.findMotorByIdMotor( new Auto().getIdMotor());
+
         model.addAttribute("add", true);
-        model.addAttribute("auto", auto);
+        model.addAttribute("auto",  new Auto());
         model.addAttribute("brand", brand);
         model.addAttribute("motor", motor);
+
         return "auto-edit";
     }
 
     @PostMapping(value = "/auto/add")
-    public String addAuto(Model model, @ModelAttribute("auto") Auto auto,
-                             @ModelAttribute("brand") Brand brand,
-                             @ModelAttribute("motor") Motor motor) {
-            try {
-                Auto newAuto = autoService.save(auto);
-                Brand newBrand = brandService.save(brand);
-                Motor newMotor = motorService.save(motor);
-                return "redirect:/auto/" + String.valueOf(newAuto.getId());
-            } catch (Exception ex) {
-                //model.addAttribute("contact", contact);
-                model.addAttribute("add", true);
+    public String addAuto(Model model,  @ModelAttribute("auto") Auto auto) {
 
-        return "auto-edit";
+        try {
+            auto.setDriveType(auto.getDrive().toString());
+            auto.setTransmissionType(auto.getTransmission().toString());
+            auto.setBodyStyleType(auto.getBody().toString());
+            Auto newAuto = autoService.save(auto);
+
+            return "redirect:/auto/" + String.valueOf(newAuto.getId());
+
+        }catch (Exception ex) {
+            model.addAttribute("add", true);
+
+            return "auto-edit";
         }
     }
 
     @GetMapping(value = "/auto/{autoId}")
     public String getShowAutoById(Model model, @PathVariable long autoId) {
+
         Auto auto = autoService.findById(autoId);
-
-        Brand brand = brandService.findBrandByIdBrand(auto.getIdBrand());
-      //  brand = brandService.findById(autoId);
-
-        Motor motor = motorService.findMotorByIdMotor(auto.getIdMotor());
-      //  motor = motorService.findById(autoId);
+        Brand brand = brandService.findById(auto.getIdBrand());
+        Motor motor = motorService.findById(auto.getIdMotor());
 
         model.addAttribute("auto", auto);
         model.addAttribute("brand", brand);
         model.addAttribute("motor", motor);
+
         return "auto";
     }
 
-//    @GetMapping(value = {"/auto/{autoId}/edit"})
-//    public String showEditAuto(Model model, @PathVariable long autoId) {
-//        Auto auto = null;
-//        Brand brand = null;
-//        Motor motor = null;
-//        auto = autoService.findById(autoId);
-//        brand = brandService.findById(autoId);
-//        motor = motorService.findById(autoId);
-//
-//        model.addAttribute("add", false);
-//        model.addAttribute("auto", auto);
-//        model.addAttribute("brand", brand);
-//        model.addAttribute("motor", motor);
-//        return "auto-edit";
-//    }
-//
-//    @PostMapping(value = {"/auto/{Id}/edit"})
-//    public String updateAuto(Model model, @PathVariable long Id
-//                                            ,@ModelAttribute("auto") Auto auto
-//                                            ,@ModelAttribute("brand") Brand brand
-//                                            ,@ModelAttribute("motor") Motor motor) {
-//        try {
-//            auto.setId(Id);
-//            autoService.update(auto);
-//
-//            brand.setId(Id);
-//            brandService.update(brand);
-//
-//            motor.setId(Id);
-//            motorService.update(motor);
-//
-//            return "redirect:/auto/" + String.valueOf(auto.getId());
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//            model.addAttribute("add", false);
-//            return "auto-edit";
-//        }
-//    }
+    @GetMapping(value = {"/auto/{autoId}/edit"})
+    public String showEditAuto(Model model, @PathVariable long autoId) {
+
+        Auto auto = autoService.findById(autoId);
+
+        auto.setDriveType(auto.getDriveType());
+        auto.setTransmissionType(auto.getTransmissionType());
+        auto.setBodyStyleType(auto.getBodyStyleType());
+
+        Brand brand = brandService.findById(auto.getIdBrand());
+        Motor motor =  motorService.findById(auto.getIdMotor());
+
+        model.addAttribute("add", false);
+        model.addAttribute("auto", auto);
+        model.addAttribute("brand", brand);
+        model.addAttribute("motor", motor);
+
+        return "auto-edit";
+    }
+
+    @PostMapping(value = {"/auto/{Id}/edit"})
+    public String updateAuto(Model model, @PathVariable long Id, @ModelAttribute("auto") Auto auto
+                            ,@ModelAttribute("brand") Brand brand, @ModelAttribute("motor") Motor motor) {
+
+        try {
+            auto.setId(Id);
+            auto.setDriveType(auto.getDrive().toString().toLowerCase());
+            auto.setTransmissionType(auto.getTransmission().toString().toLowerCase());
+            auto.setBodyStyleType(auto.getBody().toString().toLowerCase());
+            autoService.update(auto);
+
+            return "redirect:/auto/" + String.valueOf(auto.getId());
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            model.addAttribute("add", false);
+
+            return "auto-edit";
+        }
+    }
+
     @GetMapping(value = {"/auto/{autoId}/delete"})
     public String showDeleteContactById(Model model, @PathVariable long autoId) {
+
         Auto auto = autoService.findById(autoId);
         Brand brand = brandService.findBrandByIdBrand(auto.getIdBrand());
         Motor motor = motorService.findMotorByIdMotor(auto.getIdMotor());
@@ -125,10 +130,13 @@ public class AddEditController {
 
     @PostMapping(value = {"/auto/{autoId}/delete"})
     public String deleteContactById(Model model, @PathVariable long autoId) {
+
         Auto auto = autoService.findById(autoId);
-        brandService.delete(auto.getIdBrand());
-        motorService.delete(auto.getIdMotor());
+        auto.setIdBrand(0L);
+        auto.setIdMotor(0L);
+
         autoService.delete(autoId);
+
         return "redirect:/auto";
     }
 }

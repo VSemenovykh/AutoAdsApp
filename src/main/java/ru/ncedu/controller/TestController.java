@@ -11,7 +11,8 @@ public class TestController {
     @GetMapping	
     public String testGetMapping(Model model){	
         return "index";	
-    }	
+    }
+
     @PostMapping	
     public String testPostMapping() {	
         return "index";	

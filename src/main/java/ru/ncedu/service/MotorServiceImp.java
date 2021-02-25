@@ -6,8 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.ncedu.entity.Auto;
-import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.repository.MotorRepository;
 
@@ -17,6 +15,7 @@ import java.util.List;
 @Service
 @Transactional
 public class MotorServiceImp implements MotorService{
+
     @Autowired
     MotorRepository motorRepository;
 
@@ -44,9 +43,10 @@ public class MotorServiceImp implements MotorService{
         Motor motor = motorRepository.findById(id).orElse(null);
         return motor;
     }
+
     @Override
     public Motor findMotorByIdMotor(Long idAuto){
-        Motor motor = motorRepository.findMotorByIdAuto(idAuto);
+        Motor motor = motorRepository.findMotorById(idAuto);
         return motor;
     }
 
@@ -57,6 +57,6 @@ public class MotorServiceImp implements MotorService{
 
     @Override
     public void delete(Long idAuto){
-        motorRepository.deleteByIdAuto(idAuto);
+        motorRepository.deleteById(idAuto);
     }
 }

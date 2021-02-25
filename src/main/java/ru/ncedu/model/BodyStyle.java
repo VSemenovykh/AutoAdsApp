@@ -1,17 +1,16 @@
 package ru.ncedu.model;	
 
-public enum BodyStyle {	
+public enum BodyStyle {
     CARGOVAN,	
-    CONVERTIBLE,	
-    COUPE,	
-    CREWCABPICKUP,	
-    EXTENDEDCABPICKUP,	
-    HATCHBACK,	
+    CONVERTIBLE,
+    COUPE,
+    CREWCABPICKUP,
+    EXTENDEDCABPICKUP,
+    HATCHBACK,
     MINIVAN,	
     PASSANGERVAN,	
     REGULARCABPICKUP,	
     SUV,	
     SEDAN,	
-    WAGON;	
-
+    WAGON;
 }

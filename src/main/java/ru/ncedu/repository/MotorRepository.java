@@ -11,7 +11,10 @@ import java.util.List;
 
 @Repository	
 public interface MotorRepository extends PagingAndSortingRepository<Motor, Long>, JpaSpecificationExecutor<Motor> {
+
     List<Motor> findAll();
-    Motor findMotorByIdAuto(Long idAuto);
-    void deleteByIdAuto(Long idAuto);
+
+    Motor findMotorById(Long idMotor);
+
+    void deleteById(Long idMotor);
 }
