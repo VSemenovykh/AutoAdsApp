@@ -13,4 +13,9 @@ public enum BodyStyle {
     SUV,
     SEDAN,
     WAGON;
+
+    @Override
+    public String toString() {
+        return name().toLowerCase();
+    }
 }
