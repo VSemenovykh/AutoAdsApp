@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
 @Slf4j
 @SpringBootApplication
 public class AutoAdsApplication implements WebMvcConfigurer, CommandLineRunner{
@@ -22,9 +23,9 @@ public class AutoAdsApplication implements WebMvcConfigurer, CommandLineRunner{
 
         registry.addResourceHandler("static/**").addResourceLocations("classpath:/static/");
     }
-
+  
     @Override
-    public void run(String... args){
+    public void run(String... args) {
 
         log.info("StartApplication...");
     }
