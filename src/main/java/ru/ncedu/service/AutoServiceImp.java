@@ -26,11 +26,11 @@ public class AutoServiceImp implements AutoService {
 
     @Override
     public List<Auto> findAll(int pageNumber, int rowPerPage) {
-        List<Auto> contacts = new ArrayList<>();
+        List<Auto> auto = new ArrayList<>();
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
-        autorepository.findAll(sortedByIdAsc).forEach(contacts::add);
-        return contacts;
+        autorepository.findAll(sortedByIdAsc).forEach(auto::add);
+        return auto;
     }
 
     @Override
