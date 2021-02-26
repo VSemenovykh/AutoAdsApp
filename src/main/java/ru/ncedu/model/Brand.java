@@ -1,10 +1,10 @@
-package ru.ncedu.model;	
+package ru.ncedu.model;
 
-import lombok.*;	
+import lombok.*;
 
-@Data	
-@AllArgsConstructor	
-@NoArgsConstructor	
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Brand {
 
     private int id;
@@ -14,5 +14,4 @@ public class Brand {
     private String modelName;
 
     private String year;
-
 }

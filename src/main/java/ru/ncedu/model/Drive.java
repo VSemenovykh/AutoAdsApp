@@ -1,8 +1,5 @@
-package ru.ncedu.model;	
+package ru.ncedu.model;
 
-public enum Drive {	
-     RWD
-    ,FWD
-    ,AWD;
-
+public enum Drive {
+    RWD, FWD, AWD;
 }

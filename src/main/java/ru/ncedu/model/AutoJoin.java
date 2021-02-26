@@ -30,5 +30,4 @@ public class AutoJoin {
     private String driveType;
 
     private String bodyStyle;
-
 }

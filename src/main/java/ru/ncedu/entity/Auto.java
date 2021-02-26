@@ -3,12 +3,10 @@ package ru.ncedu.entity;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.Fetch;
-import javax.persistence.FetchType;
-import org.hibernate.annotations.FetchMode;
 import ru.ncedu.model.BodyStyle;
 import ru.ncedu.model.Drive;
 import ru.ncedu.model.Transmission;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -21,7 +19,7 @@ import java.io.Serializable;
 public class Auto implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "id_brand")
@@ -53,5 +51,4 @@ public class Auto implements Serializable {
 
     @Transient
     private BodyStyle body;
-
 }

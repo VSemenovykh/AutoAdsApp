@@ -1,21 +1,17 @@
-package ru.ncedu.repository;	
+package ru.ncedu.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 import ru.ncedu.entity.Brand;
-import ru.ncedu.entity.Motor;
 
 import java.util.List;
 
-@Repository	
-public interface BrandRepository extends PagingAndSortingRepository<Brand, Long>, JpaSpecificationExecutor<Brand> {
+@Repository
+public interface BrandRepository extends PagingAndSortingRepository<Brand, Long> {
 
     List<Brand> findAll();
 
     Brand findBrandById(Long idBrand);
 
     void deleteById(Long idBrand);
-
 }

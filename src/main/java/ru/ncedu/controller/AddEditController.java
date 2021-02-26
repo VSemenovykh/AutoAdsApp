@@ -1,6 +1,6 @@
 package ru.ncedu.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,25 +15,23 @@ import ru.ncedu.service.BrandService;
 import ru.ncedu.service.MotorService;
 
 @Controller
-public class AddEditController{
+@RequiredArgsConstructor
+public class AddEditController {
 
-    @Autowired
-    AutoService autoService;
+    private final AutoService autoService;
 
-    @Autowired
-    BrandService brandService;
+    private final BrandService brandService;
 
-    @Autowired
-    MotorService motorService;
+    private final MotorService motorService;
 
     @GetMapping(value = {"/auto/add"})
     public String showAddAuto(Model model) {
 
-        Brand brand = brandService.findBrandByIdBrand( new Auto().getIdBrand());
-        Motor motor = motorService.findMotorByIdMotor( new Auto().getIdMotor());
+        Brand brand = brandService.findBrandByIdBrand(new Auto().getIdBrand());
+        Motor motor = motorService.findMotorByIdMotor(new Auto().getIdMotor());
 
         model.addAttribute("add", true);
-        model.addAttribute("auto",  new Auto());
+        model.addAttribute("auto", new Auto());
         model.addAttribute("brand", brand);
         model.addAttribute("motor", motor);
 
@@ -41,17 +39,17 @@ public class AddEditController{
     }
 
     @PostMapping(value = "/auto/add")
-    public String addAuto(Model model,  @ModelAttribute("auto") Auto auto) {
+    public String addAuto(Model model, @ModelAttribute("auto") Auto auto) {
 
         try {
-            auto.setDriveType(auto.getDrive().toString());
-            auto.setTransmissionType(auto.getTransmission().toString());
-            auto.setBodyStyleType(auto.getBody().toString());
+            auto.setDriveType(auto.getDrive().toString().toLowerCase());
+            auto.setTransmissionType(auto.getTransmission().toString().toLowerCase());
+            auto.setBodyStyleType(auto.getBody().toString().toLowerCase());
             Auto newAuto = autoService.save(auto);
 
             return "redirect:/auto/" + String.valueOf(newAuto.getId());
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             model.addAttribute("add", true);
 
             return "auto-edit";
@@ -77,12 +75,12 @@ public class AddEditController{
 
         Auto auto = autoService.findById(autoId);
 
-        auto.setDriveType(auto.getDriveType());
-        auto.setTransmissionType(auto.getTransmissionType());
-        auto.setBodyStyleType(auto.getBodyStyleType());
+        auto.setDriveType(auto.getDriveType().toString().toLowerCase());
+        auto.setTransmissionType(auto.getTransmissionType().toString().toLowerCase());
+        auto.setBodyStyleType(auto.getBodyStyleType().toString().toLowerCase());
 
         Brand brand = brandService.findById(auto.getIdBrand());
-        Motor motor =  motorService.findById(auto.getIdMotor());
+        Motor motor = motorService.findById(auto.getIdMotor());
 
         model.addAttribute("add", false);
         model.addAttribute("auto", auto);
@@ -94,7 +92,7 @@ public class AddEditController{
 
     @PostMapping(value = {"/auto/{Id}/edit"})
     public String updateAuto(Model model, @PathVariable long Id, @ModelAttribute("auto") Auto auto
-                            ,@ModelAttribute("brand") Brand brand, @ModelAttribute("motor") Motor motor) {
+            , @ModelAttribute("brand") Brand brand, @ModelAttribute("motor") Motor motor) {
 
         try {
             auto.setId(Id);

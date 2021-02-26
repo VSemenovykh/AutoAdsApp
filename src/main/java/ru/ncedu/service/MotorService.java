@@ -1,7 +1,5 @@
 package ru.ncedu.service;
 
-import ru.ncedu.entity.Auto;
-import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
 
 import java.util.List;
@@ -21,5 +19,4 @@ public interface MotorService {
     Motor findMotorByIdMotor(Long idMotor);
 
     void delete(Long idMotor);
-
 }
