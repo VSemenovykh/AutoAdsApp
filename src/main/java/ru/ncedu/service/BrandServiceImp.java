@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.repository.BrandRepository;
 
@@ -34,6 +35,13 @@ public class BrandServiceImp implements BrandService {
     }
 
     @Override
+    public List<Brand> findAll() {
+        List<Brand> brand = new ArrayList<>();
+        brandRepository.findAll().forEach(brand::add);
+        return brand;
+    }
+
+    @Override
     public Brand save(Brand brand) {
         return brandRepository.save(brand);
     }
@@ -58,6 +66,5 @@ public class BrandServiceImp implements BrandService {
     @Override
     public void delete(Long idBrand) {
         brandRepository.deleteById(idBrand);
-
     }
 }

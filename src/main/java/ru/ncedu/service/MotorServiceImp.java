@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.repository.MotorRepository;
 
@@ -30,6 +31,13 @@ public class MotorServiceImp implements MotorService {
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
         motorRepository.findAll(sortedByIdAsc).forEach(motor::add);
+        return motor;
+    }
+
+    @Override
+    public List<Motor> findAll(){
+        List<Motor> motor = new ArrayList<>();
+        motorRepository.findAll().forEach(motor::add);
         return motor;
     }
 

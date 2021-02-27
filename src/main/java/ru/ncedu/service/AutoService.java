@@ -10,6 +10,8 @@ public interface AutoService {
 
     List<Auto> findAll(int pageNumber, int rowPerPage);
 
+    List<Auto> findAll();
+
     Long count();
 
     Auto save(Auto auto);

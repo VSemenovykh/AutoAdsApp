@@ -10,6 +10,8 @@ public interface BrandService {
 
     List<Brand> findAll(int pageNumber, int rowPerPage);
 
+    public List<Brand> findAll();
+
     Brand save(Brand brand);
 
     Brand findById(Long id);

@@ -31,8 +31,6 @@ public class AutoController {
     public String displayListCarsJoin(Model model, @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         List<Auto> auto = autoService.findAll(pageNumber, ROW_PER_PAGE);
-        List<Brand> brand = brandService.findAll(pageNumber, ROW_PER_PAGE);
-        List<Motor> motors = motorService.findAll(pageNumber, ROW_PER_PAGE);
         List<AutoJoin> listAutoJoin = new ArrayList<>();
 
         AutoJoin autoJoin;
