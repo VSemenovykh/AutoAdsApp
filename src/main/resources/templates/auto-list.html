@@ -15,20 +15,20 @@
 <div align="center">
     <table border="1">
         <tr>
-            <th>id</th>
-            <th>brand</th>
-            <th>model</th>
-            <th>year</th>
-            <th>color</th>
-            <th>price</th>
-            <th>motor type</th>
-            <th>volume</th>
-            <th>drive type</th>
-            <th>transmission type</th>
-            <th>body style</th>
+           <!-- <th>Id</th> -->
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Color</th>
+            <th>Price</th>
+            <th>Motor type</th>
+            <th>Volume</th>
+            <th>Drive</th>
+            <th>Transmission</th>
+            <th>Body style</th>
         </tr>
-        <tr th:each="auto : ${listAutoJoin}">
-            <td><a th:href="@{/auto/{autoId}(autoId=${auto.id})}" th:utext="${auto.id}">...</a></td>
+        <tr th:each="auto: ${listAutoJoin}">
+          <!--  <td><a th:href="@{/auto/{autoId}(autoId=${auto.id})}" th:utext="${auto.id}">...</a></td> -->
             <td><a th:href="@{/auto/{autoId}(autoId=${auto.id})}" th:utext="${auto.nameBrand}">...</a></td>
             <td><a th:href="@{/auto/{autoId}(autoId=${auto.id})}" th:utext="${auto.nameModel}">...</a></td>
             <td th:utext="${auto.year}"></td>
