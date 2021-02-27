@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 public class TestController {
 
     @GetMapping
-    public String testGetMapping(Model model){
+    public String testGetMapping(Model model) {
         return "index";
     }
+
     @PostMapping
     public String testPostMapping() {
         return "index";
