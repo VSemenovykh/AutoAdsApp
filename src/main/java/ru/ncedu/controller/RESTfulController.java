@@ -89,7 +89,7 @@ public class RESTfulController {
     }
 
     @PutMapping("/{id}")
-    public AutoJoin updateAuto(@RequestBody Auto auto, @PathVariable("id") Long autoId) {
+    public Auto updateAuto(@RequestBody Auto auto, @PathVariable("id") Long autoId) {
 
         auto.setId(autoId);
         auto.setIdBrand(auto.getIdBrand());
@@ -104,11 +104,7 @@ public class RESTfulController {
         Brand brand = brandService.findById(auto.getIdBrand());
         Motor motor = motorService.findById(auto.getIdMotor());
 
-        AutoJoin autoJoin = new AutoJoin(auto.getId(), brand.getNameBrand(), brand.getNameModel(), brand.getYear(),
-                auto.getColor(), auto.getPrice(), motor.getMotorType(), motor.getVolume(),
-                auto.getDriveType(), auto.getTransmissionType(), auto.getBodyStyleType());
-
-        return autoJoin;
+        return auto;
     }
 
     @DeleteMapping("/{id}") //value = "/auto-all/{autoId}/delete"
