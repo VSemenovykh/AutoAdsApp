@@ -3,7 +3,6 @@ package ru.ncedu.entity;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import ru.ncedu.model.Fuel;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,7 +24,4 @@ public class Motor implements Serializable {
 
     @Column(name = "volume")
     private double volume;
-
-    @Transient
-    private Fuel fuel;
 }

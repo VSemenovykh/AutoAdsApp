@@ -25,9 +25,9 @@ public class AutoJoin {
 
     private double volume;
 
-    private String transmission;
+    private String transmissionType;
 
     private String driveType;
 
-    private String bodyStyle;
+    private String bodyStyleType;
 }

@@ -21,9 +21,6 @@ public class AutoServiceImp implements AutoService {
 
     private final AutoRepository autorepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Override
     public List<Auto> getAllAuto() {
         return autorepository.findAll();

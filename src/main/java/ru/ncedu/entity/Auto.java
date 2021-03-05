@@ -3,9 +3,6 @@ package ru.ncedu.entity;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
-import ru.ncedu.model.BodyStyle;
-import ru.ncedu.model.Drive;
-import ru.ncedu.model.Transmission;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -42,13 +39,4 @@ public class Auto implements Serializable {
 
     @Column(name = "body_style")
     private String bodyStyleType;
-
-    @Transient
-    private Drive drive;
-
-    @Transient
-    private Transmission transmission;
-
-    @Transient
-    private BodyStyle body;
 }

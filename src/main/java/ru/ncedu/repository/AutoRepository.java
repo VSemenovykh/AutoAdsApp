@@ -8,7 +8,7 @@ import ru.ncedu.entity.Auto;
 import java.util.List;
 
 @Repository
-@Transactional
+//@Transactional
 public interface AutoRepository extends PagingAndSortingRepository<Auto, Long> {
 
     List<Auto> findAll();

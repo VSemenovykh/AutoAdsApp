@@ -1,7 +1,6 @@
 package ru.ncedu.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.Auto;
@@ -80,17 +79,13 @@ public class RESTfulController {
     }
 
     @GetMapping(path = {"/{id}"})
-    public AutoJoin getAutoById(@PathVariable("id") long autoId) {
+    public Auto  getAutoById(@PathVariable("id") long autoId) {
 
         Auto auto = autoService.findById(autoId);
         Brand brand = brandService.findById(auto.getIdBrand());
         Motor motor = motorService.findById(auto.getIdMotor());
 
-        AutoJoin autoJoin = new AutoJoin(auto.getId(), brand.getNameBrand(), brand.getNameModel(), brand.getYear()
-                                         ,auto.getColor(), auto.getPrice(), motor.getMotorType(), motor.getVolume()
-                                         ,auto.getDriveType(), auto.getTransmissionType(), auto.getBodyStyleType());
-
-        return autoJoin;
+        return auto;
     }
 
     @PutMapping("/{id}")
