@@ -42,13 +42,4 @@ public class Auto implements Serializable {
 
     @Column(name = "body_style")
     private String bodyStyleType;
-
-    @Transient
-    private Drive drive;
-
-    @Transient
-    private Transmission transmission;
-
-    @Transient
-    private BodyStyle body;
 }
