@@ -25,7 +25,4 @@ public class Motor implements Serializable {
 
     @Column(name = "volume")
     private double volume;
-
-    @Transient
-    private Fuel fuel;
 }
