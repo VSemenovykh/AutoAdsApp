@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Slf4j
 @SpringBootApplication
-public class AutoAdsApplication implements WebMvcConfigurer, CommandLineRunner {
+public class AutoAdsApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
 
