@@ -3,31 +3,31 @@ package ru.ncedu.entity;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.List;
 
-@Entity 
-@Table(name = "motor", schema = "public")
+@Entity
+@Table(name = "motor")
 @Data
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Motor implements Serializable {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
+    @Size(min = 1, max = 16)
     @Column(name = "motor_type")
     private String motorType;
 
+    @NonNull
+    @Min(0)
     @Column(name = "volume")
     private double volume;
-
-    @Column(name = "id_auto")
-    private Long idAuto;
-  
 }
