@@ -1,22 +1,27 @@
 package ru.ncedu.service;
 
 import ru.ncedu.entity.Brand;
-
 import java.util.List;
 
 public interface BrandService {
 
-    List<Brand> getAllBrand();
-
-    List<Brand> findAll(int pageNumber, int rowPerPage);
-
     Brand save(Brand brand);
-
-    Brand findById(Long id);
 
     void update(Brand brand);
 
-    Brand findBrandByIdBrand(Long idBrand);
-
     void delete(Long idBrand);
+
+    List<Brand> getAllBrand();
+
+    List<Brand> findAll();
+
+    Brand findById(Long id);
+
+    List<Brand> findByNameBrand(String brand);
+
+    List<Brand> findByNameModel(String model);
+
+    List<Brand> findByYear(String year);
+
+    List<Brand> searchBrand(String brand, String model, String year);
 }
