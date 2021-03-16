@@ -30,4 +30,6 @@ public class AutoJoin {
     private String transmissionType;
 
     private String bodyStyleType;
+  
+    private String bodyStyle;
 }
