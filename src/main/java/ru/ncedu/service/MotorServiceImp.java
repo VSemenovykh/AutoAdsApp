@@ -1,14 +1,10 @@
 package ru.ncedu.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.repository.MotorRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,17 +21,27 @@ public class MotorServiceImp implements MotorService {
     }
 
     @Override
-    public List<Motor> findAll(int pageNumber, int rowPerPage) {
-        List<Motor> motor = new ArrayList<>();
-        Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
-                Sort.by("id").ascending());
-        motorRepository.findAll(sortedByIdAsc).forEach(motor::add);
-        return motor;
+    public Motor save(Motor motor) {
+        return motorRepository.save(motor);
     }
 
     @Override
-    public Motor save(Motor motor) {
-        return motorRepository.save(motor);
+    public void update(Motor motor) {
+        motorRepository.save(motor);
+
+    }
+
+    @Override
+    public void delete(Long idMotor) {
+        motorRepository.deleteById(idMotor);
+
+    }
+
+    @Override
+    public List<Motor> findAll(){
+        List<Motor> motor = new ArrayList<>();
+        motorRepository.findAll().forEach(motor::add);
+        return motor;
     }
 
     @Override
@@ -51,14 +57,17 @@ public class MotorServiceImp implements MotorService {
     }
 
     @Override
-    public void update(Motor motor) {
-        motorRepository.save(motor);
-
+    public List<Motor> findByMotor(String motorType) {
+        return motorRepository.findByMotorType(motorType);
     }
 
     @Override
-    public void delete(Long idMotor) {
-        motorRepository.deleteById(idMotor);
+    public List<Motor> findByVolumeBetween(double startValue, double endValue){
+        return motorRepository.findByVolumeBetween(startValue, endValue);
+    }
 
+    @Override
+    public List<Motor> searchByMotor(String motorType, double volume){
+        return motorRepository.search(motorType, volume);
     }
 }

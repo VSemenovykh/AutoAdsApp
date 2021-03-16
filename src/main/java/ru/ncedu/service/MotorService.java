@@ -1,22 +1,27 @@
 package ru.ncedu.service;
 
 import ru.ncedu.entity.Motor;
-
 import java.util.List;
 
 public interface MotorService {
 
     List<Motor> getAllMotor();
 
-    List<Motor> findAll(int pageNumber, int rowPerPage);
-
     Motor save(Motor motor);
-
-    Motor findById(Long id);
 
     void update(Motor motor);
 
+    void delete(Long idMotor);
+
+    public List<Motor> findAll();
+
+    Motor findById(Long id);
+
+    List<Motor> findByMotor(String motorType);
+
+    List<Motor> findByVolumeBetween(double startValue, double endValue);
+
     Motor findMotorByIdMotor(Long idMotor);
 
-    void delete(Long idMotor);
+    List<Motor> searchByMotor(String motorType, double volume);
 }
