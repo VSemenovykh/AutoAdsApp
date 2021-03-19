@@ -3,10 +3,12 @@ package ru.ncedu.entity;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "brand")
@@ -34,4 +36,16 @@ public class Brand implements Serializable {
     @Size(min = 4, max = 32)
     @Column(name = "year")
     private String year;
+
+    /** 1 variant **/
+    @OneToMany(targetEntity = Auto.class,  fetch = FetchType.LAZY, mappedBy = "brand", orphanRemoval = false ) //, fetch = FetchType.LAZY
+    private List<Auto> Auto;
+
+    /** 2 variant**/
+//    @ManyToMany
+//    @JoinTable (name="auto",
+//            joinColumns=@JoinColumn (name="id_brand")
+//            ,inverseJoinColumns=@JoinColumn(name="id_motor")
+//            )
+//    private List<Motor> motor;
 }

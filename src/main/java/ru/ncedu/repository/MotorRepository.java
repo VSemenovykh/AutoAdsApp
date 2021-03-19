@@ -21,6 +21,11 @@ public interface MotorRepository extends JpaRepository<Motor, Long> {
     List<Motor> findByVolumeBetween(double startValue, double endValue);
 
     /*search by different criteria */
-    @Query(value = "SELECT m FROM Motor m where (:motorType is null or m.motorType = :motorType ) and (:volume is null or m.volume = :volume)", nativeQuery = false )
+    final String querySearchMotor = " SELECT m " +
+                                    " FROM Motor m " +
+                                    " where " +
+                                    " ( :motorType is null or m.motorType = :motorType ) " +
+                                    " and ( :volume is null or m.volume = :volume)";
+    @Query(value = querySearchMotor, nativeQuery = false )
     List<Motor> search(@Param("motorType") String motorType, @Param("volume") double volume);
 }

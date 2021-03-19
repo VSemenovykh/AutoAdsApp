@@ -21,7 +21,5 @@ public interface MotorService {
 
     List<Motor> findByVolumeBetween(double startValue, double endValue);
 
-    Motor findMotorByIdMotor(Long idMotor);
-
     List<Motor> searchByMotor(String motorType, double volume);
 }
