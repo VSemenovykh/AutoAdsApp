@@ -7,9 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "motor")
@@ -33,15 +31,6 @@ public class Motor implements Serializable {
     @Column(name = "volume")
     private double volume;
 
-    /** 1 variant **/
-    @OneToMany(targetEntity = Auto.class,  fetch = FetchType.LAZY, mappedBy = "motor", orphanRemoval = false) //orphanRemoval = false , fetch = FetchType.LAZY
+    @OneToMany(targetEntity = Auto.class,  fetch = FetchType.LAZY, mappedBy = "motor", orphanRemoval = false)
     private List<Auto> auto;
-
-//    /** 2 variant**/
-//    @ManyToMany
-//    @JoinTable (name="auto",
-//            joinColumns=@JoinColumn (name="id_motor")
-//            ,inverseJoinColumns=@JoinColumn(name="id_brand")
-//            )
-//    private List<Brand> brand;
 }

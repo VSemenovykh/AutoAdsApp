@@ -1,5 +1,6 @@
 package ru.ncedu.entity;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
@@ -55,13 +56,11 @@ public class Auto implements Serializable {
     @Column(name = "body_style")
     private String bodyStyleType;
 
-    @ManyToOne(fetch = FetchType.LAZY)//fetch = FetchType.LAZY, optional=true
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_brand", referencedColumnName="id", insertable = false, updatable = false)
-//    @Fetch(FetchMode.JOIN)
     private Brand brand;
 
     @ManyToOne
     @JoinColumn(name = "id_motor", referencedColumnName="id", insertable = false, updatable = false)
-//    @Fetch(FetchMode.JOIN)
     private Motor motor; ;
 }
