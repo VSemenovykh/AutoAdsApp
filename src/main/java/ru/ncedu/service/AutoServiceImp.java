@@ -2,7 +2,6 @@ package ru.ncedu.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
@@ -11,7 +10,6 @@ import ru.ncedu.repository.AutoRepository;
 import java.util.List;
 
 @Service
-//@Transactional
 @RequiredArgsConstructor
 public class AutoServiceImp implements AutoService {
 
@@ -43,29 +41,31 @@ public class AutoServiceImp implements AutoService {
     /*search by different criteria */
     @Override
     public List<AutoJoin> searchAuto(
-                                       String nameBrand
-//                                    ,String nameModel
-//                                    ,String startYear
-//                                    ,String endYear
-//                                    ,String color
-//                                    ,double price
-//                                    ,String motorType
-                                      ,double volume
-//                                    ,String drive
-//                                    ,String transmission
-                                    ,String bodyStyle
+                                      String nameBrand
+                                     ,String nameModel
+                                     ,String startYear
+                                     ,String endYear
+                                     ,String color
+                                     ,double startPrice
+                                     ,double endPrice
+                                     ,String motorType
+                                     ,double volume
+                                     ,String drive
+                                     ,String transmission
+                                     ,String bodyStyle
                                    ){
         return autorepository.searchAuto(
                                          nameBrand
-//                                        ,nameModel
-//                                        ,startYear
-//                                        ,endYear
-//                                        ,color
-//                                        ,price
-//                                        ,motorType
+                                        ,nameModel
+                                        ,startYear
+                                        ,endYear
+                                        ,color
+                                        ,startPrice
+                                        ,endPrice
+                                        ,motorType
                                         ,volume
-//                                        ,drive
-//                                        ,transmission
+                                        ,drive
+                                        ,transmission
                                         ,bodyStyle
                                         );
     }
