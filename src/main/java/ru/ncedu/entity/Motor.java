@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "motor")
@@ -29,4 +30,7 @@ public class Motor implements Serializable {
     @Min(0)
     @Column(name = "volume")
     private double volume;
+
+    @OneToMany(targetEntity = Auto.class,  fetch = FetchType.LAZY, mappedBy = "motor", orphanRemoval = false)
+    private List<Auto> auto;
 }

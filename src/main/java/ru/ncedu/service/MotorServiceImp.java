@@ -2,14 +2,12 @@ package ru.ncedu.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.repository.MotorRepository;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class MotorServiceImp implements MotorService {
 
@@ -47,12 +45,6 @@ public class MotorServiceImp implements MotorService {
     @Override
     public Motor findById(Long id) {
         Motor motor = motorRepository.findById(id).orElse(null);
-        return motor;
-    }
-
-    @Override
-    public Motor findMotorByIdMotor(Long idMotor) {
-        Motor motor = motorRepository.findMotorById(idMotor);
         return motor;
     }
 

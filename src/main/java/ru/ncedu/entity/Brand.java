@@ -3,10 +3,10 @@ package ru.ncedu.entity;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "brand")
@@ -34,4 +34,8 @@ public class Brand implements Serializable {
     @Size(min = 4, max = 32)
     @Column(name = "year")
     private String year;
+
+    @OneToMany(targetEntity = Auto.class,  fetch = FetchType.LAZY, mappedBy = "brand", orphanRemoval = false )
+    private List<Auto> Auto;
+
 }

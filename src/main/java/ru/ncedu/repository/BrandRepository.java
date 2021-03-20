@@ -15,15 +15,14 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
 
     List<Brand> findAll();
 
-    List<Brand> findByNameBrand(String brand);
-
-    List<Brand> findByNameModel(String model);
-
-    List<Brand> findByYear(String year);
-
     /*search by different criteria */
-    @Query(value = "SELECT b FROM Brand b where (:nameBrand is null or b.nameBrand = :nameBrand ) and (:nameModel is null or b.nameModel = :nameModel) " +
-                   "and (:year is null or b.year = :year)", nativeQuery = false )
+    final String querySearchBrand = " SELECT b " +
+                                    " FROM Brand b " +
+                                    " where " +
+                                    " ( :nameBrand is null or b.nameBrand = :nameBrand ) " +
+                                    " and ( :nameModel is null or b.nameModel = :nameModel ) " +
+                                    " and ( :year is null or b.year = :year ) ";
+    @Query(value = querySearchBrand, nativeQuery = false )
     List<Brand> search(@Param("nameBrand") String nameBrand, @Param("nameModel") String nameModel, @Param("year") String year);
 
 }
