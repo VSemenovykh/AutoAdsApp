@@ -8,18 +8,19 @@ public interface AutoService {
     AutoJoin findById(Long id);
 
     /*search by different criteria */
-    List<AutoJoin> searchAuto(
-                               String nameBrand
-                            ,String nameModel
-                            ,String startYear
-                            ,String endYear
-                            ,String color
-                            ,double startPrice
-                            ,double endPrice
-                            ,String motorType
-                            ,double volume
-                            ,String drive
-                            ,String transmission
-                            ,String bodyStyle
+    List<AutoJoin> searchAuto(String nameBrand,
+                              String nameModel,
+                              String startYear,
+                              String endYear,
+                              String color,
+                              Double startPrice,
+                              Double endPrice,
+                              String motorType,
+                              Double startVolume,
+                              Double endVolume,
+                              String drive,
+                              String transmission,
+                              String bodyStyle
                             );
-        }
+
+}

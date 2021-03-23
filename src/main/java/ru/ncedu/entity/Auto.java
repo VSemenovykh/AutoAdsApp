@@ -1,9 +1,6 @@
 package ru.ncedu.entity;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.*;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Cache;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -12,7 +9,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "auto")
 @Data
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Auto implements Serializable {
@@ -22,9 +18,14 @@ public class Auto implements Serializable {
     private Long id;
 
     @NonNull
-    @Min(0)
-    @Column(name = "id_brand",  nullable = false)
+    @Min(1)
+    @Column(name = "id_brand")
     private Long idBrand;
+
+    @NonNull
+    @Min(1)
+    @Column(name = "id_motor")
+    private Long idMotor;
 
     @NonNull
     @Size(min = 3, max = 32)
@@ -35,11 +36,6 @@ public class Auto implements Serializable {
     @Min(0)
     @Column(name = "price")
     private double price;
-
-    @NonNull
-    @Min(0)
-    @Column(name = "id_motor",  nullable = false)
-    private Long idMotor;
 
     @NonNull
     @Size(min = 2, max = 32)
@@ -55,12 +51,4 @@ public class Auto implements Serializable {
     @Size(min = 2, max = 32)
     @Column(name = "body_style")
     private String bodyStyleType;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_brand", referencedColumnName="id", insertable = false, updatable = false)
-    private Brand brand;
-
-    @ManyToOne
-    @JoinColumn(name = "id_motor", referencedColumnName="id", insertable = false, updatable = false)
-    private Motor motor; ;
 }

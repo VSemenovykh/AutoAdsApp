@@ -14,11 +14,6 @@ public class MotorServiceImp implements MotorService {
     private final MotorRepository motorRepository;
 
     @Override
-    public List<Motor> getAllMotor() {
-        return motorRepository.findAll();
-    }
-
-    @Override
     public Motor save(Motor motor) {
         return motorRepository.save(motor);
     }
@@ -46,20 +41,5 @@ public class MotorServiceImp implements MotorService {
     public Motor findById(Long id) {
         Motor motor = motorRepository.findById(id).orElse(null);
         return motor;
-    }
-
-    @Override
-    public List<Motor> findByMotor(String motorType) {
-        return motorRepository.findByMotorType(motorType);
-    }
-
-    @Override
-    public List<Motor> findByVolumeBetween(double startValue, double endValue){
-        return motorRepository.findByVolumeBetween(startValue, endValue);
-    }
-
-    @Override
-    public List<Motor> searchByMotor(String motorType, double volume){
-        return motorRepository.search(motorType, volume);
     }
 }

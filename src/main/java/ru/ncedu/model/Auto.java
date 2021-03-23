@@ -3,34 +3,26 @@ package ru.ncedu.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import ru.ncedu.entity.Brand;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Auto {
 
-    private Long id;
+    private int id;
 
-    private Long idBrand;
+    private Brand brand;
 
     private String color;
 
     private double price;
 
-    private Long idMotor;
+    private Motor motor;
 
-    private String transmissionType;
+    private Transmission transmissionType;
 
-    private String driveType;
+    private Drive driveType;
 
-    private String bodyStyleType;
+    private BodyStyle bodyStyleType;
 }

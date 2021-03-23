@@ -40,33 +40,32 @@ public class AutoServiceImp implements AutoService {
 
     /*search by different criteria */
     @Override
-    public List<AutoJoin> searchAuto(
-                                      String nameBrand
-                                     ,String nameModel
-                                     ,String startYear
-                                     ,String endYear
-                                     ,String color
-                                     ,double startPrice
-                                     ,double endPrice
-                                     ,String motorType
-                                     ,double volume
-                                     ,String drive
-                                     ,String transmission
-                                     ,String bodyStyle
-                                   ){
-        return autorepository.searchAuto(
-                                         nameBrand
-                                        ,nameModel
-                                        ,startYear
-                                        ,endYear
-                                        ,color
-                                        ,startPrice
-                                        ,endPrice
-                                        ,motorType
-                                        ,volume
-                                        ,drive
-                                        ,transmission
-                                        ,bodyStyle
-                                        );
+    public List<AutoJoin> searchAuto(String nameBrand,
+                                     String nameModel,
+                                     String startYear,
+                                     String endYear,
+                                     String color,
+                                     Double startPrice,
+                                     Double endPrice,
+                                     String motorType,
+                                     Double startVolume,
+                                     Double endVolume,
+                                     String drive,
+                                     String transmission,
+                                     String bodyStyle
+                                    ) {
+        return autorepository.searchAuto(nameBrand,
+                                        nameModel,
+                                        startYear,
+                                        endYear,
+                                        color,
+                                        startPrice,
+                                        endPrice,
+                                        motorType,
+                                        startVolume,
+                                        endVolume,
+                                        drive,
+                                        transmission,
+                                        bodyStyle);
     }
 }

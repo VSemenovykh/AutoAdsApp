@@ -14,12 +14,6 @@ public class BrandServiceImp implements BrandService {
     private final BrandRepository brandRepository;
 
     @Override
-    public List<Brand> getAllBrand() {
-        return brandRepository.findAll();
-    }
-
-
-    @Override
     public List<Brand> findAll() {
         List<Brand> brand = new ArrayList<>();
         brandRepository.findAll().forEach(brand::add);
@@ -30,10 +24,5 @@ public class BrandServiceImp implements BrandService {
     public Brand findById(Long id) {
         Brand brand = brandRepository.findById(id).orElse(null);
         return brand;
-    }
-
-    @Override
-    public  List<Brand> searchBrand(String brand, String model, String year){
-        return brandRepository.search(brand, model, year);
     }
 }

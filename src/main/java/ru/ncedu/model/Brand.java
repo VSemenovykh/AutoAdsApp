@@ -7,11 +7,11 @@ import lombok.*;
 @NoArgsConstructor
 public class Brand {
 
-    private Long id;
+    private int id;
 
-    private String nameBrand;
+    private String brandName;
 
-    private String nameModel;
+    private String modelName;
 
     private String year;
 }

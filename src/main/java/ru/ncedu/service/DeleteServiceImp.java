@@ -16,8 +16,6 @@ public class DeleteServiceImp implements DeleteService  {
     public void deleteAuto(Long id) {
         Auto auto = autorepository.findById(id).orElse(null);
         assert auto != null;
-        auto.setIdBrand(0L);
-        auto.setIdMotor(0L);
 
         autorepository.deleteById(id);
     }

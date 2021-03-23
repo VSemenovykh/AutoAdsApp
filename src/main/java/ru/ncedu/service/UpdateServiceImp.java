@@ -22,8 +22,6 @@ public class UpdateServiceImp implements  UpdateService{
     @Override
     public void updateAuto(Auto auto, Long autoId) {
         auto.setId(autoId);
-        auto.setIdBrand(auto.getIdBrand());
-        auto.setIdMotor(auto.getIdMotor());
         auto.setColor(auto.getColor());
         auto.setPrice(auto.getPrice());
         auto.setDriveType(auto.getDriveType());
