@@ -1,8 +1,6 @@
 package ru.ncedu.entity;
 
 import lombok.*;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Cache;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -11,7 +9,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "auto")
 @Data
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Auto implements Serializable {
@@ -21,9 +18,14 @@ public class Auto implements Serializable {
     private Long id;
 
     @NonNull
-    @Min(0)
+    @Min(1)
     @Column(name = "id_brand")
     private Long idBrand;
+
+    @NonNull
+    @Min(1)
+    @Column(name = "id_motor")
+    private Long idMotor;
 
     @NonNull
     @Size(min = 3, max = 32)
@@ -34,11 +36,6 @@ public class Auto implements Serializable {
     @Min(0)
     @Column(name = "price")
     private double price;
-
-    @NonNull
-    @Min(0)
-    @Column(name = "id_motor")
-    private Long idMotor;
 
     @NonNull
     @Size(min = 2, max = 32)

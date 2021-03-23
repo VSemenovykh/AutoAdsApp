@@ -3,6 +3,7 @@ package ru.ncedu.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.ncedu.entity.Brand;
 
 @Data
 @AllArgsConstructor

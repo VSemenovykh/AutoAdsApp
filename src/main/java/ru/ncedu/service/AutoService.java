@@ -1,22 +1,26 @@
 package ru.ncedu.service;
 
-import ru.ncedu.entity.Auto;
-
+import ru.ncedu.model.AutoJoin;
 import java.util.List;
 
 public interface AutoService {
 
-    List<Auto> getAllAuto();
+    AutoJoin findById(Long id);
 
-    List<Auto> findAll(int pageNumber, int rowPerPage);
+    /*search by different criteria */
+    List<AutoJoin> searchAuto(String nameBrand,
+                              String nameModel,
+                              String startYear,
+                              String endYear,
+                              String color,
+                              Double startPrice,
+                              Double endPrice,
+                              String motorType,
+                              Double startVolume,
+                              Double endVolume,
+                              String drive,
+                              String transmission,
+                              String bodyStyle
+                            );
 
-    Long count();
-
-    Auto save(Auto auto);
-
-    Auto findById(Long id);
-
-    void update(Auto auto);
-
-    void delete(Long id);
 }

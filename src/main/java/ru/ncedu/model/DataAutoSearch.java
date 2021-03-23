@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AutoJoin {
+public class DataAutoSearch {
 
     private Long id;
 
@@ -15,15 +15,21 @@ public class AutoJoin {
 
     private String nameModel;
 
-    private String year;
+    private String startYear;
+
+    private String endYear;
 
     private String color;
 
-    private Double price;
+    private Double startPrice;
+
+    private Double endPrice;
 
     private String motorType;
 
-    private Double volume;
+    private Double startVolume;
+
+    private Double endVolume;
 
     private String driveType;
 
