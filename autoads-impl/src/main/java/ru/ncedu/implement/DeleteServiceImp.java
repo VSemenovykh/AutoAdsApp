@@ -1,16 +1,15 @@
-package  ru.ncedu.implement;
+package ru.ncedu.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.repository.AutoRepository;
-import ru.ncedu.service.DeleteService;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DeleteServiceImp implements DeleteService {
+public class DeleteServiceImp implements DeleteService  {
 
     private final AutoRepository autorepository;
 

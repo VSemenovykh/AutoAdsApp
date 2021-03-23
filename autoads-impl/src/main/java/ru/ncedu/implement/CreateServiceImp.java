@@ -1,4 +1,4 @@
-package ru.ncedu.implement;
+package ru.ncedu.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,14 +8,11 @@ import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.AutoJoin;
 import ru.ncedu.repository.AutoRepository;
-import ru.ncedu.service.BrandService;
-import ru.ncedu.service.CreateService;
-import ru.ncedu.service.MotorService;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CreateServiceImp implements CreateService {
+public class CreateServiceImp implements CreateService{
 
     private final AutoRepository autorepository;
 
