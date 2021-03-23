@@ -6,7 +6,16 @@
 
     <groupId>groupId</groupId>
     <artifactId>AutoAdsApp</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>autoads-web</module>
+        <module>autoads-api</module>
+        <module>autoads-impl</module>
+        <module>autoads</module>
+    </modules>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -36,4 +45,10 @@
             <artifactId>jaxb-api</artifactId>
         </dependency>
     </dependencies>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
 </project>
