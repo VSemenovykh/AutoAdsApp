@@ -3,7 +3,6 @@ package ru.ncedu.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
-import ru.ncedu.service.DeleteService;
 
 @RestController
 @RequiredArgsConstructor
