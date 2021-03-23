@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.model.AutoJoin;
-import ru.ncedu.service.CreateService;
 
 @RestController
 @RequiredArgsConstructor
