@@ -72,9 +72,9 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
         brandList.add(new Brand(4L, "Mercedes-Benz", "GLE AMG", "2016"));
 
         List<Motor> motorList = new ArrayList<>();
-        motorList.add(new Motor(1L, "diseal", 4.0));
-        motorList.add(new Motor(2L, "electric", 5.0));
-        motorList.add(new Motor(3L, "diseal", 4.4));
+        motorList.add(new Motor(1L, "diesel", 4.0));
+        motorList.add(new Motor(2L, "diesel", 5.0));
+        motorList.add(new Motor(3L, "diesel", 4.4));
 
         List<Auto>  autoList = new ArrayList<>();
         autoList.add(new Auto(1L, 1L, 1L,"Black", 20000000,  "automatic", "awd","sedan"));
