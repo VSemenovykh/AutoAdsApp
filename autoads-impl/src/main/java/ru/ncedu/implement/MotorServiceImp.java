@@ -1,9 +1,11 @@
-package ru.ncedu.service;
+package  ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.repository.MotorRepository;
+import ru.ncedu.service.MotorService;
+
 import java.util.ArrayList;
 import java.util.List;
 
