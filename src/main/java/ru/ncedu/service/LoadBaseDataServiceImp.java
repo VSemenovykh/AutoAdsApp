@@ -95,16 +95,8 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
         List<Motor> motorList = listTable.get("Motor");
         List<Auto> autoList = listTable.get("Auto");
 
-        for(Brand brand: brandList){
-            brandRepository.save(brand);
-        }
-
-        for(Motor motor: motorList){
-            motorRepository.save(motor);
-        }
-
-        for(ru.ncedu.entity.Auto auto: autoList){
-            autorepository.save(auto);
-        }
+        brandRepository.saveAll(brandList);
+        motorRepository.saveAll(motorList);
+        autorepository.saveAll(autoList);
     }
 }
