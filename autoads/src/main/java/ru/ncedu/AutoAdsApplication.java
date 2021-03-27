@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.ncedu.service.LoadBaseDataService;
 
+import java.io.IOException;
+
 @Slf4j
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class AutoAdsApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) {
+    public void run(String... args) throws IOException {
 
         log.info("StartApplication...");
         log.info("Load data to postgresql");

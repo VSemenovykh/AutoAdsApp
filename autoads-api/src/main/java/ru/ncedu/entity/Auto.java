@@ -17,6 +17,9 @@ public class Auto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "id_image")
+    private Long idImage;
+
     @NonNull
     @Min(1)
     @Column(name = "id_brand")

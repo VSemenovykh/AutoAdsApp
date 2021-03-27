@@ -8,7 +8,8 @@ public interface AutoService {
     AutoJoin findById(Long id);
 
     /*search by different criteria */
-    List<AutoJoin> searchAuto(String nameBrand,
+    List<AutoJoin> searchAuto(
+                              String nameBrand,
                               String nameModel,
                               String startYear,
                               String endYear,

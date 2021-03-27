@@ -3,6 +3,7 @@ package ru.ncedu.controller;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.Auto;
 import lombok.RequiredArgsConstructor;
+import ru.ncedu.service.UpdateService;
 
 @RestController
 @RequiredArgsConstructor

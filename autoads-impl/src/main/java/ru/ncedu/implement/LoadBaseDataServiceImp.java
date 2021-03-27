@@ -1,15 +1,20 @@
-package  ru.ncedu.service;
+package ru.ncedu.implement;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
+import ru.ncedu.entity.ImageAuto;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.repository.BrandRepository;
+import ru.ncedu.repository.ImageAutoRepository;
 import ru.ncedu.repository.MotorRepository;
+import ru.ncedu.service.LoadBaseDataService;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,24 +33,33 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
 
     private final MotorRepository motorRepository;
 
-    public Map<String, List> createTables(){
+    private final ImageAutoRepository imageAutoRepository;
+
+    public Map<String, List> createTables() {
         log.info("Creating tables");
 
         String createBrand = "CREATE TABLE public.brand( " +
-                "id bigserial NOT NULL PRIMARY KEY" +
+                " id bigserial NOT NULL PRIMARY KEY" +
                 ",name_brand character varying(32) NOT NULL" +
                 ",name_model character varying(32) NOT NULL" +
                 ",year character varying(32) NOT NULL" +
                 ")";
 
         String createMotor = "CREATE TABLE public.motor( " +
-                "id bigserial NOT NULL PRIMARY KEY" +
+                " id bigserial NOT NULL PRIMARY KEY" +
                 ",motor_type character varying(32) NOT NULL" +
                 ",volume double precision NOT NULL" +
                 ")";
 
+        String createImageAuto = "CREATE TABLE public.image_auto(" +
+                " id bigserial NOT NULL PRIMARY KEY" +
+                ",image_name character varying(256) NOT NULL" +
+                ",raster bytea NOT NULL " +
+                ")";
+
         String createAuto = "CREATE TABLE public.auto (" +
                 " id bigserial NOT NULL PRIMARY KEY" +
+                ",id_image bigint REFERENCES image_auto (id)" +
                 ",id_brand bigint NOT NULL REFERENCES brand (id)" +
                 ",id_motor bigint NOT NULL REFERENCES motor (id)" +
                 ",color character varying NOT NULL" +
@@ -58,10 +72,13 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
         jdbcTemplate.execute("DROP TABLE auto CASCADE");
         jdbcTemplate.execute("DROP TABLE brand CASCADE");
         jdbcTemplate.execute("DROP TABLE motor CASCADE");
+        jdbcTemplate.execute("DROP TABLE image_auto CASCADE");
 
         jdbcTemplate.execute(createBrand);
 
         jdbcTemplate.execute(createMotor);
+
+        jdbcTemplate.execute(createImageAuto);
 
         jdbcTemplate.execute(createAuto);
 
@@ -76,27 +93,47 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
         motorList.add(new Motor(2L, "diesel", 5.0));
         motorList.add(new Motor(3L, "diesel", 4.4));
 
-        List<Auto>  autoList = new ArrayList<>();
-        autoList.add(new Auto(1L, 1L, 1L,"Black", 20000000,  "automatic", "awd","sedan"));
-        autoList.add(new Auto(2L, 2L, 2L,"White", 15000000,  "manual", "rwd","suv"));
-        autoList.add(new Auto(3L, 3L, 3L,"Gray", 10000000,  "automatic", "fwd","wagon"));
+        List<ImageAuto> imageAutoList = new ArrayList<>();
+        imageAutoList.add(new ImageAuto(1L, "M8", convertImageAuto("H:/Netcracker/AutoAdsApp/image-auto/BMW/BMW-M8.jpg")));
+        imageAutoList.add(new ImageAuto(2L, "M5", convertImageAuto("H:/Netcracker/AutoAdsApp/image-auto/BMW/BMW-M5.jpg")));
+        imageAutoList.add(new ImageAuto(3L, "M6", convertImageAuto("H:/Netcracker/AutoAdsApp/image-auto/BMW/BMW-M6.jpg")));
+
+        List<Auto> autoList = new ArrayList<>();
+        autoList.add(new Auto(1L, 1L, 1L, 1L, "Black", 20000000, "automatic", "awd", "sedan"));
+        autoList.add(new Auto(2L, 2L, 2L, 2L, "White", 15000000, "manual", "rwd", "suv"));
+        autoList.add(new Auto(3L, 3L, 3L, 3L, "Gray", 10000000, "automatic", "fwd", "wagon"));
 
         Map<String, List> mapTable = new HashMap();
         mapTable.put("Brand", brandList);
         mapTable.put("Motor", motorList);
         mapTable.put("Auto", autoList);
+        mapTable.put("ImageAuto", imageAutoList);
 
         return mapTable;
     }
 
-    public void uploadBaseData(){
-        Map<String, List> listTable =  createTables();
+    public byte[] convertImageAuto(String nameFile) {
+        try (RandomAccessFile f = new RandomAccessFile(nameFile, "r")) {
+            byte[] bytes = new byte[(int) f.length()];
+            f.read(bytes);
+            return bytes;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void uploadBaseData() throws IOException {
+        Map<String, List> listTable = createTables();
         List<Brand> brandList = listTable.get("Brand");
         List<Motor> motorList = listTable.get("Motor");
         List<Auto> autoList = listTable.get("Auto");
+        List<ImageAuto> imageAuto = listTable.get("ImageAuto");
 
         brandRepository.saveAll(brandList);
         motorRepository.saveAll(motorList);
+        imageAutoRepository.saveAll(imageAuto);
         autorepository.saveAll(autoList);
     }
 }
