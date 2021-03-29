@@ -12,9 +12,7 @@ import ru.ncedu.service.AutoService;
 import ru.ncedu.service.BrandService;
 import ru.ncedu.service.PictureAutoService;
 import ru.ncedu.service.MotorService;
-
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -33,45 +31,53 @@ public class AutoServiceImp implements AutoService {
     public Auto findById(Long id) {
         Auto auto = autorepository.findById(id).orElse(null);
 
-        return new Auto( auto.getId()
-                            , auto.getIdImage()
-                            , auto.getIdBrand()
-                            , auto.getIdMotor()
-                            ,auto.getColor()
-                            ,auto.getPrice()
-                            ,auto.getDriveType()
-                            ,auto.getTransmissionType()
-                            ,auto.getBodyStyleType());
+        return new Auto(
+                        auto.getId(),
+                        auto.getIdImage(),
+                        auto.getIdBrand(),
+                        auto.getIdMotor(),
+                        auto.getColor(),
+                        auto.getPrice(),
+                        auto.getDriveType(),
+                        auto.getTransmissionType(),
+                        auto.getBodyStyleType()
+                        );
     }
 
     @Override
     public AutoJoin findAutoJoinById(Long id){
-        Optional<Auto> auto = Optional.ofNullable(autorepository.findById(id).orElse(null));
-        Brand brand = brandService.findById(auto.get().getIdBrand());
-        Motor motor = motorService.findById(auto.get().getIdMotor());
+        Auto auto = autorepository.findById(id).orElse(null);
 
-        byte[] raster = null;
+        if( auto != null){
+            Brand brand = brandService.findById(auto.getIdBrand());
+            Motor motor = motorService.findById(auto.getIdMotor());
 
-        if(auto.get().getIdImage() != null){
-            raster = imageAutoService.findPictureAutoById(auto.get().getIdImage()).getRaster();
+            byte[] raster = null;
+
+            if(auto.getIdImage() != null){
+                raster = imageAutoService.findPictureAutoById(auto.getIdImage()).getRaster();
+            }
+
+            return new AutoJoin(
+                                auto.getId(),
+                                auto.getIdImage(),
+                                raster,
+                                brand.getNameBrand(),
+                                brand.getNameModel(),
+                                brand.getYear(),
+                                auto.getColor(),
+                                auto.getPrice(),
+                                motor.getMotorType(),
+                                motor.getVolume(),
+                                auto.getDriveType(),
+                                auto.getTransmissionType(),
+                                auto.getBodyStyleType()
+                              );
+        }else {
+            return  null;
         }
-
-        return new AutoJoin( auto.get().getId()
-                ,auto.get().getIdImage()
-                ,raster
-                ,brand.getNameBrand()
-                ,brand.getNameModel()
-                ,brand.getYear()
-                ,auto.get().getColor()
-                ,auto.get().getPrice()
-                ,motor.getMotorType()
-                ,motor.getVolume()
-                ,auto.get().getDriveType()
-                ,auto.get().getTransmissionType()
-                ,auto.get().getBodyStyleType());
     }
 
-    /*search by different criteria */
     @Override
     public List<AutoJoin> searchAuto(
                                      String nameBrand,

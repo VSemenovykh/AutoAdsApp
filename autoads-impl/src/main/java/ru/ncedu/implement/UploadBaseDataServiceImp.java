@@ -39,34 +39,34 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         log.info("Creating tables");
 
         String createBrand = "CREATE TABLE public.brand( " +
-                " id bigserial NOT NULL PRIMARY KEY" +
-                ",name_brand character varying(32) NOT NULL" +
-                ",name_model character varying(32) NOT NULL" +
-                ",year character varying(32) NOT NULL" +
+                " id bigserial NOT NULL PRIMARY KEY," +
+                "name_brand character varying(32) NOT NULL," +
+                "name_model character varying(32) NOT NULL," +
+                "year character varying(32) NOT NULL" +
                 ")";
 
         String createMotor = "CREATE TABLE public.motor( " +
-                " id bigserial NOT NULL PRIMARY KEY" +
-                ",motor_type character varying(32) NOT NULL" +
-                ",volume double precision NOT NULL" +
+                " id bigserial NOT NULL PRIMARY KEY," +
+                "motor_type character varying(32) NOT NULL," +
+                "volume double precision NOT NULL" +
                 ")";
 
         String createImageAuto = "CREATE TABLE public.image_auto(" +
-                " id bigserial NOT NULL PRIMARY KEY" +
-                ",image_name character varying(256) NOT NULL" +
-                ",raster bytea NOT NULL " +
+                " id bigserial NOT NULL PRIMARY KEY," +
+                "image_name character varying(256) NOT NULL," +
+                "raster bytea NOT NULL " +
                 ")";
 
         String createAuto = "CREATE TABLE public.auto (" +
-                " id bigserial NOT NULL PRIMARY KEY" +
-                ",id_image bigint REFERENCES image_auto (id)" +
-                ",id_brand bigint NOT NULL REFERENCES brand (id)" +
-                ",id_motor bigint NOT NULL REFERENCES motor (id)" +
-                ",color character varying NOT NULL" +
-                ",price double precision" +
-                ",transmission_type character varying" +
-                ",drive_type character varying" +
-                ",body_style character varying " +
+                " id bigserial NOT NULL PRIMARY KEY," +
+                "id_image bigint REFERENCES image_auto (id)," +
+                "id_brand bigint NOT NULL REFERENCES brand (id)," +
+                "id_motor bigint NOT NULL REFERENCES motor (id)," +
+                "color character varying NOT NULL," +
+                "price double precision," +
+                "transmission_type character varying," +
+                "drive_type character varying," +
+                "body_style character varying " +
                 ")";
 
         jdbcTemplate.execute("DROP TABLE auto CASCADE");

@@ -3,7 +3,6 @@ package ru.ncedu.implement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.AutoJoin;
@@ -26,29 +25,27 @@ public class UpdateAutoServiceImp implements UpdateAutoService {
 
     @Override
     public void updateAuto(AutoJoin autoJoin, Long autoId, Long idImage) {
-        Optional<Auto> auto = Optional.ofNullable(autorepository.findById(autoId).orElse(null));
-        Optional<Brand> brand = Optional.ofNullable(brandRepository.findById(auto.get().getIdBrand()).orElse(null));
-        Optional<Motor> motor = Optional.ofNullable(motorRepository.findById(auto.get().getIdMotor()).orElse(null));
+        autorepository.findById(autoId)
+                .ifPresent(auto -> {
+                    Optional<Brand> brand = brandRepository.findById(auto.getIdBrand());
+                    Optional<Motor> motor = motorRepository.findById(auto.getIdMotor());
 
-        brand.get().setNameBrand(autoJoin.getNameBrand());
-        brand.get().setNameModel(autoJoin.getNameModel());
-        brand.get().setYear(autoJoin.getYear());
+                    brand.get().setNameBrand(autoJoin.getNameBrand());
+                    brand.get().setNameModel(autoJoin.getNameModel());
+                    brand.get().setYear(autoJoin.getYear());
 
-        motor.get().setMotorType(autoJoin.getMotorType());
-        motor.get().setVolume(autoJoin.getVolume());
+                    motor.get().setMotorType(autoJoin.getMotorType());
+                    motor.get().setVolume(autoJoin.getVolume());
 
-        auto.get().setId(autoId);
-        auto.get().setIdBrand(brand.get().getId());
-        auto.get().setIdMotor(motor.get().getId());
-        auto.get().setIdImage(idImage);
-        auto.get().setColor(autoJoin.getColor());
-        auto.get().setPrice(autoJoin.getPrice());
-        auto.get().setDriveType(autoJoin.getDriveType());
-        auto.get().setTransmissionType(autoJoin.getTransmissionType());
-        auto.get().setBodyStyleType(autoJoin.getBodyStyleType());
-
-        brandRepository.save(brand.get());
-        motorRepository.save(motor.get());
-        autorepository.save(auto.get());
+                    auto.setId(autoId);
+                    auto.setIdBrand(brand.get().getId());
+                    auto.setIdMotor(motor.get().getId());
+                    auto.setIdImage(idImage);
+                    auto.setColor(autoJoin.getColor());
+                    auto.setPrice(autoJoin.getPrice());
+                    auto.setDriveType(autoJoin.getDriveType());
+                    auto.setTransmissionType(autoJoin.getTransmissionType());
+                    auto.setBodyStyleType(autoJoin.getBodyStyleType());
+                });
     }
 }

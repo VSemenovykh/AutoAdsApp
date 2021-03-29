@@ -17,7 +17,7 @@ public class UpdatePictureAutoController {
 
     @PutMapping("/update/{idImage}")
     public Long updatePictureAuto(@RequestParam(name = "imageFile", required = false) MultipartFile file,
-                                  @PathVariable("idImage") String idImage) throws IOException {
+                                  @PathVariable("idImage") String idImage){
         Long id;
         if (file != null) {
             try {

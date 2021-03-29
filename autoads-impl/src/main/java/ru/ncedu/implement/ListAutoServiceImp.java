@@ -56,19 +56,19 @@ public class ListAutoServiceImp implements ListAutoService {
 
             motorType = motor.getMotorType();
             volume = motor.getVolume();
-            AutoJoin autoJoin = new AutoJoin( auto.getId()
-                                             ,auto.getIdImage()
-                                             ,raster
-                                             ,brandName
-                                             ,modelName
-                                             ,year
-                                             ,auto.getColor()
-                                             ,auto.getPrice()
-                                             ,motorType
-                                             ,volume
-                                             ,auto.getDriveType()
-                                             ,auto.getTransmissionType()
-                                             ,auto.getBodyStyleType());
+            AutoJoin autoJoin = new AutoJoin( auto.getId(),
+                                             auto.getIdImage(),
+                                             raster,
+                                             brandName,
+                                             modelName,
+                                             year,
+                                             auto.getColor(),
+                                             auto.getPrice(),
+                                             motorType,
+                                             volume,
+                                             auto.getDriveType(),
+                                             auto.getTransmissionType(),
+                                             auto.getBodyStyleType());
 
             listAutoJoin.add(autoJoin);
         }
