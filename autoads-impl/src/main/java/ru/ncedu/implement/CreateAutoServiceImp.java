@@ -26,46 +26,39 @@ public class CreateAutoServiceImp implements CreateAutoService {
     @Override
     public AutoJoin saveAuto(AutoJoin autoJoin, Long idImage) {
 
-        Brand brand = brandRepository.save(new Brand(
-                                                    null,
+        Brand brand = brandRepository.save(new Brand(null,
                                                         autoJoin.getNameBrand(),
                                                         autoJoin.getNameModel(),
-                                                        autoJoin.getYear()
-                                                     ));
-        Motor motor = motorRepository.save(new Motor(
-                                                    null,
-                                                        autoJoin.getMotorType(),
-                                                        autoJoin.getVolume()
-                                                    ));
+                                                        autoJoin.getYear() ));
+        Motor motor = motorRepository.save(new Motor(null,
+                                                         autoJoin.getMotorType(),
+                                                         autoJoin.getVolume() ));
 
-        Auto auto = new Auto(
-                            autoJoin.getId(),
-                            idImage,
-                            brand.getId(),
-                            motor.getId(),
-                            autoJoin.getColor(),
-                            autoJoin.getPrice(),
-                            autoJoin.getTransmissionType(),
-                            autoJoin.getDriveType(),
-                            autoJoin.getBodyStyleType()
-                            );
+        Auto auto = new Auto( autoJoin.getId(),
+                              idImage,
+                              brand.getId(),
+                              motor.getId(),
+                              autoJoin.getColor(),
+                              autoJoin.getPrice(),
+                              autoJoin.getTransmissionType(),
+                              autoJoin.getDriveType(),
+                              autoJoin.getBodyStyleType() );
+
         autorepository.save(auto);
 
-        AutoJoin newAutoJoin = new AutoJoin(
-                                            auto.getId(),
-                                            auto.getIdImage(),
+        AutoJoin newAutoJoin = new AutoJoin( auto.getId(),
+                                             auto.getIdImage(),
                                             null,
-                                            brand.getNameBrand(),
-                                            brand.getNameModel(),
-                                            brand.getYear(),
-                                            auto.getColor(),
-                                            auto.getPrice(),
-                                            motor.getMotorType(),
-                                            motor.getVolume(),
-                                            auto.getDriveType(),
-                                            auto.getTransmissionType(),
-                                            auto.getBodyStyleType()
-                                           );
+                                             brand.getNameBrand(),
+                                             brand.getNameModel(),
+                                             brand.getYear(),
+                                             auto.getColor(),
+                                             auto.getPrice(),
+                                             motor.getMotorType(),
+                                             motor.getVolume(),
+                                             auto.getDriveType(),
+                                             auto.getTransmissionType(),
+                                             auto.getBodyStyleType() );
         return newAutoJoin;
     }
 }

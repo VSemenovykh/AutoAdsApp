@@ -48,20 +48,19 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                  " and (:driveType is null or a.driveType = :driveType) " +
                                  " and (:transmissionType is null or a.transmissionType = :transmissionType) " +
                                  " and (:bodyStyleType is null or a.bodyStyleType = :bodyStyleType) ";
+
     @Query(value = querySearch, nativeQuery = false)
-    List<AutoJoin> searchAuto(
-                              @Param("nameBrand") String nameBrand,
-                              @Param("nameModel") String nameModel,
-                              @Param("startYear") String startYear,
-                              @Param("endYear") String endYear,
-                              @Param("color") String color,
-                              @Param("startPrice") Double startPrice,
-                              @Param("endPrice") Double endPrice,
-                              @Param("motorType") String motorType,
-                              @Param("startVolume") Double startVolume,
-                              @Param("endVolume") Double endVolume,
-                              @Param("driveType") String driveType,
-                              @Param("transmissionType") String transmissionType,
-                              @Param("bodyStyleType") String bodyStyleType
-                            );
+    List<AutoJoin> searchAuto( @Param("nameBrand") String nameBrand,
+                               @Param("nameModel") String nameModel,
+                               @Param("startYear") String startYear,
+                               @Param("endYear") String endYear,
+                               @Param("color") String color,
+                               @Param("startPrice") Double startPrice,
+                               @Param("endPrice") Double endPrice,
+                               @Param("motorType") String motorType,
+                               @Param("startVolume") Double startVolume,
+                               @Param("endVolume") Double endVolume,
+                               @Param("driveType") String driveType,
+                               @Param("transmissionType") String transmissionType,
+                               @Param("bodyStyleType") String bodyStyleType );
 }

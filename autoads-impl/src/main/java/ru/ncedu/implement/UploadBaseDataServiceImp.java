@@ -75,11 +75,8 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         jdbcTemplate.execute("DROP TABLE image_auto CASCADE");
 
         jdbcTemplate.execute(createBrand);
-
         jdbcTemplate.execute(createMotor);
-
         jdbcTemplate.execute(createImageAuto);
-
         jdbcTemplate.execute(createAuto);
 
         List<Brand> brandList = new ArrayList<>();
@@ -116,8 +113,8 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         try (RandomAccessFile f = new RandomAccessFile(nameFile, "r")) {
             byte[] bytes = new byte[(int) f.length()];
             f.read(bytes);
-            return bytes;
 
+            return bytes;
         } catch (IOException e) {
             e.printStackTrace();
         }

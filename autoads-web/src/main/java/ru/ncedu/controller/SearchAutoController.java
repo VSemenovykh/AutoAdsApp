@@ -17,8 +17,7 @@ public class SearchAutoController {
 
     @PostMapping
     public List<AutoJoin> searchAuto(@RequestBody DataAutoSearch dataAutoSearch) {
-        return  autoService.searchAuto(
-                                        dataAutoSearch.getNameBrand(),
+        return  autoService.searchAuto( dataAutoSearch.getNameBrand(),
                                         dataAutoSearch.getNameModel(),
                                         dataAutoSearch.getStartYear(),
                                         dataAutoSearch.getEndYear(),
@@ -30,8 +29,7 @@ public class SearchAutoController {
                                         dataAutoSearch.getEndVolume(),
                                         dataAutoSearch.getDriveType(),
                                         dataAutoSearch.getTransmissionType(),
-                                        dataAutoSearch.getBodyStyleType()
-                                        );
+                                        dataAutoSearch.getBodyStyleType() );
     }
 }
 

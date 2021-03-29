@@ -17,6 +17,6 @@ public class DeleteAutoServiceImp implements DeleteAutoService {
         autorepository.findById(id)
                 .ifPresent(auto -> {
                     autorepository.deleteById(id);
-        });
+                });
     }
 }

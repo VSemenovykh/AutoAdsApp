@@ -18,6 +18,7 @@ public class CreatePictureAutoController {
     @PostMapping(path = "/pictureAuto")
     public Long pictureAuto(@RequestParam(name = "imageFile") MultipartFile file) {
         Long idImage;
+
         if (file != null) {
             try {
                 idImage = createPictureAutoService.createPictureAuto(file);
@@ -25,6 +26,7 @@ public class CreatePictureAutoController {
                 return idImage;
             } catch (IOException e) {
                 e.printStackTrace();
+
                 return null;
             }
         } else {

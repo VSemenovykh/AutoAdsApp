@@ -26,6 +26,7 @@ public class UpdatePictureAutoController {
                 return id;
             } catch (IOException e) {
                 e.printStackTrace();
+
                 return null;
             }
         } else {

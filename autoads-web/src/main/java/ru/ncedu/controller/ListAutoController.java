@@ -20,7 +20,6 @@ public class ListAutoController {
 
     @GetMapping
     public List<AutoJoin> getAllAuto() {
-        List<AutoJoin> autoJoinList = listAutoService.getListAuto();
-        return autoJoinList;
+        return listAutoService.getListAuto();
     }
 }

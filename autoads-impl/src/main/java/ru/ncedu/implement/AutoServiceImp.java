@@ -1,7 +1,6 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
@@ -14,7 +13,6 @@ import ru.ncedu.service.PictureAutoService;
 import ru.ncedu.service.MotorService;
 import java.util.List;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AutoServiceImp implements AutoService {
@@ -31,17 +29,15 @@ public class AutoServiceImp implements AutoService {
     public Auto findById(Long id) {
         Auto auto = autorepository.findById(id).orElse(null);
 
-        return new Auto(
-                        auto.getId(),
-                        auto.getIdImage(),
-                        auto.getIdBrand(),
-                        auto.getIdMotor(),
-                        auto.getColor(),
-                        auto.getPrice(),
-                        auto.getDriveType(),
-                        auto.getTransmissionType(),
-                        auto.getBodyStyleType()
-                        );
+        return new Auto( auto.getId(),
+                         auto.getIdImage(),
+                         auto.getIdBrand(),
+                         auto.getIdMotor(),
+                         auto.getColor(),
+                         auto.getPrice(),
+                         auto.getDriveType(),
+                         auto.getTransmissionType(),
+                         auto.getBodyStyleType() );
     }
 
     @Override
@@ -58,55 +54,51 @@ public class AutoServiceImp implements AutoService {
                 raster = imageAutoService.findPictureAutoById(auto.getIdImage()).getRaster();
             }
 
-            return new AutoJoin(
-                                auto.getId(),
-                                auto.getIdImage(),
-                                raster,
-                                brand.getNameBrand(),
-                                brand.getNameModel(),
-                                brand.getYear(),
-                                auto.getColor(),
-                                auto.getPrice(),
-                                motor.getMotorType(),
-                                motor.getVolume(),
-                                auto.getDriveType(),
-                                auto.getTransmissionType(),
-                                auto.getBodyStyleType()
-                              );
+            return new AutoJoin( auto.getId(),
+                                 auto.getIdImage(),
+                                 raster,
+                                 brand.getNameBrand(),
+                                 brand.getNameModel(),
+                                 brand.getYear(),
+                                 auto.getColor(),
+                                 auto.getPrice(),
+                                 motor.getMotorType(),
+                                 motor.getVolume(),
+                                 auto.getDriveType(),
+                                 auto.getTransmissionType(),
+                                 auto.getBodyStyleType() );
         }else {
             return  null;
         }
     }
 
     @Override
-    public List<AutoJoin> searchAuto(
-                                     String nameBrand,
-                                     String nameModel,
-                                     String startYear,
-                                     String endYear,
-                                     String color,
-                                     Double startPrice,
-                                     Double endPrice,
-                                     String motorType,
-                                     Double startVolume,
-                                     Double endVolume,
-                                     String drive,
-                                     String transmission,
-                                     String bodyStyle
-                                    ) {
-        return autorepository.searchAuto(
-                                        nameBrand,
-                                        nameModel,
-                                        startYear,
-                                        endYear,
-                                        color,
-                                        startPrice,
-                                        endPrice,
-                                        motorType,
-                                        startVolume,
-                                        endVolume,
-                                        drive,
-                                        transmission,
-                                        bodyStyle);
+    public List<AutoJoin> searchAuto( String nameBrand,
+                                      String nameModel,
+                                      String startYear,
+                                      String endYear,
+                                      String color,
+                                      Double startPrice,
+                                      Double endPrice,
+                                      String motorType,
+                                      Double startVolume,
+                                      Double endVolume,
+                                      String drive,
+                                      String transmission,
+                                      String bodyStyle ) {
+
+        return autorepository.searchAuto( nameBrand,
+                                          nameModel,
+                                          startYear,
+                                          endYear,
+                                          color,
+                                          startPrice,
+                                          endPrice,
+                                          motorType,
+                                          startVolume,
+                                          endVolume,
+                                          drive,
+                                          transmission,
+                                          bodyStyle);
     }
 }

@@ -23,13 +23,11 @@ public class AutoAdsApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws IOException {
-
         log.info("StartApplication...");
         log.info("Load data to postgresql");
 
         uploadBaseDataService.uploadBaseData();
 
         log.info("Successfully, data loaded!");
-
     }
 }
