@@ -1,13 +1,15 @@
 package ru.ncedu.service;
 
+import ru.ncedu.entity.Auto;
 import ru.ncedu.model.AutoJoin;
 import java.util.List;
 
 public interface AutoService {
 
-    AutoJoin findById(Long id);
+    Auto findById(Long id);
 
-    /*search by different criteria */
+    AutoJoin findAutoJoinById(Long id);
+
     List<AutoJoin> searchAuto(
                               String nameBrand,
                               String nameModel,
@@ -23,5 +25,4 @@ public interface AutoService {
                               String transmission,
                               String bodyStyle
                             );
-
 }

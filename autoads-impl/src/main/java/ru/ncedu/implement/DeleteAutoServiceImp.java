@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.repository.AutoRepository;
-import ru.ncedu.service.DeleteService;
+import ru.ncedu.service.DeleteAutoService;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DeleteServiceImp implements DeleteService {
+public class DeleteAutoServiceImp implements DeleteAutoService {
 
     private final AutoRepository autorepository;
 

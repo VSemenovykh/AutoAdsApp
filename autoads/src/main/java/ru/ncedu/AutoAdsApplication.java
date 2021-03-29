@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.ncedu.service.LoadBaseDataService;
+import ru.ncedu.service.UploadBaseDataService;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AutoAdsApplication implements CommandLineRunner {
 
-    final private LoadBaseDataService loadBaseDataService;
+    final private UploadBaseDataService uploadBaseDataService;
 
     public static void main(String[] args) {
 
@@ -27,7 +27,7 @@ public class AutoAdsApplication implements CommandLineRunner {
         log.info("StartApplication...");
         log.info("Load data to postgresql");
 
-        loadBaseDataService.uploadBaseData();
+        uploadBaseDataService.uploadBaseData();
 
         log.info("Successfully, data loaded!");
 

@@ -3,18 +3,18 @@ package ru.ncedu.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
-import ru.ncedu.service.DeleteService;
+import ru.ncedu.service.DeleteAutoService;
 
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class DeleteAutoController {
-    private  final DeleteService deleteService;
+    private  final DeleteAutoService deleteAutoService;
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteAuto(@PathVariable("id") Long autoId) {
-        deleteService.deleteAuto(autoId);
+        deleteAutoService.deleteAuto(autoId);
         return ResponseEntity.ok().body("Auto with ID : " + autoId + " deleted with success!");
     }
 }

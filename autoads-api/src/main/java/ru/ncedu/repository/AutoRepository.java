@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface AutoRepository extends JpaRepository<Auto, Long> {
 
-     String querySearch = "SELECT new ru.ncedu.model.AutoJoin( a.id," +
+    String querySearch = "SELECT new ru.ncedu.model.AutoJoin( a.id," +
+                                                             " ia.id,"+
                                                              " ia.raster,"+
                                                              " b.nameBrand, " +
                                                              " b.nameModel, " +
@@ -26,7 +27,7 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                  " FROM Auto a " +
                                  " JOIN Brand b on b.id = a.idBrand " +
                                  " JOIN Motor m on m.id = a.idMotor " +
-                                 " LEFT JOIN ImageAuto ia on ia.id = a.idImage " +
+                                 " LEFT JOIN PictureAuto ia on ia.id = a.idImage " +
                                  " WHERE " +
                                  " (:nameBrand is null or b.nameBrand = :nameBrand) " +
                                  " and (:nameModel is null or b.nameModel = :nameModel) " +

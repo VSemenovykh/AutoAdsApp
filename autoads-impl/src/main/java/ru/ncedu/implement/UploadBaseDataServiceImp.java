@@ -6,13 +6,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
-import ru.ncedu.entity.ImageAuto;
+import ru.ncedu.entity.PictureAuto;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.repository.BrandRepository;
-import ru.ncedu.repository.ImageAutoRepository;
+import ru.ncedu.repository.PictureAutoRepository;
 import ru.ncedu.repository.MotorRepository;
-import ru.ncedu.service.LoadBaseDataService;
+import ru.ncedu.service.UploadBaseDataService;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LoadBaseDataServiceImp implements LoadBaseDataService {
+public class UploadBaseDataServiceImp implements UploadBaseDataService {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -33,7 +33,7 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
 
     private final MotorRepository motorRepository;
 
-    private final ImageAutoRepository imageAutoRepository;
+    private final PictureAutoRepository pictureAutoRepository;
 
     public Map<String, List> createTables() {
         log.info("Creating tables");
@@ -93,10 +93,10 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
         motorList.add(new Motor(2L, "diesel", 5.0));
         motorList.add(new Motor(3L, "diesel", 4.4));
 
-        List<ImageAuto> imageAutoList = new ArrayList<>();
-        imageAutoList.add(new ImageAuto(1L, "M8", convertImageAuto("H:/Netcracker/AutoAdsApp/image-auto/BMW/BMW-M8.jpg")));
-        imageAutoList.add(new ImageAuto(2L, "M5", convertImageAuto("H:/Netcracker/AutoAdsApp/image-auto/BMW/BMW-M5.jpg")));
-        imageAutoList.add(new ImageAuto(3L, "M6", convertImageAuto("H:/Netcracker/AutoAdsApp/image-auto/BMW/BMW-M6.jpg")));
+        List<PictureAuto> pictureAutoList = new ArrayList<>();
+        pictureAutoList.add(new PictureAuto(1L, "M8", convertImageAuto("C:/IdeaProjects/ProjectByNetcracker/image-auto/BMW/BMW-M8.jpg")));
+        pictureAutoList.add(new PictureAuto(2L, "M5", convertImageAuto("C:/IdeaProjects/ProjectByNetcracker/image-auto/BMW/BMW-M5.jpg")));
+        pictureAutoList.add(new PictureAuto(3L, "M6", convertImageAuto("C:/IdeaProjects/ProjectByNetcracker/image-auto/BMW/BMW-M6.jpg")));
 
         List<Auto> autoList = new ArrayList<>();
         autoList.add(new Auto(1L, 1L, 1L, 1L, "Black", 20000000, "automatic", "awd", "sedan"));
@@ -107,7 +107,7 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
         mapTable.put("Brand", brandList);
         mapTable.put("Motor", motorList);
         mapTable.put("Auto", autoList);
-        mapTable.put("ImageAuto", imageAutoList);
+        mapTable.put("ImageAuto", pictureAutoList);
 
         return mapTable;
     }
@@ -129,11 +129,11 @@ public class LoadBaseDataServiceImp implements LoadBaseDataService {
         List<Brand> brandList = listTable.get("Brand");
         List<Motor> motorList = listTable.get("Motor");
         List<Auto> autoList = listTable.get("Auto");
-        List<ImageAuto> imageAuto = listTable.get("ImageAuto");
+        List<PictureAuto> pictureAuto = listTable.get("ImageAuto");
 
         brandRepository.saveAll(brandList);
         motorRepository.saveAll(motorList);
-        imageAutoRepository.saveAll(imageAuto);
+        pictureAutoRepository.saveAll(pictureAuto);
         autorepository.saveAll(autoList);
     }
 }

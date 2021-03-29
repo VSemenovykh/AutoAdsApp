@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.ncedu.model.AutoJoin;
-import ru.ncedu.service.AutoService;
 import ru.ncedu.service.ListAutoService;
 
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
 @RequestMapping("/api")
 public class ListAutoController {
 
-    private final AutoService autoService;
     private final ListAutoService listAutoService;
 
     @GetMapping

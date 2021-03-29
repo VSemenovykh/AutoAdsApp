@@ -9,7 +9,7 @@ import ru.ncedu.entity.Motor;
 import ru.ncedu.model.AutoJoin;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.service.BrandService;
-import ru.ncedu.service.ImageAutoService;
+import ru.ncedu.service.PictureAutoService;
 import ru.ncedu.service.ListAutoService;
 import ru.ncedu.service.MotorService;
 
@@ -27,7 +27,7 @@ public class ListAutoServiceImp implements ListAutoService {
 
     private final MotorService motorService;
 
-    private final ImageAutoService imageAutoService;
+    private final PictureAutoService imageAutoService;
 
     @Override
     public List<AutoJoin> getListAuto() {
@@ -47,7 +47,7 @@ public class ListAutoServiceImp implements ListAutoService {
             byte[] raster = null;
 
             if(auto.getIdImage() != null){
-                raster = imageAutoService.findImageAutoById(auto.getIdImage()).getRaster();
+                raster = imageAutoService.findPictureAutoById(auto.getIdImage()).getRaster();
             }
 
             brandName = brand.getNameBrand();
@@ -57,6 +57,7 @@ public class ListAutoServiceImp implements ListAutoService {
             motorType = motor.getMotorType();
             volume = motor.getVolume();
             AutoJoin autoJoin = new AutoJoin( auto.getId()
+                                             ,auto.getIdImage()
                                              ,raster
                                              ,brandName
                                              ,modelName

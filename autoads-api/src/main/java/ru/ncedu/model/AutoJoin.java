@@ -11,6 +11,8 @@ public class AutoJoin {
 
     private Long id;
 
+    private Long idPicture;
+
     private byte[] raster;
 
     private String nameBrand;

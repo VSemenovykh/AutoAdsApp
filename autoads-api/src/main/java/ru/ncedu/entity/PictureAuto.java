@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImageAuto implements Serializable {
+public class PictureAuto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

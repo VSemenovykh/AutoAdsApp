@@ -1,6 +1,7 @@
 package ru.ncedu.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.ncedu.entity.Auto;
 import ru.ncedu.model.AutoJoin;
 import ru.ncedu.service.AutoService;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +15,12 @@ public class AutoController {
     private final AutoService autoService;
 
     @GetMapping(path = "/{id}")
-    public AutoJoin getAutoById(@PathVariable("id") long autoId) {
-        AutoJoin auto = autoService.findById(autoId);
-        return auto;
+    public Auto getAutoById(@PathVariable("id") long autoId) {
+        return  autoService.findById(autoId);
+    }
+
+    @GetMapping(path = "/join/{id}")
+    public AutoJoin getAutoJoinById(@PathVariable("id") long autoId) {
+        return  autoService.findAutoJoinById(autoId);
     }
 }
