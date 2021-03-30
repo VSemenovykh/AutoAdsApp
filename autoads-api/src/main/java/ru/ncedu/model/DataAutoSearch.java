@@ -11,6 +11,8 @@ public class DataAutoSearch {
 
     private Long id;
 
+    private byte[] raster;
+
     private String nameBrand;
 
     private String nameModel;

@@ -11,4 +11,5 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
     void deleteById(Long idBrand);
 
     List<Brand> findAll();
+
 }

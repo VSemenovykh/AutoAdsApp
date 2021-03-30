@@ -11,7 +11,9 @@ import java.util.List;
 @Repository
 public interface AutoRepository extends JpaRepository<Auto, Long> {
 
-     String querySearch = "SELECT new ru.ncedu.model.AutoJoin( a.id," +
+    String querySearch = "SELECT new ru.ncedu.model.AutoJoin( a.id," +
+                                                             " ia.id,"+
+                                                             " ia.raster,"+
                                                              " b.nameBrand, " +
                                                              " b.nameModel, " +
                                                              " b.year, " +
@@ -25,6 +27,7 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                  " FROM Auto a " +
                                  " JOIN Brand b on b.id = a.idBrand " +
                                  " JOIN Motor m on m.id = a.idMotor " +
+                                 " LEFT JOIN PictureAuto ia on ia.id = a.idImage " +
                                  " WHERE " +
                                  " (:nameBrand is null or b.nameBrand = :nameBrand) " +
                                  " and (:nameModel is null or b.nameModel = :nameModel) " +
@@ -45,19 +48,19 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                  " and (:driveType is null or a.driveType = :driveType) " +
                                  " and (:transmissionType is null or a.transmissionType = :transmissionType) " +
                                  " and (:bodyStyleType is null or a.bodyStyleType = :bodyStyleType) ";
+
     @Query(value = querySearch, nativeQuery = false)
-    List<AutoJoin> searchAuto(@Param("nameBrand") String nameBrand,
-                              @Param("nameModel") String nameModel,
-                              @Param("startYear") String startYear,
-                              @Param("endYear") String endYear,
-                              @Param("color") String color,
-                              @Param("startPrice") Double startPrice,
-                              @Param("endPrice") Double endPrice,
-                              @Param("motorType") String motorType,
-                              @Param("startVolume") Double startVolume,
-                              @Param("endVolume") Double endVolume,
-                              @Param("driveType") String driveType,
-                              @Param("transmissionType") String transmissionType,
-                              @Param("bodyStyleType") String bodyStyleType
-                            );
+    List<AutoJoin> searchAuto( @Param("nameBrand") String nameBrand,
+                               @Param("nameModel") String nameModel,
+                               @Param("startYear") String startYear,
+                               @Param("endYear") String endYear,
+                               @Param("color") String color,
+                               @Param("startPrice") Double startPrice,
+                               @Param("endPrice") Double endPrice,
+                               @Param("motorType") String motorType,
+                               @Param("startVolume") Double startVolume,
+                               @Param("endVolume") Double endVolume,
+                               @Param("driveType") String driveType,
+                               @Param("transmissionType") String transmissionType,
+                               @Param("bodyStyleType") String bodyStyleType );
 }

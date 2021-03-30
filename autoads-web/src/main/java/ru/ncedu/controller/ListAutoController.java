@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.ncedu.model.AutoJoin;
-import ru.ncedu.service.AutoService;
+import ru.ncedu.service.ListAutoService;
 
 import java.util.List;
 
@@ -14,14 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
-public class GetListAutoController {
+public class ListAutoController {
 
-    private final AutoService autoService;
     private final ListAutoService listAutoService;
 
     @GetMapping
     public List<AutoJoin> getAllAuto() {
-        List<AutoJoin> autoJoinList = listAutoService.getListAuto();
-        return autoJoinList;
+        return listAutoService.getListAuto();
     }
 }

@@ -1,8 +1,9 @@
 package ru.ncedu.controller;
 
 import org.springframework.web.bind.annotation.*;
-import ru.ncedu.entity.Auto;
 import lombok.RequiredArgsConstructor;
+import ru.ncedu.model.AutoJoin;
+import ru.ncedu.service.UpdateAutoService;
 
 @RestController
 @RequiredArgsConstructor
@@ -10,11 +11,13 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api")
 public class UpdateAutoController {
 
-    private final UpdateService updateService;
+    private final UpdateAutoService updateAutoService;
 
     @PutMapping("/{id}")
-    public Auto updateAuto(@RequestBody Auto auto, @PathVariable("id") Long autoId) {
-        updateService.updateAuto(auto, autoId);
+    public AutoJoin updateAuto( @RequestBody AutoJoin auto,
+                                @PathVariable("id") Long autoId,
+                                @RequestParam("idImage") String idImage ){
+        updateAutoService.updateAuto(auto, autoId, new Long(idImage));
         return auto;
     }
 }

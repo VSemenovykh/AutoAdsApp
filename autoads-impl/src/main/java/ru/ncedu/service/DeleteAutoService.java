@@ -1,6 +1,6 @@
 package ru.ncedu.service;
 
-public interface DeleteService {
+public interface DeleteAutoService {
 
     void deleteAuto(Long id);
 }
