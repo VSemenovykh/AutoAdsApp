@@ -3,15 +3,11 @@ package ru.ncedu.implement;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.ncedu.entity.Auto;
-import ru.ncedu.entity.Brand;
-import ru.ncedu.entity.PictureAuto;
-import ru.ncedu.entity.Motor;
-import ru.ncedu.repository.AutoRepository;
-import ru.ncedu.repository.BrandRepository;
-import ru.ncedu.repository.PictureAutoRepository;
-import ru.ncedu.repository.MotorRepository;
+import ru.ncedu.entity.*;
+import ru.ncedu.model.ERole;
+import ru.ncedu.repository.*;
 import ru.ncedu.service.UploadBaseDataService;
 
 import java.io.*;
@@ -34,6 +30,14 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
     private final MotorRepository motorRepository;
 
     private final PictureAutoRepository pictureAutoRepository;
+
+    private final UserRepository userRepository;
+
+    private final RoleRepository roleRepository;
+
+    private final UserRoleRepository userRoleRepository;
+
+    private final PasswordEncoder encoder;
 
     public Map<String, List> createTables() {
         log.info("Creating tables");
@@ -69,15 +73,39 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
                 "body_style character varying " +
                 ")";
 
+        String createRole ="CREATE TABLE public.roles (" +
+                "id bigserial NOT NULL PRIMARY KEY," +
+                "name character varying(20)"+
+                ")";
+
+        String createUser ="CREATE TABLE public.users (" +
+                "id bigserial NOT NULL PRIMARY KEY," +
+                "email character varying(50) UNIQUE, " +
+                "password character varying(120), " +
+                "username character varying(20) UNIQUE" +
+                ")";
+
+        String createUserRole ="CREATE TABLE public.user_roles (" +
+                "id bigserial NOT NULL PRIMARY KEY,"+
+                "user_id bigint NOT NULL REFERENCES users (id), " +
+                "role_id bigint NOT NULL REFERENCES roles (id)"+
+                ")";
+
         jdbcTemplate.execute("DROP TABLE auto CASCADE");
         jdbcTemplate.execute("DROP TABLE brand CASCADE");
         jdbcTemplate.execute("DROP TABLE motor CASCADE");
         jdbcTemplate.execute("DROP TABLE image_auto CASCADE");
+        jdbcTemplate.execute("DROP TABLE users CASCADE");
+        jdbcTemplate.execute("DROP TABLE roles CASCADE");
+        jdbcTemplate.execute("DROP TABLE user_roles CASCADE");
 
         jdbcTemplate.execute(createBrand);
         jdbcTemplate.execute(createMotor);
         jdbcTemplate.execute(createImageAuto);
         jdbcTemplate.execute(createAuto);
+        jdbcTemplate.execute(createUser);
+        jdbcTemplate.execute(createRole);
+        jdbcTemplate.execute(createUserRole);
 
         List<Brand> brandList = new ArrayList<>();
         brandList.add(new Brand(1L, "BMW", "M8", "2015"));
@@ -100,11 +128,28 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         autoList.add(new Auto(2L, 2L, 2L, 2L, "White", 15000000, "manual", "rwd", "suv"));
         autoList.add(new Auto(3L, 3L, 3L, 3L, "Gray", 10000000, "automatic", "fwd", "wagon"));
 
+        List<User> userList = new ArrayList<>();
+        userList.add(new User(1L, "Admin", "admin@yandex.ru", encoder.encode("adminAutoAds")));
+        userList.add(new User(2L, "Moderator", "moderator@yandex.ru", encoder.encode("moderatorAutoAds")));
+
+        List<Role> roleList = new ArrayList<>();
+        ERole eRole = null;
+        roleList.add(new Role(1L,eRole.ROLE_USER));
+        roleList.add(new Role(2L,eRole.ROLE_MODERATOR));
+        roleList.add(new Role(3L,eRole.ROLE_ADMIN));
+
+        List<UserRole> userRoleList = new ArrayList<>();
+        userRoleList.add(new UserRole(1L,1L, 3L));
+        userRoleList.add(new UserRole(2L,2L, 2L));
+
         Map<String, List> mapTable = new HashMap();
         mapTable.put("Brand", brandList);
         mapTable.put("Motor", motorList);
         mapTable.put("Auto", autoList);
         mapTable.put("ImageAuto", pictureAutoList);
+        mapTable.put("User", userList);
+        mapTable.put("Role", roleList);
+        mapTable.put("UserRole", userRoleList);
 
         return mapTable;
     }
@@ -123,14 +168,21 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
 
     public void uploadBaseData() throws IOException {
         Map<String, List> listTable = createTables();
+
         List<Brand> brandList = listTable.get("Brand");
         List<Motor> motorList = listTable.get("Motor");
         List<Auto> autoList = listTable.get("Auto");
         List<PictureAuto> pictureAuto = listTable.get("ImageAuto");
+        List<User> userList = listTable.get("User");
+        List<Role> roleList = listTable.get("Role");
+        List<UserRole> userRoleList = listTable.get("UserRole");
 
         brandRepository.saveAll(brandList);
         motorRepository.saveAll(motorList);
         pictureAutoRepository.saveAll(pictureAuto);
         autorepository.saveAll(autoList);
+        userRepository.saveAll(userList);
+        roleRepository.saveAll(roleList);
+        userRoleRepository.saveAll(userRoleList);
     }
 }

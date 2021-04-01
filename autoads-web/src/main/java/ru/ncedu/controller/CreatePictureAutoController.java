@@ -10,7 +10,7 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 public class CreatePictureAutoController {
 
     private final CreatePictureAutoService createPictureAutoService;

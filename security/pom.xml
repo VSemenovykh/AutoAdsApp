@@ -9,29 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>autoads</artifactId>
+    <artifactId>security</artifactId>
     <dependencies>
         <dependency>
             <groupId>groupId</groupId>
-            <artifactId>autoads-impl</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>groupId</groupId>
             <artifactId>autoads-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>groupId</groupId>
-            <artifactId>autoads-web</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>groupId</groupId>
-            <artifactId>security</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/search")
+@RequestMapping("/api/auth/search")
 public class SearchAutoController {
 
     private final AutoService autoService;

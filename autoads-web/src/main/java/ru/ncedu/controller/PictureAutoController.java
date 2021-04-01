@@ -1,6 +1,7 @@
 package ru.ncedu.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.PictureAuto;
 import ru.ncedu.service.PictureAutoService;
@@ -8,7 +9,7 @@ import ru.ncedu.service.PictureAutoService;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 public class PictureAutoController {
 
     private final PictureAutoService pictureAutoService;

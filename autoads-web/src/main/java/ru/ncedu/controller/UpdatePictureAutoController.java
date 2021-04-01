@@ -10,7 +10,7 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/pictureAuto")
+@RequestMapping("/api/auth/pictureAuto")
 public class UpdatePictureAutoController {
 
     private final UpdatePictureService updatePictureService;
@@ -19,7 +19,7 @@ public class UpdatePictureAutoController {
     public Long updatePictureAuto(@RequestParam(name = "imageFile", required = false) MultipartFile file,
                                   @PathVariable("idImage") String idImage){
         Long id;
-        if (file != null) {
+        if (file != null && idImage != null) {
             try {
                 id = updatePictureService.updatePictureAuto(file, new Long(idImage));
 
