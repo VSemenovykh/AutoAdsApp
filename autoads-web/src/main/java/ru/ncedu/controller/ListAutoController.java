@@ -1,14 +1,10 @@
 package ru.ncedu.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.ncedu.model.AutoJoin;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.ncedu.service.ListAutoService;
-
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +15,8 @@ public class ListAutoController {
     private final ListAutoService listAutoService;
 
     @GetMapping
-    public List<AutoJoin> getAllAuto() {
-        return listAutoService.getListAuto();
+    public ResponseEntity<Map<String, Object>> getAllAutoPage(@RequestParam(defaultValue = "0") int page,
+                                                              @RequestParam(defaultValue = "3") int size) {
+        return listAutoService.findAllAutoJoinPage(page,size);
     }
 }

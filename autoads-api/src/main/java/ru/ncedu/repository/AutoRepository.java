@@ -1,5 +1,7 @@
 package ru.ncedu.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Repository
 public interface AutoRepository extends JpaRepository<Auto, Long> {
+
+    Page<Auto> findAll(Pageable pageable);
 
     String querySearch = "SELECT new ru.ncedu.model.AutoJoin( a.id," +
                                                              " ia.id,"+
@@ -63,4 +67,20 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                @Param("driveType") String driveType,
                                @Param("transmissionType") String transmissionType,
                                @Param("bodyStyleType") String bodyStyleType );
+
+    @Query(value = querySearch, nativeQuery = false)
+    Page<AutoJoin>  searchAutoPage( @Param("nameBrand") String nameBrand,
+                               @Param("nameModel") String nameModel,
+                               @Param("startYear") String startYear,
+                               @Param("endYear") String endYear,
+                               @Param("color") String color,
+                               @Param("startPrice") Double startPrice,
+                               @Param("endPrice") Double endPrice,
+                               @Param("motorType") String motorType,
+                               @Param("startVolume") Double startVolume,
+                               @Param("endVolume") Double endVolume,
+                               @Param("driveType") String driveType,
+                               @Param("transmissionType") String transmissionType,
+                               @Param("bodyStyleType") String bodyStyleType,
+                               Pageable pageable);
 }
