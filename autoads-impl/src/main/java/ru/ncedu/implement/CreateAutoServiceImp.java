@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
+import ru.ncedu.entity.Contact;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.AutoJoin;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.repository.BrandRepository;
+import ru.ncedu.repository.ContactRepository;
 import ru.ncedu.repository.MotorRepository;
 import ru.ncedu.service.CreateAutoService;
 
@@ -23,9 +25,10 @@ public class CreateAutoServiceImp implements CreateAutoService {
 
     private final MotorRepository motorRepository;
 
+    private final ContactRepository contactRepository;
+
     @Override
     public AutoJoin saveAuto(AutoJoin autoJoin, Long idImage) {
-
         Brand brand = brandRepository.save(new Brand(null,
                                                         autoJoin.getNameBrand(),
                                                         autoJoin.getNameModel(),
@@ -34,9 +37,12 @@ public class CreateAutoServiceImp implements CreateAutoService {
                                                          autoJoin.getMotorType(),
                                                          autoJoin.getVolume() ));
 
+        Contact contact = contactRepository.save(new Contact(null, autoJoin.getEmail(),autoJoin.getPhone()));
+
         Auto auto = new Auto( autoJoin.getId(),
                               idImage,
                               brand.getId(),
+                              contact.getId(),
                               motor.getId(),
                               autoJoin.getColor(),
                               autoJoin.getPrice(),
@@ -49,6 +55,8 @@ public class CreateAutoServiceImp implements CreateAutoService {
         AutoJoin newAutoJoin = new AutoJoin( auto.getId(),
                                              auto.getIdImage(),
                                             null,
+                                             contact.getEmail(),
+                                             contact.getPhone(),
                                              brand.getNameBrand(),
                                              brand.getNameModel(),
                                              brand.getYear(),

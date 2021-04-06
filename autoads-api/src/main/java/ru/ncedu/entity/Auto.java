@@ -25,6 +25,10 @@ public class Auto implements Serializable {
     @Column(name = "id_brand")
     private Long idBrand;
 
+    @Min(1)
+    @Column(name = "id_contact")
+    private Long idContact;
+
     @NonNull
     @Min(1)
     @Column(name = "id_motor")

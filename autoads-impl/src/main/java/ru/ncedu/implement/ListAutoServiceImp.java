@@ -1,6 +1,7 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -9,19 +10,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
+import ru.ncedu.entity.Contact;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.AutoJoin;
 import ru.ncedu.repository.AutoRepository;
-import ru.ncedu.service.BrandService;
-import ru.ncedu.service.PictureAutoService;
-import ru.ncedu.service.ListAutoService;
-import ru.ncedu.service.MotorService;
+import ru.ncedu.service.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ListAutoServiceImp implements ListAutoService {
@@ -31,6 +31,8 @@ public class ListAutoServiceImp implements ListAutoService {
     private final BrandService brandService;
 
     private final MotorService motorService;
+
+    private final ContactService contactService;
 
     private final PictureAutoService imageAutoService;
 
@@ -58,9 +60,14 @@ public class ListAutoServiceImp implements ListAutoService {
             String motorType;
             double volume;
 
+            String email;
+            String phone;
+
             for (Auto auto : autoList) {
                 Brand brand = brandService.findById(auto.getIdBrand());
                 Motor motor = motorService.findById(auto.getIdMotor());
+                Contact contact = contactService.findById(auto.getIdContact());
+
                 byte[] raster = null;
 
                 if(auto.getIdImage() != null){
@@ -73,9 +80,15 @@ public class ListAutoServiceImp implements ListAutoService {
 
                 motorType = motor.getMotorType();
                 volume = motor.getVolume();
+
+                email = contact.getEmail();
+                phone = contact.getPhone();
+
                 AutoJoin autoJoin = new AutoJoin( auto.getId(),
                         auto.getIdImage(),
                         raster,
+                        email,
+                        phone,
                         brandName,
                         modelName,
                         year,
@@ -114,9 +127,13 @@ public class ListAutoServiceImp implements ListAutoService {
         String motorType;
         double volume;
 
+        String email;
+        String phone;
+
         for (Auto auto : autoList) {
             Brand brand = brandService.findById(auto.getIdBrand());
             Motor motor = motorService.findById(auto.getIdMotor());
+            Contact contact = contactService.findById(auto.getIdContact());
             byte[] raster = null;
 
             if(auto.getIdImage() != null){
@@ -129,9 +146,14 @@ public class ListAutoServiceImp implements ListAutoService {
 
             motorType = motor.getMotorType();
             volume = motor.getVolume();
+
+            email = contact.getEmail();
+            phone = contact.getPhone();
             AutoJoin autoJoin = new AutoJoin( auto.getId(),
                                               auto.getIdImage(),
                                               raster,
+                                              email,
+                                              phone,
                                               brandName,
                                               modelName,
                                               year,

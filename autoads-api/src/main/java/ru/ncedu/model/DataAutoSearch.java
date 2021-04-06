@@ -11,31 +11,31 @@ public class DataAutoSearch {
 
     private Long id;
 
-    private byte[] raster;
+    private byte[] raster = null;
 
-    private String nameBrand;
+    private String nameBrand = null;
 
-    private String nameModel;
+    private String nameModel = null;
 
-    private String startYear;
+    private String startYear = null;
 
-    private String endYear;
+    private String endYear = null;
 
-    private String color;
+    private String color = null;
 
-    private Double startPrice;
+    private Double startPrice = null;
 
-    private Double endPrice;
+    private Double endPrice = null;
 
-    private String motorType;
+    private String motorType = null;
 
-    private Double startVolume;
+    private Double startVolume = null;
 
-    private Double endVolume;
+    private Double endVolume = null;
 
-    private String driveType;
+    private String driveType = null;
 
-    private String transmissionType;
+    private String transmissionType = null;
 
-    private String bodyStyleType;
+    private String bodyStyleType = null ;
 }

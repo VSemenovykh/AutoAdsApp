@@ -21,6 +21,7 @@ public class UpdateAutoServiceImp implements UpdateAutoService {
     private final AutoRepository autorepository;
 
     private final BrandRepository brandRepository;
+
     private final MotorRepository motorRepository;
 
     @Override
@@ -39,6 +40,7 @@ public class UpdateAutoServiceImp implements UpdateAutoService {
 
                     auto.setId(autoId);
                     auto.setIdBrand(brand.get().getId());
+
                     auto.setIdMotor(motor.get().getId());
                     auto.setIdImage(idImage);
                     auto.setColor(autoJoin.getColor());
