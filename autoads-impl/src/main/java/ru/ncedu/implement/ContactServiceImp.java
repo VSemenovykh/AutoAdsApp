@@ -14,6 +14,6 @@ public class ContactServiceImp implements ContactService {
 
     @Override
     public Contact findById(Long id){
-        return contactRepository.findContactById(id);
+        return contactRepository.findById(id).orElse(null);
     }
 }

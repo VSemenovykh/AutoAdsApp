@@ -20,7 +20,7 @@ public class CreatePictureAutoServiceImp implements CreatePictureAutoService {
         byte[] fileBytes = file.getBytes();
         String fileName = file.getOriginalFilename();
 
-        newPictureAuto.setNameImage(fileName.replaceAll("([.jpg]+[.png])", ""));
+        newPictureAuto.setNameImage(fileName.replaceAll("([.jpg]|[.png])", ""));
         newPictureAuto.setRaster((fileBytes));
 
         return pictureAutoRepository.save(newPictureAuto).getId();

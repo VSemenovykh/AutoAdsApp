@@ -29,14 +29,8 @@ public class CreateAutoServiceImp implements CreateAutoService {
 
     @Override
     public AutoJoin saveAuto(AutoJoin autoJoin, Long idImage) {
-        Brand brand = brandRepository.save(new Brand(null,
-                                                        autoJoin.getNameBrand(),
-                                                        autoJoin.getNameModel(),
-                                                        autoJoin.getYear() ));
-        Motor motor = motorRepository.save(new Motor(null,
-                                                         autoJoin.getMotorType(),
-                                                         autoJoin.getVolume() ));
-
+        Brand brand = brandRepository.save(new Brand(null, autoJoin.getNameBrand(), autoJoin.getNameModel(), autoJoin.getYear() ));
+        Motor motor = motorRepository.save(new Motor(null, autoJoin.getMotorType(), autoJoin.getVolume() ));
         Contact contact = contactRepository.save(new Contact(null, autoJoin.getEmail(),autoJoin.getPhone()));
 
         Auto auto = new Auto( autoJoin.getId(),
@@ -52,21 +46,20 @@ public class CreateAutoServiceImp implements CreateAutoService {
 
         autorepository.save(auto);
 
-        AutoJoin newAutoJoin = new AutoJoin( auto.getId(),
-                                             auto.getIdImage(),
-                                            null,
-                                             contact.getEmail(),
-                                             contact.getPhone(),
-                                             brand.getNameBrand(),
-                                             brand.getNameModel(),
-                                             brand.getYear(),
-                                             auto.getColor(),
-                                             auto.getPrice(),
-                                             motor.getMotorType(),
-                                             motor.getVolume(),
-                                             auto.getDriveType(),
-                                             auto.getTransmissionType(),
-                                             auto.getBodyStyleType() );
-        return newAutoJoin;
+        return new AutoJoin( auto.getId(),
+                             auto.getIdImage(),
+                            null,
+                             contact.getEmail(),
+                             contact.getPhone(),
+                             brand.getNameBrand(),
+                             brand.getNameModel(),
+                             brand.getYear(),
+                             auto.getColor(),
+                             auto.getPrice(),
+                             motor.getMotorType(),
+                             motor.getVolume(),
+                             auto.getDriveType(),
+                             auto.getTransmissionType(),
+                             auto.getBodyStyleType() );
     }
 }

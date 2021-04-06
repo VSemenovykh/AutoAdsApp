@@ -209,6 +209,5 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         userRepository.saveAll(userList);
         roleRepository.saveAll(roleList);
         userRoleRepository.saveAll(userRoleList);
-
     }
 }

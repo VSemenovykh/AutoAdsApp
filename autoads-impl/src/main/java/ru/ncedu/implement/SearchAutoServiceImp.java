@@ -23,61 +23,6 @@ public class SearchAutoServiceImp implements SearchAutoService {
     private final AutoRepository autorepository;
 
     @Override
-    public ResponseEntity<Map<String, Object>> searchAutoPage(String nameBrand,
-                                                              String nameModel,
-                                                              String startYear,
-                                                              String endYear,
-                                                              String color,
-                                                              Double startPrice,
-                                                              Double endPrice,
-                                                              String motorType,
-                                                              Double startVolume,
-                                                              Double endVolume,
-                                                              String drive,
-                                                              String transmission,
-                                                              String bodyStyle,
-                                                              int page,
-                                                              int size ){
-
-        try {
-            List<AutoJoin> listAutoJoin;
-            Pageable paging = PageRequest.of(page, size);
-
-            Page<AutoJoin> pageTuts;
-            pageTuts = autorepository.searchAutoPage(nameBrand,
-                    nameModel,
-                    startYear,
-                    endYear,
-                    color,
-                    startPrice,
-                    endPrice,
-                    motorType,
-                    startVolume,
-                    endVolume,
-                    drive,
-                    transmission,
-                    bodyStyle,
-                    paging);
-
-            listAutoJoin = pageTuts.getContent();
-
-            if (listAutoJoin.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("listAutoJoin", listAutoJoin);
-            response.put("currentPage", pageTuts.getNumber());
-            response.put("totalAutoJoin", pageTuts.getTotalElements());
-            response.put("totalPages", pageTuts.getTotalPages());
-
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e) {
-            return  new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @Override
     public ResponseEntity<Map<String, Object>> multipleSearchAutoPage(List<String> nameBrand,
                                                                       List<String> nameModel,
                                                                       String startYear,

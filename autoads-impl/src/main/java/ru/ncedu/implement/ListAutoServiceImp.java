@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ListAutoServiceImp implements ListAutoService {
@@ -39,15 +38,11 @@ public class ListAutoServiceImp implements ListAutoService {
     @Override
     public ResponseEntity<Map<String, Object>> findAllAutoJoinPage(int page, int size){
         try {
-            List<Auto> autoList = new ArrayList<Auto>();
-            List<AutoJoin> listAutoJoin = new ArrayList<>();
-
             Pageable paging = PageRequest.of(page, size);
+            Page<Auto> pageTuts = autorepository.findAll(paging);
 
-            Page<Auto> pageTuts;
-            pageTuts = autorepository.findAll(paging);
-
-            autoList = pageTuts.getContent();
+            List<Auto> autoList = pageTuts.getContent();
+            List<AutoJoin> listAutoJoin = new ArrayList<>();
 
             if (autoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -85,20 +80,20 @@ public class ListAutoServiceImp implements ListAutoService {
                 phone = contact.getPhone();
 
                 AutoJoin autoJoin = new AutoJoin( auto.getId(),
-                        auto.getIdImage(),
-                        raster,
-                        email,
-                        phone,
-                        brandName,
-                        modelName,
-                        year,
-                        auto.getColor(),
-                        auto.getPrice(),
-                        motorType,
-                        volume,
-                        auto.getDriveType(),
-                        auto.getTransmissionType(),
-                        auto.getBodyStyleType() );
+                                                  auto.getIdImage(),
+                                                  raster,
+                                                  email,
+                                                  phone,
+                                                  brandName,
+                                                  modelName,
+                                                  year,
+                                                  auto.getColor(),
+                                                  auto.getPrice(),
+                                                  motorType,
+                                                  volume,
+                                                  auto.getDriveType(),
+                                                  auto.getTransmissionType(),
+                                                  auto.getBodyStyleType() );
 
                 listAutoJoin.add(autoJoin);
             }
@@ -113,61 +108,5 @@ public class ListAutoServiceImp implements ListAutoService {
         } catch (Exception e) {
             return  new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    @Override
-    public List<AutoJoin> getListAuto() {
-        List<Auto> autoList = autorepository.findAll();
-        List<AutoJoin> listAutoJoin = new ArrayList<>();
-
-        String brandName;
-        String modelName;
-        String year;
-
-        String motorType;
-        double volume;
-
-        String email;
-        String phone;
-
-        for (Auto auto : autoList) {
-            Brand brand = brandService.findById(auto.getIdBrand());
-            Motor motor = motorService.findById(auto.getIdMotor());
-            Contact contact = contactService.findById(auto.getIdContact());
-            byte[] raster = null;
-
-            if(auto.getIdImage() != null){
-                raster = imageAutoService.findPictureAutoById(auto.getIdImage()).getRaster();
-            }
-
-            brandName = brand.getNameBrand();
-            modelName = brand.getNameModel();
-            year = brand.getYear();
-
-            motorType = motor.getMotorType();
-            volume = motor.getVolume();
-
-            email = contact.getEmail();
-            phone = contact.getPhone();
-            AutoJoin autoJoin = new AutoJoin( auto.getId(),
-                                              auto.getIdImage(),
-                                              raster,
-                                              email,
-                                              phone,
-                                              brandName,
-                                              modelName,
-                                              year,
-                                              auto.getColor(),
-                                              auto.getPrice(),
-                                              motorType,
-                                              volume,
-                                              auto.getDriveType(),
-                                              auto.getTransmissionType(),
-                                              auto.getBodyStyleType() );
-
-            listAutoJoin.add(autoJoin);
-        }
-
-        return listAutoJoin;
     }
 }
