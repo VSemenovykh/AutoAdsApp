@@ -1,7 +1,6 @@
 package ru.ncedu.model;
 
 public enum BodyStyle {
-
     COUPE,
     HATCHBACK,
     MINIVAN,
