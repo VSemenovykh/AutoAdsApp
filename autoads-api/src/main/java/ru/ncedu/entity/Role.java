@@ -1,10 +1,8 @@
 package ru.ncedu.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.ncedu.model.ERole;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +16,7 @@ public class Role {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="name", length = 20)
+    @Column(name = "name", length = 20)
     private ERole name;
 
     public Role(Long id, ERole name) {

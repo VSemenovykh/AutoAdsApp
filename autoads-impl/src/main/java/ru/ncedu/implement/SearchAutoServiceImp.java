@@ -11,7 +11,6 @@ import org.springframework.util.CollectionUtils;
 import ru.ncedu.model.AutoJoin;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.service.SearchAutoService;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,21 +22,21 @@ public class SearchAutoServiceImp implements SearchAutoService {
     private final AutoRepository autorepository;
 
     @Override
-    public ResponseEntity<Map<String, Object>> multipleSearchAutoPage(List<String> nameBrand,
-                                                                      List<String> nameModel,
-                                                                      String startYear,
-                                                                      String endYear,
-                                                                      List<String> color,
-                                                                      Double startPrice,
-                                                                      Double endPrice,
-                                                                      List<String> motorType,
-                                                                      Double startVolume,
-                                                                      Double endVolume,
-                                                                      List<String> drive,
-                                                                      List<String> transmission,
-                                                                      List<String> bodyStyle,
-                                                                      int page,
-                                                                      int size){
+    public ResponseEntity<Map<String, Object>> searchAutoPage(List<String> nameBrand,
+                                                              List<String> nameModel,
+                                                              String startYear,
+                                                              String endYear,
+                                                              List<String> color,
+                                                              Double startPrice,
+                                                              Double endPrice,
+                                                              List<String> motorType,
+                                                              Double startVolume,
+                                                              Double endVolume,
+                                                              List<String> drive,
+                                                              List<String> transmission,
+                                                              List<String> bodyStyle,
+                                                              int page,
+                                                              int size){
         try {
             List<AutoJoin> listAutoJoin;
             Pageable paging = PageRequest.of(page, size);
@@ -51,20 +50,20 @@ public class SearchAutoServiceImp implements SearchAutoService {
             transmission = CollectionUtils.isEmpty(transmission) ? null : transmission;
             bodyStyle = CollectionUtils.isEmpty(bodyStyle) ? null : bodyStyle;
 
-            pageTuts = autorepository.searchMultipleAutoPage(nameBrand,
-                    nameModel,
-                    startYear,
-                    endYear,
-                    color,
-                    startPrice,
-                    endPrice,
-                    motorType,
-                    startVolume,
-                    endVolume,
-                    drive,
-                    transmission,
-                    bodyStyle,
-                    paging);
+            pageTuts = autorepository.searchAutoPage(nameBrand,
+                                                     nameModel,
+                                                     startYear,
+                                                     endYear,
+                                                     color,
+                                                     startPrice,
+                                                     endPrice,
+                                                     motorType,
+                                                     startVolume,
+                                                     endVolume,
+                                                     drive,
+                                                     transmission,
+                                                     bodyStyle,
+                                                     paging);
 
             listAutoJoin = pageTuts.getContent();
 
@@ -79,8 +78,9 @@ public class SearchAutoServiceImp implements SearchAutoService {
             response.put("totalPages", pageTuts.getTotalPages());
 
             return new ResponseEntity<>(response, HttpStatus.OK);
+
         } catch (Exception e) {
-            return  new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

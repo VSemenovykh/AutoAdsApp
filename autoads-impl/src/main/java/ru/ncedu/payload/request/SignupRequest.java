@@ -1,18 +1,16 @@
 package ru.ncedu.payload.request;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Set;
-
 import javax.validation.constraints.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignupRequest {
+
     @NotBlank
     @Size(min = 3, max = 20)
     private String username;

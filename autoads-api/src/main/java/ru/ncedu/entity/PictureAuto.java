@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -23,6 +22,6 @@ public class PictureAuto implements Serializable {
     @Column(name = "image_name")
     private String nameImage;
 
-    @Column(name = "raster",   length =Integer.MAX_VALUE, nullable = true)
+    @Column(name = "raster", length = Integer.MAX_VALUE, nullable = true)
     private byte[] raster;
 }

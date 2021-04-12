@@ -14,9 +14,7 @@ public class UpdateAutoController {
     private final UpdateAutoService updateAutoService;
 
     @PutMapping("/{id}")
-    public AutoJoin updateAuto( @RequestBody AutoJoin auto,
-                                @PathVariable("id") Long autoId,
-                                @RequestParam("idImage") String idImage ){
+    public AutoJoin updateAuto(@RequestBody AutoJoin auto, @PathVariable("id") Long autoId, @RequestParam("idImage") String idImage) {
         updateAutoService.updateAuto(auto, autoId, new Long(idImage));
         return auto;
     }

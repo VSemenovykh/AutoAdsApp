@@ -1,7 +1,6 @@
 package ru.ncedu.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.service.ListAutoService;
@@ -18,6 +17,6 @@ public class ListAutoController {
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllAutoPage(@RequestParam(defaultValue = "0") int page,
                                                               @RequestParam(defaultValue = "3") int size) {
-        return listAutoService.findAllAutoJoinPage(page,size);
+        return listAutoService.findAllAutoJoinPage(page, size);
     }
 }

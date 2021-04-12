@@ -16,11 +16,11 @@ public class AutoController {
 
     @GetMapping(path = "/{id}")
     public Auto getAutoById(@PathVariable("id") long autoId) {
-        return  autoService.findById(autoId);
+        return autoService.findById(autoId);
     }
 
     @GetMapping(path = "/join/{id}")
     public AutoJoin getAutoJoinById(@PathVariable("id") long autoId) {
-        return  autoService.findAutoJoinById(autoId);
+        return autoService.findAutoJoinById(autoId);
     }
 }

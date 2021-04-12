@@ -6,4 +6,5 @@ import ru.ncedu.entity.UserRole;
 
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
+
 }

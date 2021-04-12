@@ -1,7 +1,6 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +14,6 @@ import ru.ncedu.entity.Motor;
 import ru.ncedu.model.AutoJoin;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.service.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,10 +49,8 @@ public class ListAutoServiceImp implements ListAutoService {
             String brandName;
             String modelName;
             String year;
-
             String motorType;
             double volume;
-
             String email;
             String phone;
 
@@ -79,21 +75,21 @@ public class ListAutoServiceImp implements ListAutoService {
                 email = contact.getEmail();
                 phone = contact.getPhone();
 
-                AutoJoin autoJoin = new AutoJoin( auto.getId(),
-                                                  auto.getIdImage(),
-                                                  raster,
-                                                  email,
-                                                  phone,
-                                                  brandName,
-                                                  modelName,
-                                                  year,
-                                                  auto.getColor(),
-                                                  auto.getPrice(),
-                                                  motorType,
-                                                  volume,
-                                                  auto.getDriveType(),
-                                                  auto.getTransmissionType(),
-                                                  auto.getBodyStyleType() );
+                AutoJoin autoJoin = new AutoJoin(auto.getId(),
+                                                 auto.getIdImage(),
+                                                 raster,
+                                                 email,
+                                                 phone,
+                                                 brandName,
+                                                 modelName,
+                                                 year,
+                                                 auto.getColor(),
+                                                 auto.getPrice(),
+                                                 motorType,
+                                                 volume,
+                                                 auto.getDriveType(),
+                                                 auto.getTransmissionType(),
+                                                 auto.getBodyStyleType());
 
                 listAutoJoin.add(autoJoin);
             }
@@ -105,6 +101,7 @@ public class ListAutoServiceImp implements ListAutoService {
             response.put("totalPages", pageTuts.getTotalPages());
 
             return new ResponseEntity<>(response, HttpStatus.OK);
+
         } catch (Exception e) {
             return  new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
