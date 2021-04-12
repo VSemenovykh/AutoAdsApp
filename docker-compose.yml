@@ -6,8 +6,6 @@ services:
     container_name: db_postqresql
     ports:
       - "5432:5432"
-    volumes:
-      - ./pg_data:/var/lib/postqresql/data/pgdata
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
