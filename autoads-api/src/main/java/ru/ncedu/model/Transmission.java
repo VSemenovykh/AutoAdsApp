@@ -4,5 +4,6 @@ public enum Transmission {
     HYBRID,
     AUTOMATIC,
     MANUAL,
-    CVT;
+    CVT,
+    DSG
 }

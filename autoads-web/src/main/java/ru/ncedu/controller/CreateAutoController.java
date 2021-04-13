@@ -8,7 +8,7 @@ import ru.ncedu.service.CreateAutoService;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 public class CreateAutoController {
     private final CreateAutoService createAutoService;
 

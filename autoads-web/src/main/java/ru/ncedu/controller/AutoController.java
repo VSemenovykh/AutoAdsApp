@@ -9,18 +9,18 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 public class AutoController {
 
     private final AutoService autoService;
 
     @GetMapping(path = "/{id}")
     public Auto getAutoById(@PathVariable("id") long autoId) {
-        return  autoService.findById(autoId);
+        return autoService.findById(autoId);
     }
 
     @GetMapping(path = "/join/{id}")
     public AutoJoin getAutoJoinById(@PathVariable("id") long autoId) {
-        return  autoService.findAutoJoinById(autoId);
+        return autoService.findAutoJoinById(autoId);
     }
 }

@@ -1,35 +1,39 @@
 package ru.ncedu.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.ncedu.model.AutoJoin;
 import ru.ncedu.model.DataAutoSearch;
-import ru.ncedu.service.AutoService;
-import java.util.List;
+import ru.ncedu.service.SearchAutoService;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/search")
+@RequestMapping("/api/auth")
 public class SearchAutoController {
 
-    private final AutoService autoService;
+    private final SearchAutoService searchAutoService;
 
-    @PostMapping
-    public List<AutoJoin> searchAuto(@RequestBody DataAutoSearch dataAutoSearch) {
-        return  autoService.searchAuto( dataAutoSearch.getNameBrand(),
-                                        dataAutoSearch.getNameModel(),
-                                        dataAutoSearch.getStartYear(),
-                                        dataAutoSearch.getEndYear(),
-                                        dataAutoSearch.getColor(),
-                                        dataAutoSearch.getStartPrice(),
-                                        dataAutoSearch.getEndPrice(),
-                                        dataAutoSearch.getMotorType(),
-                                        dataAutoSearch.getStartVolume(),
-                                        dataAutoSearch.getEndVolume(),
-                                        dataAutoSearch.getDriveType(),
-                                        dataAutoSearch.getTransmissionType(),
-                                        dataAutoSearch.getBodyStyleType() );
+    @PostMapping("/search/page")
+    public ResponseEntity<Map<String, Object>> multipleSearchAutoPage(@RequestBody DataAutoSearch dataAutoMultipleSearch,
+                                                                      @RequestParam(defaultValue = "0") String  page,
+                                                                      @RequestParam(defaultValue = "3") String size) {
+        return searchAutoService.searchAutoPage(dataAutoMultipleSearch.getNameBrand(),
+                                                dataAutoMultipleSearch.getNameModel(),
+                                                dataAutoMultipleSearch.getStartYear(),
+                                                dataAutoMultipleSearch.getEndYear(),
+                                                dataAutoMultipleSearch.getColor(),
+                                                dataAutoMultipleSearch.getStartPrice(),
+                                                dataAutoMultipleSearch.getEndPrice(),
+                                                dataAutoMultipleSearch.getMotorType(),
+                                                dataAutoMultipleSearch.getStartVolume(),
+                                                dataAutoMultipleSearch.getEndVolume(),
+                                                dataAutoMultipleSearch.getDriveType(),
+                                                dataAutoMultipleSearch.getTransmissionType(),
+                                                dataAutoMultipleSearch.getBodyStyleType(),
+                                                new Integer(page),
+                                                new Integer(size));
     }
 }
 

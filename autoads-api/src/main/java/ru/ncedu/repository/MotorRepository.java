@@ -11,6 +11,4 @@ public interface MotorRepository extends JpaRepository<Motor, Long> {
     void deleteById(Long idMotor);
 
     List<Motor> findAll();
-
-    Motor findMotorById(Long idMotor);
 }

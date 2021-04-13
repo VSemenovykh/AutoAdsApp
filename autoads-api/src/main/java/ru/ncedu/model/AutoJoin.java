@@ -15,6 +15,10 @@ public class AutoJoin {
 
     private byte[] raster;
 
+    private String email;
+
+    private String phone;
+
     private String nameBrand;
 
     private String nameModel;

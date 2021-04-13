@@ -3,6 +3,7 @@ package ru.ncedu.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,29 +14,29 @@ public class DataAutoSearch {
 
     private byte[] raster;
 
-    private String nameBrand;
+    private List<String> nameBrand;
 
-    private String nameModel;
+    private List<String> nameModel;
 
     private String startYear;
 
     private String endYear;
 
-    private String color;
+    private List<String> color;
 
     private Double startPrice;
 
     private Double endPrice;
 
-    private String motorType;
+    private List<String> motorType;
 
     private Double startVolume;
 
     private Double endVolume;
 
-    private String driveType;
+    private List<String> driveType;
 
-    private String transmissionType;
+    private List<String> transmissionType;
 
-    private String bodyStyleType;
+    private List<String> bodyStyleType;
 }

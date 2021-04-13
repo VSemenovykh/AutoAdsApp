@@ -15,9 +15,8 @@ public class UpdatePictureServiceImp implements UpdatePictureService {
     private final PictureAutoRepository pictureAutoRepository;
 
     @Override
-    public Long updatePictureAuto(MultipartFile file, Long id ) throws IOException {
+    public Long updatePictureAuto(MultipartFile file, Long id) throws IOException {
         PictureAuto newPictureAuto = pictureAutoRepository.findById(id).orElse(null);
-
         if (newPictureAuto != null) {
             byte[] fileBytes = file.getBytes();
             String fileName = file.getOriginalFilename();
