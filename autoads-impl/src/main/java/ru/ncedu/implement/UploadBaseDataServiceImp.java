@@ -78,7 +78,7 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
                 "id_contact bigint REFERENCES contact (id)," +
                 "id_motor bigint NOT NULL REFERENCES motor (id)," +
                 "color character varying(32) NOT NULL," +
-                "price double precision," +
+                "price double precision NOT NULL," +
                 "transmission_type character varying(32) NOT NULL," +
                 "drive_type character varying(32) NOT NULL," +
                 "body_style character varying(32) NOT NULL " +
@@ -191,9 +191,9 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         brandList.add(new Brand(8L, "HONDA", "CROSSTOUR", "2016"));
         brandList.add(new Brand(9L, "HONDA", "JAZZ", "2019"));
         //hyudai
-        brandList.add(new Brand(10L, "HYUDAI", "SOLARIS", "2017"));
-        brandList.add(new Brand(11L, "HYUDAI", "ELANTRA", "2018"));
-        brandList.add(new Brand(12L, "HYUDAI", "SONATA", "2019"));
+        brandList.add(new Brand(10L, "HYUNDAI", "SOLARIS", "2017"));
+        brandList.add(new Brand(11L, "HYUNDAI", "ELANTRA", "2018"));
+        brandList.add(new Brand(12L, "HYUNDAI", "SONATA", "2019"));
         //bmw
         brandList.add(new Brand(13L, "BMW", "M8", "2015"));
         brandList.add(new Brand(14L, "BMW", "M5", "2014"));

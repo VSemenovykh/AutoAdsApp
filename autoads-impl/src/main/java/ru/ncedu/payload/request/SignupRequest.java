@@ -12,6 +12,7 @@ import javax.validation.constraints.*;
 public class SignupRequest {
 
     @NotBlank
+    @Pattern(regexp = "[A-aZ-z-]+")
     @Size(min = 3, max = 20)
     private String username;
 
