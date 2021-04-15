@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DataAutoSearch {
+public class DataSearchAuto {
 
     private Long id;
 

@@ -7,11 +7,17 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompareAuto {
+public class DataAuto {
 
     private Long id;
 
+    private Long idPicture;
+
     private byte[] raster;
+
+    private String email;
+
+    private String phone;
 
     private String nameBrand;
 
@@ -32,8 +38,4 @@ public class CompareAuto {
     private String transmissionType;
 
     private String bodyStyleType;
-
-    private String email;
-
-    private String phone;
 }

@@ -2,7 +2,7 @@ package ru.ncedu.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.Auto;
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 import ru.ncedu.service.AutoService;
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +20,7 @@ public class AutoController {
     }
 
     @GetMapping(path = "/join/{id}")
-    public AutoJoin getAutoJoinById(@PathVariable("id") long autoId) {
+    public DataAuto getAutoJoinById(@PathVariable("id") long autoId) {
         return autoService.findAutoJoinById(autoId);
     }
 }

@@ -16,7 +16,7 @@ public class ListCompareAutoController {
 
     private final ListCompareAutoService listCompareAutoService;
 
-    @GetMapping(path = "/search/compare-auto")
+    @GetMapping(path = "/search/list-compare-auto")
     public ResponseEntity<Map<String, Object>> getAllAutoComparePage(@RequestParam(defaultValue = "0") int page,
                                                                      @RequestParam(defaultValue = "3") int size) {
         return listCompareAutoService.findAllAutoComparePage(page, size);

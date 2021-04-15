@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.*;
+import ru.ncedu.model.DataCompareAuto;
 import ru.ncedu.repository.CompareAutoRepository;
 import ru.ncedu.service.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,13 +35,13 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
     private final PictureAutoService imageAutoService;
 
     @Override
-    public ResponseEntity<Map<String, Object>> findAllAutoComparePage(int page, int size){
+    public ResponseEntity<Map<String, Object>> findAllAutoComparePage(int page, int size) {
         try {
             Pageable paging = PageRequest.of(page, size);
             Page<CompareAuto> pageTuts = compareAutoRepository.findAll(paging);
 
             List<CompareAuto> compareAutoList = pageTuts.getContent();
-            List<ru.ncedu.model.CompareAuto> newListAutoJoin = new ArrayList<>();
+            List<DataCompareAuto> newListAutoJoin = new ArrayList<>();
 
             log.info("compareAutoList: " + compareAutoList);
             if (compareAutoList.isEmpty()) {
@@ -64,7 +64,7 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
 
                 byte[] raster = null;
 
-                if(auto.getIdImage() != null){
+                if (auto.getIdImage() != null) {
                     raster = imageAutoService.findPictureAutoById(auto.getIdImage()).getRaster();
                 }
 
@@ -78,7 +78,7 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
                 email = contact.getEmail();
                 phone = contact.getPhone();
 
-                ru.ncedu.model.CompareAuto newCompareAuto = new ru.ncedu.model.CompareAuto(auto.getId(),
+                DataCompareAuto newDataCompareAuto = new DataCompareAuto(auto.getId(),
                         raster,
                         brandName,
                         modelName,
@@ -93,7 +93,7 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
                         email,
                         phone);
 
-                newListAutoJoin.add(newCompareAuto);
+                newListAutoJoin.add(newDataCompareAuto);
             }
 
             Map<String, Object> response = new HashMap<>();
@@ -105,7 +105,7 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
             return new ResponseEntity<>(response, HttpStatus.OK);
 
         } catch (Exception e) {
-            return  new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

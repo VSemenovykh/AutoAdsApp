@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.service.SearchAutoService;
 import java.util.HashMap;
@@ -38,10 +38,10 @@ public class SearchAutoServiceImp implements SearchAutoService {
                                                               int page,
                                                               int size){
         try {
-            List<AutoJoin> listAutoJoin;
+            List<DataAuto> listDataAuto;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<AutoJoin> pageTuts;
+            Page<DataAuto> pageTuts;
             nameBrand = CollectionUtils.isEmpty(nameBrand) ? null : nameBrand;
             nameModel = CollectionUtils.isEmpty(nameModel) ? null : nameModel;
             color = CollectionUtils.isEmpty(color) ? null : color;
@@ -65,14 +65,14 @@ public class SearchAutoServiceImp implements SearchAutoService {
                                                      bodyStyle,
                                                      paging);
 
-            listAutoJoin = pageTuts.getContent();
+            listDataAuto = pageTuts.getContent();
 
-            if (listAutoJoin.isEmpty()) {
+            if (listDataAuto.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
             Map<String, Object> response = new HashMap<>();
-            response.put("listAutoJoin", listAutoJoin);
+            response.put("listAutoJoin", listDataAuto);
             response.put("currentPage", pageTuts.getNumber());
             response.put("totalAutoJoin", pageTuts.getTotalElements());
             response.put("totalPages", pageTuts.getTotalPages());

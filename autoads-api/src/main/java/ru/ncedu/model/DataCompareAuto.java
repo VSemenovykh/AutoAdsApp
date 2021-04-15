@@ -7,17 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AutoJoin {
+public class DataCompareAuto {
 
     private Long id;
 
-    private Long idPicture;
-
     private byte[] raster;
-
-    private String email;
-
-    private String phone;
 
     private String nameBrand;
 
@@ -38,4 +32,8 @@ public class AutoJoin {
     private String transmissionType;
 
     private String bodyStyleType;
+
+    private String email;
+
+    private String phone;
 }

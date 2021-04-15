@@ -1,8 +1,8 @@
 package ru.ncedu.service;
 
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 
 public interface UpdateAutoService {
 
-    void updateAuto(AutoJoin auto, Long autoId, Long idImage);
+    void updateAuto(DataAuto auto, Long autoId, Long idImage);
 }

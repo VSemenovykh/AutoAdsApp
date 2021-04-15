@@ -11,7 +11,7 @@ import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Contact;
 import ru.ncedu.entity.Motor;
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.service.*;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class ListAutoServiceImp implements ListAutoService {
             Page<Auto> pageTuts = autorepository.findAll(paging);
 
             List<Auto> autoList = pageTuts.getContent();
-            List<AutoJoin> listAutoJoin = new ArrayList<>();
+            List<DataAuto> listDataAuto = new ArrayList<>();
 
             if (autoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -75,7 +75,7 @@ public class ListAutoServiceImp implements ListAutoService {
                 email = contact.getEmail();
                 phone = contact.getPhone();
 
-                AutoJoin autoJoin = new AutoJoin(auto.getId(),
+                DataAuto dataAuto = new DataAuto(auto.getId(),
                                                  auto.getIdImage(),
                                                  raster,
                                                  email,
@@ -91,11 +91,11 @@ public class ListAutoServiceImp implements ListAutoService {
                                                  auto.getTransmissionType(),
                                                  auto.getBodyStyleType());
 
-                listAutoJoin.add(autoJoin);
+                listDataAuto.add(dataAuto);
             }
 
             Map<String, Object> response = new HashMap<>();
-            response.put("listAutoJoin", listAutoJoin);
+            response.put("listAutoJoin", listDataAuto);
             response.put("currentPage", pageTuts.getNumber());
             response.put("totalAutoJoin", pageTuts.getTotalElements());
             response.put("totalPages", pageTuts.getTotalPages());

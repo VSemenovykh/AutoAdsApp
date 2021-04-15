@@ -1,8 +1,8 @@
 package ru.ncedu.service;
 
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 
 public interface CreateAutoService {
 
-    AutoJoin saveAuto(AutoJoin autoJoin, Long idImage);
+    DataAuto saveAuto(DataAuto dataAuto, Long idImage);
 }

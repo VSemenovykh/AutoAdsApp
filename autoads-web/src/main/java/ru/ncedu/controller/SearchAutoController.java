@@ -3,7 +3,7 @@ package ru.ncedu.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.ncedu.model.DataAutoSearch;
+import ru.ncedu.model.DataSearchAuto;
 import ru.ncedu.service.SearchAutoService;
 import java.util.Map;
 
@@ -16,7 +16,7 @@ public class SearchAutoController {
     private final SearchAutoService searchAutoService;
 
     @PostMapping("/search/page")
-    public ResponseEntity<Map<String, Object>> multipleSearchAutoPage(@RequestBody DataAutoSearch dataAutoMultipleSearch,
+    public ResponseEntity<Map<String, Object>> multipleSearchAutoPage(@RequestBody DataSearchAuto dataAutoMultipleSearch,
                                                                       @RequestParam(defaultValue = "0") String  page,
                                                                       @RequestParam(defaultValue = "3") String size) {
         return searchAutoService.searchAutoPage(dataAutoMultipleSearch.getNameBrand(),
