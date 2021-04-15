@@ -102,6 +102,11 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
                 "role_id bigint NOT NULL REFERENCES roles (id)" +
                 ")";
 
+        String createCompareAuto = "CREATE TABLE public.compare_auto (" +
+                "id bigserial NOT NULL PRIMARY KEY," +
+                "id_auto bigint NOT NULL REFERENCES auto (id) UNIQUE" +
+                ")";
+
         jdbcTemplate.execute("DROP TABLE auto CASCADE");
         jdbcTemplate.execute("DROP TABLE brand CASCADE");
         jdbcTemplate.execute("DROP TABLE motor CASCADE");
@@ -110,6 +115,7 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         jdbcTemplate.execute("DROP TABLE users CASCADE");
         jdbcTemplate.execute("DROP TABLE roles CASCADE");
         jdbcTemplate.execute("DROP TABLE user_roles CASCADE");
+        jdbcTemplate.execute("DROP TABLE compare_auto CASCADE");
 
         jdbcTemplate.execute(createBrand);
         jdbcTemplate.execute(createMotor);
@@ -119,6 +125,7 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         jdbcTemplate.execute(createUser);
         jdbcTemplate.execute(createRole);
         jdbcTemplate.execute(createUserRole);
+        jdbcTemplate.execute(createCompareAuto);
 
         List<Brand> brandList = getBrandList();
         List<Motor> motorList = getMotorList();
