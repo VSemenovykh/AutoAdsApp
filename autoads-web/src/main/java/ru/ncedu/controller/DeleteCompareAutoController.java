@@ -14,7 +14,7 @@ public class DeleteCompareAutoController {
     private final DeleteCompareAutoService deleteCompareAutoService;
 
     @DeleteMapping("/search/list-compare-auto/{id}")
-    public ResponseEntity deleteAuto(@PathVariable("id") Long autoId) {
+    public ResponseEntity<?> deleteAuto(@PathVariable("id") Long autoId) {
         deleteCompareAutoService.deleteCompareAuto(autoId);
         return ResponseEntity.ok().body("Auto with ID : " + autoId + " deleted with success!");
     }

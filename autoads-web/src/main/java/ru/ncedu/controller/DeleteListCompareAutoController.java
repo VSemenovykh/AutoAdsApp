@@ -14,7 +14,7 @@ public class DeleteListCompareAutoController {
     private final DeleteListCompareAutoService deleteListCompareAutoService;
 
     @DeleteMapping("/search/list-compare-auto/clear")
-    public ResponseEntity clearListCompareAuto() {
+    public ResponseEntity<?> clearListCompareAuto() {
         deleteListCompareAutoService.clearListCompareAuto();
         return ResponseEntity.ok().body("List compare auto clear with success!");
     }
