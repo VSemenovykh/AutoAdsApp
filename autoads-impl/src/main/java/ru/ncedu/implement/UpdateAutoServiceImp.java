@@ -1,6 +1,7 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.entity.Brand;
@@ -14,6 +15,9 @@ import ru.ncedu.repository.MotorRepository;
 import ru.ncedu.service.UpdateAutoService;
 import java.util.Optional;
 
+import static java.util.Objects.isNull;
+
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -29,6 +33,10 @@ public class UpdateAutoServiceImp implements UpdateAutoService {
 
     @Override
     public void updateAuto(DataAuto dataAuto, Long autoId, Long idImage) {
+        log.info("UpdateAutoServiceImp -> updateAuto()");
+        log.info("UpdateAutoServiceImp -> DataAuto -> isNull: " + isNull(dataAuto));
+        log.info("UpdateAutoController -> autoId: " + autoId);
+        log.info("UpdateAutoController -> idImage: " + idImage);
         autorepository.findById(autoId)
                 .ifPresent(auto -> {
                     Optional<Brand> brand = brandRepository.findById(auto.getIdBrand());

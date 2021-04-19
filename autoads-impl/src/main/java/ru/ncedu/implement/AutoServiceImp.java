@@ -11,6 +11,7 @@ import ru.ncedu.model.DataAuto;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.service.*;
 
+import static java.util.Objects.isNull;
 import static org.springframework.util.StringUtils.isEmpty;
 
 @Slf4j
@@ -30,9 +31,9 @@ public class AutoServiceImp implements AutoService {
 
     @Override
     public Auto findById(Long id) {
-        Auto auto = autorepository.findById(id).orElse(null);
         log.info("AutoService -> findById");
-        log.info("Check on isEmpty auto: " + isEmpty(auto));
+        Auto auto = autorepository.findById(id).orElse(null);
+        log.info("Check on isnull Auto: " + isNull(auto));
         if(auto != null){
             return new Auto(auto.getId(),
                             auto.getIdImage(),
@@ -52,9 +53,8 @@ public class AutoServiceImp implements AutoService {
     @Override
     public DataAuto findAutoJoinById(Long id){
         Auto auto = autorepository.findById(id).orElse(null);
-        log.info("AutoService -> findAutoJoinById");
-        log.info("Check on isEmpty auto: " + isEmpty(auto));
-
+        log.info("AutoService -> findAutoJoinById()");
+        log.info("AutoService -> Auto -> isNull: " + isNull(auto));
         if( auto != null){
             Brand brand = brandService.findById(auto.getIdBrand());
             Motor motor = motorService.findById(auto.getIdMotor());

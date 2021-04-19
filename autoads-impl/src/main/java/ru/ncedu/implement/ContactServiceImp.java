@@ -1,11 +1,13 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Contact;
 import ru.ncedu.repository.ContactRepository;
 import ru.ncedu.service.ContactService;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ContactServiceImp implements ContactService {
@@ -14,6 +16,8 @@ public class ContactServiceImp implements ContactService {
 
     @Override
     public Contact findById(Long id){
+        log.info("ContactServiceImp -> findById()");
+        log.info("ContactServiceImp -> id: " + id);
         return contactRepository.findById(id).orElse(null);
     }
 }

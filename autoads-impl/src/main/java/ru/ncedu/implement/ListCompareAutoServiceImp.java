@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Objects.isNull;
+import static org.aspectj.util.LangUtil.isEmpty;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -36,14 +39,17 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
 
     @Override
     public ResponseEntity<Map<String, Object>> findAllAutoComparePage(int page, int size) {
+        log.info("ListCompareAutoServiceImp -> findAllAutoComparePage()");
+        log.info("ListCompareAutoServiceImp -> page: " + page);
+        log.info("ListCompareAutoServiceImp -> size: " + size);
         try {
             Pageable paging = PageRequest.of(page, size);
             Page<CompareAuto> pageTuts = compareAutoRepository.findAll(paging);
 
             List<CompareAuto> compareAutoList = pageTuts.getContent();
+            log.info("ListCompareAutoServiceImp -> List<CompareAuto> -> isEmpty: " + compareAutoList.isEmpty());
             List<DataCompareAuto> newListAutoJoin = new ArrayList<>();
 
-            log.info("compareAutoList: " + compareAutoList);
             if (compareAutoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -61,6 +67,10 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
                 Brand brand = brandService.findById(auto.getIdBrand());
                 Motor motor = motorService.findById(auto.getIdMotor());
                 Contact contact = contactService.findById(auto.getIdContact());
+                log.info("ListCompareAutoServiceImp -> Auto -> isNull: " + isNull(auto));
+                log.info("ListCompareAutoServiceImp -> Brand -> isNull: " + isNull(brand));
+                log.info("ListCompareAutoServiceImp -> Motor -> isNull: " + isNull(motor));
+                log.info("ListCompareAutoServiceImp -> Contact -> isNull: " + isNull(contact));
 
                 byte[] raster = null;
 
