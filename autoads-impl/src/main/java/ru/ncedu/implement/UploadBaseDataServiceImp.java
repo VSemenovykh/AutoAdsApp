@@ -104,7 +104,8 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
 
         String createCompareAuto = "CREATE TABLE public.compare_auto (" +
                 "id bigserial NOT NULL PRIMARY KEY," +
-                "id_auto bigint NOT NULL REFERENCES auto (id) UNIQUE" +
+                "id_auto bigint NOT NULL REFERENCES auto (id)," +
+                "id_user bigint NOT NULL REFERENCES users (id)" +
                 ")";
 
         jdbcTemplate.execute("DROP TABLE auto CASCADE");

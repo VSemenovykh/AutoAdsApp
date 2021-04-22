@@ -19,11 +19,10 @@ import ru.ncedu.repository.RoleRepository;
 import ru.ncedu.repository.UserRepository;
 import ru.ncedu.service.AuthService;
 import ru.ncedu.services.UserDetailsImpl;
+
 import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static java.util.Objects.isNull;
 
 @Slf4j
 @Service
@@ -42,26 +41,18 @@ public class AuthServiceImp implements AuthService {
 
     @Override
     public Map<String, Object> authenticateUser(@Valid LoginRequest loginRequest) {
-        log.info("AuthServiceImp -> authenticateUser()");
-        log.info("AuthServiceImp -> LoginRequest -> isNull: " + isNull(loginRequest));
         Map<String, Object> outDataAuthenticateUser = new HashMap();
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-        log.info("AuthServiceImp -> Authentication -> isNull: " + isNull(authentication));
-        log.info("AuthServiceImp -> authentication.toString: " + authentication.toString());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-        log.info("AuthServiceImp -> jwt: " + jwt);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        log.info("AuthServiceImp -> UserDetailsImpl -> isNull : " + isNull(userDetails));
-        log.info("AuthServiceImp -> userDetails.toString : " + userDetails.toString());
 
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
-        log.info("AuthServiceImp -> List<String> -> isEmpty : " + roles.isEmpty());
 
         outDataAuthenticateUser.put("jwt", jwt);
         outDataAuthenticateUser.put("roles", roles);
@@ -72,8 +63,6 @@ public class AuthServiceImp implements AuthService {
 
     @Override
     public MessageResponse registerUser(SignupRequest signUpRequest) {
-        log.info("AuthServiceImp -> registerUser()");
-        log.info("AuthServiceImp -> SignupRequest -> isNull: " + isNull(signUpRequest));
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new MessageResponse("Error: Username is already taken!");
         }
@@ -84,12 +73,10 @@ public class AuthServiceImp implements AuthService {
 
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
-                             signUpRequest.getEmail(),
-                             encoder.encode(signUpRequest.getPassword()));
-        log.info("AuthServiceImp -> user.toString: " + user.toString());
+                signUpRequest.getEmail(),
+                encoder.encode(signUpRequest.getPassword()));
 
         Set<String> strRoles = signUpRequest.getRole();
-        log.info("AuthServiceImp -> Set<String> -> isEmpty: " + strRoles.isEmpty());
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.repository.AutoRepository;
+import ru.ncedu.repository.CompareAutoRepository;
 import ru.ncedu.service.DeleteAutoService;
 
 @Slf4j
@@ -15,11 +16,12 @@ public class DeleteAutoServiceImp implements DeleteAutoService {
 
     private final AutoRepository autorepository;
 
+    private final CompareAutoRepository compareAutoRepository;
+
     public void deleteAuto(Long id) {
-        log.info("DeleteAutoServiceImp -> deleteAuto()");
-        log.info("DeleteAutoServiceImp -> id: " + id);
         autorepository.findById(id)
                 .ifPresent(auto -> {
+                    compareAutoRepository.deleteByIdAuto(id);
                     autorepository.deleteById(id);
                 });
     }

@@ -1,4 +1,4 @@
-package  ru.ncedu.implement;
+package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +16,6 @@ public class MotorServiceImp implements MotorService {
 
     @Override
     public Motor findById(Long id) {
-        log.info("MotorServiceImp -> findById()");
-        log.info("MotorServiceImp -> id: " + id);
         return motorRepository.findById(id).orElse(null);
     }
 }

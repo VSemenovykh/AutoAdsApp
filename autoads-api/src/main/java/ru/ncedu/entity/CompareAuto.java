@@ -18,4 +18,7 @@ public class CompareAuto {
 
     @Column(name = "id_auto")
     private Long idAuto;
+
+    @Column(name = "id_user")
+    private Long idUser;
 }

@@ -9,9 +9,15 @@ import ru.ncedu.entity.CompareAuto;
 @Repository
 public interface CompareAutoRepository extends JpaRepository<CompareAuto, Long> {
 
-    Page<CompareAuto> findAll(Pageable pageable);
+    Page<CompareAuto> findAllByIdUser(Pageable pageable, Long idUser);
 
-    CompareAuto findByIdAuto(Long idAuto);
+    CompareAuto findCompareAutoByIdUserAndIdAuto(Long idUser, Long idAuto);
+
+    CompareAuto findByIdUserAndIdAuto(Long idUser, Long idAuto);
+
+    void deleteByIdAutoAndIdUser(Long idAuto, Long idUser);
 
     void deleteByIdAuto(Long idAuto);
+
+    void deleteAllByIdUser(Long idUser);
 }

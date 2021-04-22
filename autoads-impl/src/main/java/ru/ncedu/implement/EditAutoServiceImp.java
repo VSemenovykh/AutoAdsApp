@@ -12,16 +12,14 @@ import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.repository.BrandRepository;
 import ru.ncedu.repository.ContactRepository;
 import ru.ncedu.repository.MotorRepository;
-import ru.ncedu.service.UpdateAutoService;
+import ru.ncedu.service.EditAutoService;
 import java.util.Optional;
-
-import static java.util.Objects.isNull;
 
 @Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UpdateAutoServiceImp implements UpdateAutoService {
+public class EditAutoServiceImp implements EditAutoService {
 
     private final AutoRepository autorepository;
 
@@ -32,11 +30,7 @@ public class UpdateAutoServiceImp implements UpdateAutoService {
     private final ContactRepository contactRepository;
 
     @Override
-    public void updateAuto(DataAuto dataAuto, Long autoId, Long idImage) {
-        log.info("UpdateAutoServiceImp -> updateAuto()");
-        log.info("UpdateAutoServiceImp -> DataAuto -> isNull: " + isNull(dataAuto));
-        log.info("UpdateAutoController -> autoId: " + autoId);
-        log.info("UpdateAutoController -> idImage: " + idImage);
+    public void editAuto(DataAuto dataAuto, Long autoId, Long idImage) {
         autorepository.findById(autoId)
                 .ifPresent(auto -> {
                     Optional<Brand> brand = brandRepository.findById(auto.getIdBrand());

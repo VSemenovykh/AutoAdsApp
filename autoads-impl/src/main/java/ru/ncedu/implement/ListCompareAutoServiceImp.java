@@ -17,13 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Objects.isNull;
-import static org.aspectj.util.LangUtil.isEmpty;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ListCompareAutoServiceImp implements ListCompareAutoService{
+public class ListCompareAutoServiceImp implements ListCompareAutoService {
 
     private final CompareAutoRepository compareAutoRepository;
 
@@ -38,16 +35,12 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
     private final PictureAutoService imageAutoService;
 
     @Override
-    public ResponseEntity<Map<String, Object>> findAllAutoComparePage(int page, int size) {
-        log.info("ListCompareAutoServiceImp -> findAllAutoComparePage()");
-        log.info("ListCompareAutoServiceImp -> page: " + page);
-        log.info("ListCompareAutoServiceImp -> size: " + size);
+    public ResponseEntity<Map<String, Object>> findAllAutoComparePage(int page, int size, Long idUser) {
         try {
             Pageable paging = PageRequest.of(page, size);
-            Page<CompareAuto> pageTuts = compareAutoRepository.findAll(paging);
+            Page<CompareAuto> pageTuts = compareAutoRepository.findAllByIdUser(paging, idUser);
 
             List<CompareAuto> compareAutoList = pageTuts.getContent();
-            log.info("ListCompareAutoServiceImp -> List<CompareAuto> -> isEmpty: " + compareAutoList.isEmpty());
             List<DataCompareAuto> newListAutoJoin = new ArrayList<>();
 
             if (compareAutoList.isEmpty()) {
@@ -67,10 +60,6 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
                 Brand brand = brandService.findById(auto.getIdBrand());
                 Motor motor = motorService.findById(auto.getIdMotor());
                 Contact contact = contactService.findById(auto.getIdContact());
-                log.info("ListCompareAutoServiceImp -> Auto -> isNull: " + isNull(auto));
-                log.info("ListCompareAutoServiceImp -> Brand -> isNull: " + isNull(brand));
-                log.info("ListCompareAutoServiceImp -> Motor -> isNull: " + isNull(motor));
-                log.info("ListCompareAutoServiceImp -> Contact -> isNull: " + isNull(contact));
 
                 byte[] raster = null;
 
@@ -89,19 +78,19 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService{
                 phone = contact.getPhone();
 
                 DataCompareAuto newDataCompareAuto = new DataCompareAuto(auto.getId(),
-                        raster,
-                        brandName,
-                        modelName,
-                        year,
-                        auto.getColor(),
-                        auto.getPrice(),
-                        motorType,
-                        volume,
-                        auto.getDriveType(),
-                        auto.getTransmissionType(),
-                        auto.getBodyStyleType(),
-                        email,
-                        phone);
+                                                                         raster,
+                                                                         brandName,
+                                                                         modelName,
+                                                                         year,
+                                                                         auto.getColor(),
+                                                                         auto.getPrice(),
+                                                                         motorType,
+                                                                         volume,
+                                                                         auto.getDriveType(),
+                                                                         auto.getTransmissionType(),
+                                                                         auto.getBodyStyleType(),
+                                                                         email,
+                                                                         phone);
 
                 newListAutoJoin.add(newDataCompareAuto);
             }

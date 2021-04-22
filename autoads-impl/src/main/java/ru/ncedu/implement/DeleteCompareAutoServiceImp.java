@@ -16,9 +16,7 @@ public class DeleteCompareAutoServiceImp implements DeleteCompareAutoService {
     private final CompareAutoRepository compareAutoRepository;
 
     @Override
-    public void deleteCompareAuto(Long idAuto) {
-        log.info("DeleteCompareAutoServiceImp -> deleteCompareAuto()");
-        log.info("DeleteCompareAutoServiceImp -> idAuto: " + idAuto);
-        compareAutoRepository.deleteByIdAuto(idAuto);
+    public void deleteCompareAuto(Long idAuto, Long idUser) {
+        compareAutoRepository.deleteByIdAutoAndIdUser(idAuto, idUser);
     }
 }

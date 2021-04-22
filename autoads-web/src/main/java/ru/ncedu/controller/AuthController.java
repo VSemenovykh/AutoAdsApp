@@ -16,8 +16,6 @@ import ru.ncedu.payload.response.JwtResponse;
 import ru.ncedu.service.AuthService;
 import ru.ncedu.services.UserDetailsImpl;
 
-import static java.util.Objects.isNull;
-
 @Slf4j
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
@@ -29,27 +27,20 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        log.info("AuthController -> authenticateUser()");
-        log.info("AuthController -> LoginRequest -> isNull: " + isNull(loginRequest));
         Map<String, Object> outDataAuthenticateUser = authService.authenticateUser(loginRequest);
         String jwt = outDataAuthenticateUser.get("jwt").toString();
-        log.info("AuthController -> jwt: " + jwt);
         UserDetailsImpl userDetails = (UserDetailsImpl) outDataAuthenticateUser.get("userDetails");
-        log.info("AuthController -> UserDetailsImpl -> isNull: " + isNull(userDetails));
         List<String> roles = (List<String>) outDataAuthenticateUser.get("roles");
-        log.info("AuthController ->  List<String>  -> isEmpty: " + roles.isEmpty());
 
         return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
+                                 userDetails.getId(),
+                                 userDetails.getUsername(),
+                                 userDetails.getEmail(),
+                                 roles));
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        log.info("AuthController -> registerUser()");
-        log.info("AuthController -> SignupRequest -> isNull: " + isNull(signUpRequest));
         return ResponseEntity.ok(authService.registerUser(signUpRequest));
     }
 }

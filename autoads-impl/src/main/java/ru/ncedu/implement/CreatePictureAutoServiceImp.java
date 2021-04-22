@@ -9,8 +9,6 @@ import ru.ncedu.repository.PictureAutoRepository;
 import ru.ncedu.service.CreatePictureAutoService;
 import java.io.IOException;
 
-import static java.util.Objects.isNull;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -19,8 +17,6 @@ public class CreatePictureAutoServiceImp implements CreatePictureAutoService {
     final private PictureAutoRepository pictureAutoRepository;
 
     public Long createPictureAuto(MultipartFile file) throws IOException {
-        log.info("CreatePictureAutoServiceImp -> createPictureAuto()");
-        log.info("CreatePictureAutoServiceImp -> MultipartFile isNull: " + isNull(file));
         PictureAuto newPictureAuto = new PictureAuto();
 
         byte[] fileBytes = file.getBytes();

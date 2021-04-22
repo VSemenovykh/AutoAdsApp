@@ -1,7 +1,6 @@
 package ru.ncedu.jwt;
 
 import java.util.Date;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;

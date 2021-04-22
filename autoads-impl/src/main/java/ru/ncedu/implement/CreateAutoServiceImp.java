@@ -14,8 +14,6 @@ import ru.ncedu.repository.BrandRepository;
 import ru.ncedu.repository.ContactRepository;
 import ru.ncedu.repository.MotorRepository;
 import ru.ncedu.service.CreateAutoService;
-
-import static java.util.Objects.isNull;
 import static org.springframework.util.StringUtils.isEmpty;
 
 @Slf4j
@@ -34,16 +32,10 @@ public class CreateAutoServiceImp implements CreateAutoService {
 
     @Override
     public DataAuto saveAuto(DataAuto dataAuto, Long idImage) {
-        log.info("CreateAutoServiceImp -> saveAuto()");
-        log.info("CreateAutoServiceImp -> idImage: " + idImage);
-        log.info("CreateAutoServiceImp -> dataAuto -> isNull: " + isNull(dataAuto));
-        if(!isEmpty(dataAuto)){
-            Brand brand = brandRepository.save(new Brand(null, dataAuto.getNameBrand(), dataAuto.getNameModel(), dataAuto.getYear() ));
-            Motor motor = motorRepository.save(new Motor(null, dataAuto.getMotorType(), dataAuto.getVolume() ));
+        if (!isEmpty(dataAuto)) {
+            Brand brand = brandRepository.save(new Brand(null, dataAuto.getNameBrand(), dataAuto.getNameModel(), dataAuto.getYear()));
+            Motor motor = motorRepository.save(new Motor(null, dataAuto.getMotorType(), dataAuto.getVolume()));
             Contact contact = contactRepository.save(new Contact(null, dataAuto.getEmail(), dataAuto.getPhone()));
-            log.info("CreateAutoServiceImp -> Brand -> isNull: " + isEmpty(brand));
-            log.info("CreateAutoServiceImp -> Motor -> isNull: " + isEmpty(motor));
-            log.info("CreateAutoServiceImp -> Contact -> isNull: " + isEmpty(contact));
 
             Auto auto = new Auto(dataAuto.getId(),
                                  idImage,
@@ -73,7 +65,7 @@ public class CreateAutoServiceImp implements CreateAutoService {
                                 auto.getDriveType(),
                                 auto.getTransmissionType(),
                                 auto.getBodyStyleType());
-        }else{
+        } else {
             return null;
         }
     }

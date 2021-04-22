@@ -16,8 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Objects.isNull;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -40,10 +38,7 @@ public class SearchAutoServiceImp implements SearchAutoService {
                                                               List<String> transmission,
                                                               List<String> bodyStyle,
                                                               int page,
-                                                              int size){
-        log.info("SearchAutoServiceImp -> searchAutoPage()");
-        log.info("SearchAutoServiceImp -> page: " + page);
-        log.info("SearchAutoServiceImp -> size: " + size);
+                                                              int size) {
         try {
             List<DataAuto> listDataAuto;
             Pageable paging = PageRequest.of(page, size);
@@ -56,13 +51,6 @@ public class SearchAutoServiceImp implements SearchAutoService {
             drive = CollectionUtils.isEmpty(drive) ? null : drive;
             transmission = CollectionUtils.isEmpty(transmission) ? null : transmission;
             bodyStyle = CollectionUtils.isEmpty(bodyStyle) ? null : bodyStyle;
-            log.info("SearchAutoServiceImp -> List nameBrand -> isEmpty: " + nameBrand);
-            log.info("SearchAutoServiceImp -> List nameModel -> isEmpty: " + nameModel);
-            log.info("SearchAutoServiceImp -> List color -> isEmpty: " + color);
-            log.info("SearchAutoServiceImp -> List motorType -> isEmpty: " + motorType);
-            log.info("SearchAutoServiceImp -> List drive -> isEmpty: " + drive);
-            log.info("SearchAutoServiceImp -> List transmission -> isEmpty: " + transmission);
-            log.info("SearchAutoServiceImp -> List bodyStyle -> isEmpty: " + bodyStyle);
 
             pageTuts = autorepository.searchAutoPage(nameBrand,
                                                      nameModel,
@@ -80,7 +68,6 @@ public class SearchAutoServiceImp implements SearchAutoService {
                                                      paging);
 
             listDataAuto = pageTuts.getContent();
-            log.info("SearchAutoServiceImp -> List<DataAuto> -> isEmpty: " + listDataAuto.isEmpty());
             if (listDataAuto.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
