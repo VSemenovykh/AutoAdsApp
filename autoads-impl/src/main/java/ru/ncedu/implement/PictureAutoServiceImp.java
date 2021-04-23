@@ -1,11 +1,13 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.PictureAuto;
 import ru.ncedu.repository.PictureAutoRepository;
 import ru.ncedu.service.PictureAutoService;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PictureAutoServiceImp implements PictureAutoService {

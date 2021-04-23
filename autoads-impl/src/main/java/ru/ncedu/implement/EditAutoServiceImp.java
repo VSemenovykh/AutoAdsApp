@@ -1,23 +1,25 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Contact;
 import ru.ncedu.entity.Motor;
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.repository.BrandRepository;
 import ru.ncedu.repository.ContactRepository;
 import ru.ncedu.repository.MotorRepository;
-import ru.ncedu.service.UpdateAutoService;
+import ru.ncedu.service.EditAutoService;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UpdateAutoServiceImp implements UpdateAutoService {
+public class EditAutoServiceImp implements EditAutoService {
 
     private final AutoRepository autorepository;
 
@@ -28,37 +30,37 @@ public class UpdateAutoServiceImp implements UpdateAutoService {
     private final ContactRepository contactRepository;
 
     @Override
-    public void updateAuto(AutoJoin autoJoin, Long autoId, Long idImage) {
+    public void editAuto(DataAuto dataAuto, Long autoId, Long idImage) {
         autorepository.findById(autoId)
                 .ifPresent(auto -> {
                     Optional<Brand> brand = brandRepository.findById(auto.getIdBrand());
                     Optional<Motor> motor = motorRepository.findById(auto.getIdMotor());
                     Optional<Contact> contact = contactRepository.findById(auto.getIdContact());
 
-                    brand.get().setNameBrand(autoJoin.getNameBrand());
-                    brand.get().setNameModel(autoJoin.getNameModel());
-                    brand.get().setYear(autoJoin.getYear());
+                    brand.get().setNameBrand(dataAuto.getNameBrand());
+                    brand.get().setNameModel(dataAuto.getNameModel());
+                    brand.get().setYear(dataAuto.getYear());
 
-                    motor.get().setMotorType(autoJoin.getMotorType());
-                    motor.get().setVolume(autoJoin.getVolume());
+                    motor.get().setMotorType(dataAuto.getMotorType());
+                    motor.get().setVolume(dataAuto.getVolume());
 
-                    if (autoJoin.getEmail() != null) {
-                        contact.get().setEmail(autoJoin.getEmail());
+                    if (dataAuto.getEmail() != null) {
+                        contact.get().setEmail(dataAuto.getEmail());
                     }
 
-                    if (autoJoin.getPhone() != null) {
-                        contact.get().setPhone(autoJoin.getPhone());
+                    if (dataAuto.getPhone() != null) {
+                        contact.get().setPhone(dataAuto.getPhone());
                     }
 
                     auto.setId(autoId);
                     auto.setIdBrand(brand.get().getId());
                     auto.setIdMotor(motor.get().getId());
                     auto.setIdImage(idImage);
-                    auto.setColor(autoJoin.getColor());
-                    auto.setPrice(autoJoin.getPrice());
-                    auto.setDriveType(autoJoin.getDriveType());
-                    auto.setTransmissionType(autoJoin.getTransmissionType());
-                    auto.setBodyStyleType(autoJoin.getBodyStyleType());
+                    auto.setColor(dataAuto.getColor());
+                    auto.setPrice(dataAuto.getPrice());
+                    auto.setDriveType(dataAuto.getDriveType());
+                    auto.setTransmissionType(dataAuto.getTransmissionType());
+                    auto.setBodyStyleType(dataAuto.getBodyStyleType());
                 });
     }
 }

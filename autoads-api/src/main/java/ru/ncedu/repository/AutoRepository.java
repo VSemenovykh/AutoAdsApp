@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.ncedu.entity.Auto;
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 import java.util.List;
 
 @Repository
@@ -15,7 +15,7 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
 
     Page<Auto> findAll(Pageable pageable);
 
-    String queryMultipleSearch = "SELECT new ru.ncedu.model.AutoJoin( a.id," +
+    String queryMultipleSearch = "SELECT new ru.ncedu.model.DataAuto( a.id," +
                                                                     " ia.id," +
                                                                     " ia.raster," +
                                                                     " c.email,"+
@@ -56,7 +56,7 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                         " and ((:transmissionType) is null or a.transmissionType IN (:transmissionType)) " +
                                         " and ((:bodyStyleType) is null or a.bodyStyleType IN (:bodyStyleType)) ";
     @Query(value = queryMultipleSearch, nativeQuery = false)
-    Page<AutoJoin> searchAutoPage(@Param("nameBrand") List<String> nameBrand,
+    Page<DataAuto> searchAutoPage(@Param("nameBrand") List<String> nameBrand,
                                   @Param("nameModel") List<String> nameModel,
                                   @Param("startYear") String startYear,
                                   @Param("endYear") String endYear,

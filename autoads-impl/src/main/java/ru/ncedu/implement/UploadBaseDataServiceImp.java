@@ -102,6 +102,12 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
                 "role_id bigint NOT NULL REFERENCES roles (id)" +
                 ")";
 
+        String createCompareAuto = "CREATE TABLE public.compare_auto (" +
+                "id bigserial NOT NULL PRIMARY KEY," +
+                "id_auto bigint NOT NULL REFERENCES auto (id)," +
+                "id_user bigint NOT NULL REFERENCES users (id)" +
+                ")";
+
         jdbcTemplate.execute("DROP TABLE auto CASCADE");
         jdbcTemplate.execute("DROP TABLE brand CASCADE");
         jdbcTemplate.execute("DROP TABLE motor CASCADE");
@@ -110,6 +116,7 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         jdbcTemplate.execute("DROP TABLE users CASCADE");
         jdbcTemplate.execute("DROP TABLE roles CASCADE");
         jdbcTemplate.execute("DROP TABLE user_roles CASCADE");
+        jdbcTemplate.execute("DROP TABLE compare_auto CASCADE");
 
         jdbcTemplate.execute(createBrand);
         jdbcTemplate.execute(createMotor);
@@ -119,6 +126,7 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         jdbcTemplate.execute(createUser);
         jdbcTemplate.execute(createRole);
         jdbcTemplate.execute(createUserRole);
+        jdbcTemplate.execute(createCompareAuto);
 
         List<Brand> brandList = getBrandList();
         List<Motor> motorList = getMotorList();
@@ -199,9 +207,9 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
         brandList.add(new Brand(14L, "BMW", "M5", "2014"));
         brandList.add(new Brand(15L, "BMW", "M6", "2016"));
         //mercedes
-        brandList.add(new Brand(16L, "Mercedes-Benz", "GLE AMG", "2016"));
-        brandList.add(new Brand(17L, "Mercedes-Benz", "AMG GT", "2018"));
-        brandList.add(new Brand(18L, "Mercedes-Benz", "MAYBACH GLS", "2020"));
+        brandList.add(new Brand(16L, "MERCEDES-BENZ", "GLE AMG", "2016"));
+        brandList.add(new Brand(17L, "MERCEDES-BENZ", "AMG GT", "2018"));
+        brandList.add(new Brand(18L, "MERCEDES-BENZ", "MAYBACH GLS", "2020"));
         //kia
         brandList.add(new Brand(19L, "KIA", "CERATO", "2021"));
         brandList.add(new Brand(20L, "KIA", "K5", "2020"));

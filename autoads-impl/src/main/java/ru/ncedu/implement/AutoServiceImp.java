@@ -1,15 +1,17 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Contact;
 import ru.ncedu.entity.Motor;
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.service.*;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AutoServiceImp implements AutoService {
@@ -27,7 +29,7 @@ public class AutoServiceImp implements AutoService {
     @Override
     public Auto findById(Long id) {
         Auto auto = autorepository.findById(id).orElse(null);
-        if(auto != null){
+        if (auto != null) {
             return new Auto(auto.getId(),
                             auto.getIdImage(),
                             auto.getIdBrand(),
@@ -38,25 +40,25 @@ public class AutoServiceImp implements AutoService {
                             auto.getDriveType(),
                             auto.getTransmissionType(),
                             auto.getBodyStyleType());
-        }else{
+        } else {
             return null;
         }
     }
 
     @Override
-    public AutoJoin findAutoJoinById(Long id){
+    public DataAuto findAutoJoinById(Long id) {
         Auto auto = autorepository.findById(id).orElse(null);
-        if( auto != null){
+        if (auto != null) {
             Brand brand = brandService.findById(auto.getIdBrand());
             Motor motor = motorService.findById(auto.getIdMotor());
             Contact contact = contactService.findById(auto.getIdContact());
             byte[] raster = null;
 
-            if(auto.getIdImage() != null){
+            if (auto.getIdImage() != null) {
                 raster = imageAutoService.findPictureAutoById(auto.getIdImage()).getRaster();
             }
 
-            return new AutoJoin(auto.getId(),
+            return new DataAuto(auto.getId(),
                                 auto.getIdImage(),
                                 raster,
                                 contact.getEmail(),
@@ -71,8 +73,8 @@ public class AutoServiceImp implements AutoService {
                                 auto.getDriveType(),
                                 auto.getTransmissionType(),
                                 auto.getBodyStyleType());
-        }else {
-            return  null;
+        } else {
+            return null;
         }
     }
 }

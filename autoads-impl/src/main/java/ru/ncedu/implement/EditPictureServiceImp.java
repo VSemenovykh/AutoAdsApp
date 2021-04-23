@@ -1,21 +1,23 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.ncedu.entity.PictureAuto;
 import ru.ncedu.repository.PictureAutoRepository;
-import ru.ncedu.service.UpdatePictureService;
+import ru.ncedu.service.EditPictureService;
 import java.io.IOException;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
-public class UpdatePictureServiceImp implements UpdatePictureService {
+public class EditPictureServiceImp implements EditPictureService {
 
     private final PictureAutoRepository pictureAutoRepository;
 
     @Override
-    public Long updatePictureAuto(MultipartFile file, Long id) throws IOException {
+    public Long editPictureAuto(MultipartFile file, Long id) throws IOException {
         PictureAuto newPictureAuto = pictureAutoRepository.findById(id).orElse(null);
         if (newPictureAuto != null) {
             byte[] fileBytes = file.getBytes();

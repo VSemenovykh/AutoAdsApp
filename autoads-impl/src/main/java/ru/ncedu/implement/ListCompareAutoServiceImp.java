@@ -8,12 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import ru.ncedu.entity.Auto;
-import ru.ncedu.entity.Brand;
-import ru.ncedu.entity.Contact;
-import ru.ncedu.entity.Motor;
-import ru.ncedu.model.DataAuto;
-import ru.ncedu.repository.AutoRepository;
+import ru.ncedu.entity.*;
+import ru.ncedu.model.DataCompareAuto;
+import ru.ncedu.repository.CompareAutoRepository;
 import ru.ncedu.service.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +20,11 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ListAutoServiceImp implements ListAutoService {
+public class ListCompareAutoServiceImp implements ListCompareAutoService {
 
-    private final AutoRepository autorepository;
+    private final CompareAutoRepository compareAutoRepository;
+
+    private final AutoService autoService;
 
     private final BrandService brandService;
 
@@ -36,15 +35,15 @@ public class ListAutoServiceImp implements ListAutoService {
     private final PictureAutoService imageAutoService;
 
     @Override
-    public ResponseEntity<Map<String, Object>> findAllAutoJoinPage(int page, int size) {
+    public ResponseEntity<Map<String, Object>> findAllAutoComparePage(int page, int size, Long idUser) {
         try {
             Pageable paging = PageRequest.of(page, size);
-            Page<Auto> pageTuts = autorepository.findAll(paging);
+            Page<CompareAuto> pageTuts = compareAutoRepository.findAllByIdUser(paging, idUser);
 
-            List<Auto> autoList = pageTuts.getContent();
-            List<DataAuto> listDataAuto = new ArrayList<>();
+            List<CompareAuto> compareAutoList = pageTuts.getContent();
+            List<DataCompareAuto> newListAutoJoin = new ArrayList<>();
 
-            if (autoList.isEmpty()) {
+            if (compareAutoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
@@ -56,7 +55,8 @@ public class ListAutoServiceImp implements ListAutoService {
             String email;
             String phone;
 
-            for (Auto auto : autoList) {
+            for (CompareAuto compareAuto : compareAutoList) {
+                Auto auto = autoService.findById(compareAuto.getIdAuto());
                 Brand brand = brandService.findById(auto.getIdBrand());
                 Motor motor = motorService.findById(auto.getIdMotor());
                 Contact contact = contactService.findById(auto.getIdContact());
@@ -77,27 +77,26 @@ public class ListAutoServiceImp implements ListAutoService {
                 email = contact.getEmail();
                 phone = contact.getPhone();
 
-                DataAuto dataAuto = new DataAuto(auto.getId(),
-                                                 auto.getIdImage(),
-                                                 raster,
-                                                 email,
-                                                 phone,
-                                                 brandName,
-                                                 modelName,
-                                                 year,
-                                                 auto.getColor(),
-                                                 auto.getPrice(),
-                                                 motorType,
-                                                 volume,
-                                                 auto.getDriveType(),
-                                                 auto.getTransmissionType(),
-                                                 auto.getBodyStyleType());
+                DataCompareAuto newDataCompareAuto = new DataCompareAuto(auto.getId(),
+                                                                         raster,
+                                                                         brandName,
+                                                                         modelName,
+                                                                         year,
+                                                                         auto.getColor(),
+                                                                         auto.getPrice(),
+                                                                         motorType,
+                                                                         volume,
+                                                                         auto.getDriveType(),
+                                                                         auto.getTransmissionType(),
+                                                                         auto.getBodyStyleType(),
+                                                                         email,
+                                                                         phone);
 
-                listDataAuto.add(dataAuto);
+                newListAutoJoin.add(newDataCompareAuto);
             }
 
             Map<String, Object> response = new HashMap<>();
-            response.put("listAutoJoin", listDataAuto);
+            response.put("listAutoJoin", newListAutoJoin);
             response.put("currentPage", pageTuts.getNumber());
             response.put("totalAutoJoin", pageTuts.getTotalElements());
             response.put("totalPages", pageTuts.getTotalPages());

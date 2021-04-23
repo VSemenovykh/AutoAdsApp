@@ -1,6 +1,7 @@
 package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -8,13 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import ru.ncedu.model.AutoJoin;
+import ru.ncedu.model.DataAuto;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.service.SearchAutoService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SearchAutoServiceImp implements SearchAutoService {
@@ -36,12 +38,12 @@ public class SearchAutoServiceImp implements SearchAutoService {
                                                               List<String> transmission,
                                                               List<String> bodyStyle,
                                                               int page,
-                                                              int size){
+                                                              int size) {
         try {
-            List<AutoJoin> listAutoJoin;
+            List<DataAuto> listDataAuto;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<AutoJoin> pageTuts;
+            Page<DataAuto> pageTuts;
             nameBrand = CollectionUtils.isEmpty(nameBrand) ? null : nameBrand;
             nameModel = CollectionUtils.isEmpty(nameModel) ? null : nameModel;
             color = CollectionUtils.isEmpty(color) ? null : color;
@@ -65,14 +67,13 @@ public class SearchAutoServiceImp implements SearchAutoService {
                                                      bodyStyle,
                                                      paging);
 
-            listAutoJoin = pageTuts.getContent();
-
-            if (listAutoJoin.isEmpty()) {
+            listDataAuto = pageTuts.getContent();
+            if (listDataAuto.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
             Map<String, Object> response = new HashMap<>();
-            response.put("listAutoJoin", listAutoJoin);
+            response.put("listAutoJoin", listDataAuto);
             response.put("currentPage", pageTuts.getNumber());
             response.put("totalAutoJoin", pageTuts.getTotalElements());
             response.put("totalPages", pageTuts.getTotalPages());
