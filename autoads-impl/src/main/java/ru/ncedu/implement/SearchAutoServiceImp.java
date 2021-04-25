@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import ru.ncedu.model.DataAuto;
 import ru.ncedu.repository.AutoRepository;
-import ru.ncedu.service.SearchAutoService;
+import ru.ncedu.services.SearchAutoService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -13,7 +13,7 @@ import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.repository.BrandRepository;
 import ru.ncedu.repository.ContactRepository;
 import ru.ncedu.repository.MotorRepository;
-import ru.ncedu.service.CreateAutoService;
+import ru.ncedu.services.CreateAutoService;
 import static org.springframework.util.StringUtils.isEmpty;
 
 @Slf4j

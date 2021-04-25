@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.repository.CompareAutoRepository;
-import ru.ncedu.service.DeleteAutoService;
+import ru.ncedu.services.DeleteAutoService;
 
 @Slf4j
 @Service

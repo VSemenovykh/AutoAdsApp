@@ -1,4 +1,4 @@
-package ru.ncedu.service;
+package ru.ncedu.services;
 
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;

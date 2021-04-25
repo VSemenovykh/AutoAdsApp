@@ -12,7 +12,7 @@ import ru.ncedu.repository.AutoRepository;
 import ru.ncedu.repository.BrandRepository;
 import ru.ncedu.repository.ContactRepository;
 import ru.ncedu.repository.MotorRepository;
-import ru.ncedu.service.EditAutoService;
+import ru.ncedu.services.EditAutoService;
 import java.util.Optional;
 
 @Slf4j

@@ -1,4 +1,4 @@
-package ru.ncedu.service;
+package ru.ncedu.services;
 
 import org.springframework.http.ResponseEntity;
 import java.util.Map;

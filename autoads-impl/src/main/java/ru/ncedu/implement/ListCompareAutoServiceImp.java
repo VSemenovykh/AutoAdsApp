@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import ru.ncedu.entity.*;
 import ru.ncedu.model.DataCompareAuto;
 import ru.ncedu.repository.CompareAutoRepository;
-import ru.ncedu.service.*;
+import ru.ncedu.services.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

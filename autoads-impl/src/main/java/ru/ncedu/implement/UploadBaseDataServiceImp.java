@@ -11,7 +11,7 @@ import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.*;
 import ru.ncedu.repository.*;
-import ru.ncedu.service.UploadBaseDataService;
+import ru.ncedu.services.UploadBaseDataService;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.PictureAuto;
 import ru.ncedu.repository.PictureAutoRepository;
-import ru.ncedu.service.PictureAutoService;
+import ru.ncedu.services.PictureAutoService;
 
 @Slf4j
 @Service

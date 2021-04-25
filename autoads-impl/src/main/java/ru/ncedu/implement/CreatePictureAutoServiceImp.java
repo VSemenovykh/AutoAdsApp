@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.ncedu.entity.PictureAuto;
 import ru.ncedu.repository.PictureAutoRepository;
-import ru.ncedu.service.CreatePictureAutoService;
+import ru.ncedu.services.CreatePictureAutoService;
 import java.io.IOException;
 
 @Slf4j

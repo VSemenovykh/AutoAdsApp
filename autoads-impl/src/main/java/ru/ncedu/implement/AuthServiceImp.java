@@ -17,7 +17,7 @@ import ru.ncedu.payload.request.SignupRequest;
 import ru.ncedu.payload.response.MessageResponse;
 import ru.ncedu.repository.RoleRepository;
 import ru.ncedu.repository.UserRepository;
-import ru.ncedu.service.AuthService;
+import ru.ncedu.services.AuthService;
 import ru.ncedu.services.UserDetailsImpl;
 
 import javax.validation.Valid;

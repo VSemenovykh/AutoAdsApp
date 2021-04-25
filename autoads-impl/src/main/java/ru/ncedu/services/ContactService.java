@@ -1,4 +1,4 @@
-package ru.ncedu.service;
+package ru.ncedu.services;
 
 import ru.ncedu.entity.Contact;
 

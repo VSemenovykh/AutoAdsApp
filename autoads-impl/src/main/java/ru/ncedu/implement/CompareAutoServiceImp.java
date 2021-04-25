@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.CompareAuto;
 import ru.ncedu.repository.CompareAutoRepository;
-import ru.ncedu.service.CompareAutoService;
+import ru.ncedu.services.CompareAutoService;
 
 @Slf4j
 @Service

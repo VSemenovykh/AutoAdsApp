@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.ncedu.entity.*;
 import ru.ncedu.model.DataAuto;
 import ru.ncedu.repository.CompareAutoRepository;
-import ru.ncedu.service.*;
+import ru.ncedu.services.*;
 
 @Slf4j
 @Service
