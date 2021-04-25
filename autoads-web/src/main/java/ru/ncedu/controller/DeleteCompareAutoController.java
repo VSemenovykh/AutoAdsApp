@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ru.ncedu.service.DeleteCompareAutoService;
+import ru.ncedu.services.DeleteCompareAutoService;
 
 @Slf4j
 @RestController

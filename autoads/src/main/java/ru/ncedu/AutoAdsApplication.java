@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.ncedu.service.UploadBaseDataService;
+import ru.ncedu.services.UploadBaseDataService;
 
 import java.io.IOException;
 

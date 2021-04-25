@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.PictureAuto;
-import ru.ncedu.service.PictureAutoService;
+import ru.ncedu.services.PictureAutoService;
 
 @Slf4j
 @RestController

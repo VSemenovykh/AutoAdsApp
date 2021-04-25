@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ru.ncedu.service.ListCompareAutoService;
+import ru.ncedu.services.ListCompareAutoService;
 import java.util.Map;
 
 @Slf4j

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.ncedu.payload.request.LoginRequest;
 import ru.ncedu.payload.request.SignupRequest;
 import ru.ncedu.payload.response.JwtResponse;
-import ru.ncedu.service.AuthService;
+import ru.ncedu.services.AuthService;
 import ru.ncedu.services.UserDetailsImpl;
 
 @Slf4j

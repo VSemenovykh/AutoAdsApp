@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.CompareAuto;
-import ru.ncedu.service.CompareAutoService;
+import ru.ncedu.services.CompareAutoService;
 
 @Slf4j
 @RestController

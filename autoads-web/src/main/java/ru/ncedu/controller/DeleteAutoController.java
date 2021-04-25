@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
-import ru.ncedu.service.DeleteAutoService;
+import ru.ncedu.services.DeleteAutoService;
 
 @Slf4j
 @RestController

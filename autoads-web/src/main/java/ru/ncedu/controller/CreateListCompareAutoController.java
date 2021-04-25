@@ -8,7 +8,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.CompareAuto;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.service.CreateListCompareAutoService;
+import ru.ncedu.services.CreateListCompareAutoService;
 
 @Slf4j
 @RestController

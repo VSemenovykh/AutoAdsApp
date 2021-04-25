@@ -7,7 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.service.AutoService;
+import ru.ncedu.services.AutoService;
 import lombok.RequiredArgsConstructor;
 
 @Slf4j

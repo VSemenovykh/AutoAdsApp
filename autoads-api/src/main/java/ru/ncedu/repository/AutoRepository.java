@@ -15,6 +15,8 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
 
     Page<Auto> findAll(Pageable pageable);
 
+    Auto getAutoById(Long id);
+
     String queryMultipleSearch = "SELECT new ru.ncedu.model.DataAuto( a.id," +
                                                                     " ia.id," +
                                                                     " ia.raster," +

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.model.DataSearchAuto;
-import ru.ncedu.service.SearchAutoService;
+import ru.ncedu.services.SearchAutoService;
 import java.util.Map;
 
 @Slf4j
