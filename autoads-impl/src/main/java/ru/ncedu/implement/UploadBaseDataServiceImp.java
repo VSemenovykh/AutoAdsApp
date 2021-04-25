@@ -236,33 +236,33 @@ public class UploadBaseDataServiceImp implements UploadBaseDataService {
     public List<PictureAuto> getPictureAuto() {
         List<PictureAuto> pictureAutoList = new ArrayList<>();
         //audi
-        pictureAutoList.add(new PictureAuto(1L, "A3", convertImageAuto("./image-auto/Audi/AUDI-A3.jpg")));
-        pictureAutoList.add(new PictureAuto(2L, "A4", convertImageAuto("./image-auto/Audi/AUDI-A4.jpg")));
-        pictureAutoList.add(new PictureAuto(3L, "A8", convertImageAuto("./image-auto/Audi/AUDI-A8.jpg")));
+        pictureAutoList.add(new PictureAuto(1L, "A3", convertImageAuto("./image-auto/Audi/AUDI-A3.JPG")));
+        pictureAutoList.add(new PictureAuto(2L, "A4", convertImageAuto("./image-auto/Audi/AUDI-A4.JPG")));
+        pictureAutoList.add(new PictureAuto(3L, "A8", convertImageAuto("./image-auto/Audi/AUDI-A8.JPG")));
         //ford
-        pictureAutoList.add(new PictureAuto(4L, "FIESTA", convertImageAuto("./image-auto/Ford/FORD-FIESTA.jpg")));
-        pictureAutoList.add(new PictureAuto(5L, "FOCUS", convertImageAuto("./image-auto/Ford/FORD-FOCUS.jpg")));
-        pictureAutoList.add(new PictureAuto(6L, "MONDEO", convertImageAuto("./image-auto/Ford/FORD-MONDEO.jpg")));
+        pictureAutoList.add(new PictureAuto(4L, "FIESTA", convertImageAuto("./image-auto/Ford/FORD-FIESTA.JPG")));
+        pictureAutoList.add(new PictureAuto(5L, "FOCUS", convertImageAuto("./image-auto/Ford/FORD-FOCUS.JPG")));
+        pictureAutoList.add(new PictureAuto(6L, "MONDEO", convertImageAuto("./image-auto/Ford/FORD-MONDEO.JPG")));
         //honda
-        pictureAutoList.add(new PictureAuto(7L, "ACCORD", convertImageAuto("./image-auto/Honda/HONDA-ACCORD.jpg")));
-        pictureAutoList.add(new PictureAuto(8L, "CROSSTOUR", convertImageAuto("./image-auto/Honda/HONDA-CROSSTOUR.jpg")));
-        pictureAutoList.add(new PictureAuto(9L, "JAZZ", convertImageAuto("./image-auto/Honda/HONDA-JAZZ.jpg")));
+        pictureAutoList.add(new PictureAuto(7L, "ACCORD", convertImageAuto("./image-auto/Honda/HONDA-ACCORD.JPG")));
+        pictureAutoList.add(new PictureAuto(8L, "CROSSTOUR", convertImageAuto("./image-auto/Honda/HONDA-CROSSTOUR.JPG")));
+        pictureAutoList.add(new PictureAuto(9L, "JAZZ", convertImageAuto("./image-auto/Honda/HONDA-JAZZ.JPG")));
         //hyudai
-        pictureAutoList.add(new PictureAuto(10L, "SOLARIS", convertImageAuto("./image-auto/Hyundai/HYUNDAI-SOLARIS.jpg")));
-        pictureAutoList.add(new PictureAuto(11L, "ELANTRA", convertImageAuto("./image-auto/Hyundai/HYUNDAI-ELANTRA.jpg")));
-        pictureAutoList.add(new PictureAuto(12L, "SONATA", convertImageAuto("./image-auto/Hyundai/HYUNDAI-SONATA.jpg")));
+        pictureAutoList.add(new PictureAuto(10L, "SOLARIS", convertImageAuto("./image-auto/Hyundai/HYUNDAI-SOLARIS.JPG")));
+        pictureAutoList.add(new PictureAuto(11L, "ELANTRA", convertImageAuto("./image-auto/Hyundai/HYUNDAI-ELANTRA.JPG")));
+        pictureAutoList.add(new PictureAuto(12L, "SONATA", convertImageAuto("./image-auto/Hyundai/HYUNDAI-SONATA.JPG")));
         //bmw
-        pictureAutoList.add(new PictureAuto(13L, "M8", convertImageAuto("./image-auto/BMW/BMW-M8.jpg")));
-        pictureAutoList.add(new PictureAuto(14L, "M5", convertImageAuto("./image-auto/BMW/BMW-M5.jpg")));
-        pictureAutoList.add(new PictureAuto(15L, "M6", convertImageAuto("./image-auto/BMW/BMW-M6.jpg")));
+        pictureAutoList.add(new PictureAuto(13L, "M8", convertImageAuto("./image-auto/BMW/BMW-M8.JPG")));
+        pictureAutoList.add(new PictureAuto(14L, "M5", convertImageAuto("./image-auto/BMW/BMW-M5.JPG")));
+        pictureAutoList.add(new PictureAuto(15L, "M6", convertImageAuto("./image-auto/BMW/BMW-M6.JPG")));
         //mercedes
-        pictureAutoList.add(new PictureAuto(16L, "GLE AMG", convertImageAuto("./image-auto/Mercedes/Mersedes-GLE-AMG.jpg")));
-        pictureAutoList.add(new PictureAuto(17L, "AMG GT", convertImageAuto("./image-auto/Mercedes/Mersedes-AMG-GT.jpg")));
-        pictureAutoList.add(new PictureAuto(18L, "MAYBACH GLS", convertImageAuto("./image-auto/Mercedes/Mersedes-Maybach-GLS.jpg")));
+        pictureAutoList.add(new PictureAuto(16L, "GLE AMG", convertImageAuto("./image-auto/Mercedes/Mersedes-GLE-AMG.JPG")));
+        pictureAutoList.add(new PictureAuto(17L, "AMG GT", convertImageAuto("./image-auto/Mercedes/Mersedes-AMG-GT.JPG")));
+        pictureAutoList.add(new PictureAuto(18L, "MAYBACH GLS", convertImageAuto("./image-auto/Mercedes/Mersedes-Maybach-GLS.JPG")));
         //kia
-        pictureAutoList.add(new PictureAuto(20L, "CERATO", convertImageAuto("./image-auto/Kia/Kia-Cerato.jpg")));
-        pictureAutoList.add(new PictureAuto(21L, "K5", convertImageAuto("./image-auto/Kia/Kia-K5.jpg")));
-        pictureAutoList.add(new PictureAuto(21L, "RIO X", convertImageAuto("./image-auto/Kia/Kia-Rio-X.jpg")));
+        pictureAutoList.add(new PictureAuto(20L, "CERATO", convertImageAuto("./image-auto/Kia/Kia-Cerato.JPG")));
+        pictureAutoList.add(new PictureAuto(21L, "K5", convertImageAuto("./image-auto/Kia/Kia-K5.JPG")));
+        pictureAutoList.add(new PictureAuto(21L, "RIO X", convertImageAuto("./image-auto/Kia/Kia-Rio-X.JPG")));
         return pictureAutoList;
     }
 
