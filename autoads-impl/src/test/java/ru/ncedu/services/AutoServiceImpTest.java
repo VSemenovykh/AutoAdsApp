@@ -14,10 +14,10 @@ import ru.ncedu.model.BodyStyle;
 import ru.ncedu.model.Color;
 import ru.ncedu.model.Drive;
 import ru.ncedu.model.Transmission;
-import ru.ncedu.repository.AutoRepository;
-import ru.ncedu.repository.BrandRepository;
-import ru.ncedu.repository.ContactRepository;
-import ru.ncedu.repository.MotorRepository;
+import ru.ncedu.interfaces.AutoRepository;
+import ru.ncedu.interfaces.BrandRepository;
+import ru.ncedu.interfaces.ContactRepository;
+import ru.ncedu.interfaces.MotorRepository;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 
 //???????????

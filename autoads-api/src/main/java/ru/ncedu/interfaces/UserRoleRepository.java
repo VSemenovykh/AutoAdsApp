@@ -1,4 +1,4 @@
-package ru.ncedu.repository;
+package ru.ncedu.interfaces;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

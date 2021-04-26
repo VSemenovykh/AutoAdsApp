@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Motor;
-import ru.ncedu.repository.MotorRepository;
+import ru.ncedu.interfaces.MotorRepository;
 import ru.ncedu.services.MotorService;
 
 @Slf4j

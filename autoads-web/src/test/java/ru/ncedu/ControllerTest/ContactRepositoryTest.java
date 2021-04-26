@@ -6,7 +6,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import ru.ncedu.entity.Contact;
-import ru.ncedu.repository.ContactRepository;
+import ru.ncedu.interfaces.ContactRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 //??????????

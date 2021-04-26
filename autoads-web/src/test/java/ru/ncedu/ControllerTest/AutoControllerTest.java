@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import ru.ncedu.controller.AutoController;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.model.*;
-import ru.ncedu.repository.AutoRepository;
+import ru.ncedu.interfaces.AutoRepository;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import static org.assertj.core.api.Assertions.assertThat;

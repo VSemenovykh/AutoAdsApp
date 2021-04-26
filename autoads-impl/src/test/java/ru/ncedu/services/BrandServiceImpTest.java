@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.implement.BrandServiceImp;
-import ru.ncedu.repository.BrandRepository;
+import ru.ncedu.interfaces.BrandRepository;
 
 //??????????
 public class BrandServiceImpTest {

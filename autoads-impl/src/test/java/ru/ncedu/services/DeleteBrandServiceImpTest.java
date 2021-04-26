@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.ncedu.entity.Brand;
-import ru.ncedu.repository.BrandRepository;
+import ru.ncedu.interfaces.BrandRepository;
 
 //??????
 @RunWith(SpringRunner.class)

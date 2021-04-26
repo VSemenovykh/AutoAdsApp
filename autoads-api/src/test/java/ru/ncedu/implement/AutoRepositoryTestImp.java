@@ -1,5 +1,6 @@
 package ru.ncedu.implement;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.ncedu.exceptions.NonExistingAutoException;
 import ru.ncedu.entity.Auto;
@@ -7,10 +8,14 @@ import ru.ncedu.model.BodyStyle;
 import ru.ncedu.model.Color;
 import ru.ncedu.model.Drive;
 import ru.ncedu.model.Transmission;
-import ru.ncedu.repository.AutoRepositoryTest;
+import ru.ncedu.interfaces.AutoRepositoryTest;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
+@Slf4j
 @Component
 public class AutoRepositoryTestImp implements AutoRepositoryTest {
 
@@ -27,19 +32,31 @@ public class AutoRepositoryTestImp implements AutoRepositoryTest {
 
     @Override
     public Auto getAutoById(Long id) {
-        if (id > autoList.size()) throw new NonExistingAutoException();
-        for(Auto auto: autoList){
-            if(auto.getId().equals(id)){
+        for (Auto auto : this.autoList) {
+            if (auto.getId().equals(id)) {
                 return auto;
             }
-            return null;
         }
-        return null;
+        throw new NonExistingAutoException();
     }
 
 
     @Override
     public void saveAuto(Auto auto) {
-        autoList.add(auto);
+        this.autoList.add(auto);
+    }
+
+    @Override
+    public List<Auto> findAll() {
+        return (!this.autoList.isEmpty()) ? this.autoList : null;
+    }
+
+    @Override
+    public void delete(Long id) {
+        if (!isNull(getAutoById(id))) {
+            this.autoList.remove(getAutoById(id));
+        } else {
+            throw new NonExistingAutoException();
+        }
     }
 }

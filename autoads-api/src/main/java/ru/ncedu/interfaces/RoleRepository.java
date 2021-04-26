@@ -1,4 +1,4 @@
-package ru.ncedu.repository;
+package ru.ncedu.interfaces;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
