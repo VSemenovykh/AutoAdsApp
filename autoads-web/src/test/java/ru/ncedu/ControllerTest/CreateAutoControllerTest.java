@@ -55,7 +55,6 @@ public class CreateAutoControllerTest {
     @Test
     public void testCreateAuto() throws Exception {
         byte[] raster = new byte[0];
-       // String nameFile = "./image-auto/Audi/AUDI-A3.JPG";
         String nameFile = "C:/IdeaProjects/ProjectByNetcracker/Backend-AutoAdsApp/image-auto/Audi/AUDI-A3.JPG";
 
         try (RandomAccessFile f = new RandomAccessFile(nameFile, "r")) {

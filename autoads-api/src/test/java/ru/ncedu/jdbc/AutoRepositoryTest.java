@@ -12,6 +12,9 @@ import ru.ncedu.repository.AutoRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 //????????????
+//@ExtendWith(SpringExtension.class)
+//@AutoConfigureJsonTesters
+//@WebMvcTest(AutoRepositoryTestImp.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class AutoRepositoryTest {
@@ -22,8 +25,11 @@ public class AutoRepositoryTest {
     @Autowired
     private AutoRepository autoRepository;
 
+//    @MockBean
+//    private ru.ncedu.repository.AutoRepositoryTest autoRepositoryTest;
+
     @Test
-    public void testAuto() {
+    public void testAuto(){
         Auto testAuto = new Auto();
         testAuto.setId(1L);
         testAuto.setIdImage(1L);
@@ -47,5 +53,9 @@ public class AutoRepositoryTest {
         assertThat(auto.getDriveType()).isEqualTo(Drive.FWD.name());
         assertThat(auto.getTransmissionType()).isEqualTo(Transmission.DSG.name());
         assertThat(auto.getBodyStyleType()).isEqualTo(BodyStyle.SEDAN.name());
+//        given(autoRepositoryTestImp.getAutoById(1L))
+//                .willReturn(new Auto(1L, 1L, 1L, 1L, 4L, Color.GRAY.name(), 1935000, Transmission.DSG.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
+//        Auto testAuto = autoRepositoryTest.getAutoById(1L);
+//        assertThat(testAuto).isEqualTo(new Auto(1L, 1L, 1L, 1L, 4L, Color.GRAY.name(), 1935000, Transmission.DSG.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
     }
 }
