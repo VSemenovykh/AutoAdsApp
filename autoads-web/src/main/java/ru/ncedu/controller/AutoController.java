@@ -20,14 +20,14 @@ public class AutoController {
     private final AutoService autoService;
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
-    @GetMapping(path = "/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Auto> getAutoById(@PathVariable("id") Long autoId) {
         Auto auto = autoService.findById(autoId);
         return (auto != null) ? new ResponseEntity<Auto>(auto, HttpStatus.OK) : new ResponseEntity<Auto>(HttpStatus.NOT_FOUND);
     }
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
-    @GetMapping(path = "/join/{id}")
+    @GetMapping(value = "/join/{id}")
     public ResponseEntity<DataAuto> getAutoJoinById(@PathVariable("id") long autoId) {
         DataAuto dataAuto = autoService.findAutoJoinById(autoId);
         return (dataAuto != null) ? new ResponseEntity<DataAuto>(dataAuto, HttpStatus.OK) : new ResponseEntity<DataAuto>(HttpStatus.NOT_FOUND);
