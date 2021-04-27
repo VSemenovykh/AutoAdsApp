@@ -9,10 +9,10 @@ import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Contact;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.repository.AutoRepository;
-import ru.ncedu.repository.BrandRepository;
-import ru.ncedu.repository.ContactRepository;
-import ru.ncedu.repository.MotorRepository;
+import ru.ncedu.interfaces.AutoRepository;
+import ru.ncedu.interfaces.BrandRepository;
+import ru.ncedu.interfaces.ContactRepository;
+import ru.ncedu.interfaces.MotorRepository;
 import ru.ncedu.services.CreateAutoService;
 import static org.springframework.util.StringUtils.isEmpty;
 

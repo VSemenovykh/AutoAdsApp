@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Contact;
-import ru.ncedu.repository.ContactRepository;
+import ru.ncedu.interfaces.ContactRepository;
 import ru.ncedu.services.ContactService;
 
 @Slf4j

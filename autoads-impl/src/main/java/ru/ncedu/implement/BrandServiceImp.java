@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Brand;
-import ru.ncedu.repository.BrandRepository;
+import ru.ncedu.interfaces.BrandRepository;
 import ru.ncedu.services.BrandService;
 
 @Slf4j

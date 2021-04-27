@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.repository.AutoRepository;
+import ru.ncedu.interfaces.AutoRepository;
 import ru.ncedu.services.SearchAutoService;
 import java.util.HashMap;
 import java.util.List;

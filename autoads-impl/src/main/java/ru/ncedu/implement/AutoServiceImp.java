@@ -8,7 +8,7 @@ import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Contact;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.repository.AutoRepository;
+import ru.ncedu.interfaces.AutoRepository;
 import ru.ncedu.services.*;
 
 @Slf4j
