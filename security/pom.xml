@@ -13,6 +13,7 @@
     <artifactId>security</artifactId>
 
     <dependencies>
+        <!-- AutoAdsApplication -->
         <dependency>
             <groupId>groupId</groupId>
             <artifactId>autoads-api</artifactId>

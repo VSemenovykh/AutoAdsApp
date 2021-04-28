@@ -14,6 +14,7 @@
     <artifactId>autoads-impl</artifactId>
 
     <dependencies>
+        <!-- AutoAdsApplication -->
         <dependency>
             <groupId>groupId</groupId>
             <artifactId>autoads-api</artifactId>
@@ -24,11 +25,15 @@
             <artifactId>security</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
