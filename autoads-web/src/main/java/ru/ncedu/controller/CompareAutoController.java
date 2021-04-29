@@ -20,6 +20,7 @@ public class CompareAutoController {
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/search/compare-auto")
+    @ResponseBody
     public ResponseEntity<CompareAuto> getCompareAuto(@RequestParam("idAuto") Long idAuto,
                                                       @RequestParam("idUser") Long idUser) {
         CompareAuto compareAuto = compareAutoService.findCompareAutoByIdAuto(idAuto, idUser);

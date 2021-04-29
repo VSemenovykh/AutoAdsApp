@@ -19,6 +19,7 @@ public class ListAutoController {
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping
+    @ResponseBody
     public ResponseEntity<Map<String, Object>> getAllAutoPage(@RequestParam(defaultValue = "0") int page,
                                                               @RequestParam(defaultValue = "3") int size) {
         return listAutoService.findAllAutoJoinPage(page, size);

@@ -21,6 +21,7 @@ public class CreateListCompareAutoController {
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PostMapping("/add-auto-to-compare")
+    @ResponseBody
     public ResponseEntity<CompareAuto> addAutoToCompare(@RequestBody DataAuto dataAuto,
                                                         @RequestParam("idUser") Long idUser) {
         CompareAuto compareAuto = createListCompareAutoService.addAutoToListCompare(dataAuto, idUser);

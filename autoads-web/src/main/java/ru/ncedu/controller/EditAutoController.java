@@ -18,6 +18,7 @@ public class EditAutoController {
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
+    @ResponseBody
     public DataAuto updateAuto(@RequestBody DataAuto auto, @PathVariable("id") Long autoId, @RequestParam("idImage") String idImage) {
         editAutoService.editAuto(auto, autoId, new Long(idImage));
         return auto;

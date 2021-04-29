@@ -19,6 +19,7 @@ public class CreatePictureAutoController {
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PostMapping(path = "/pictureAuto")
+    @ResponseBody
     public Long pictureAuto(@RequestParam(name = "imageFile") MultipartFile file) {
         if (file != null) {
             try {

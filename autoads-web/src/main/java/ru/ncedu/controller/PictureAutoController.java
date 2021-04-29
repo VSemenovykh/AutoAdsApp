@@ -20,6 +20,7 @@ public class PictureAutoController {
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/pictureAuto/{name}")
+    @ResponseBody
     public ResponseEntity<PictureAuto> getImageByName(@PathVariable("name") String nameImage) {
         PictureAuto pictureAuto = pictureAutoService.getPictureAutoByNameImage(nameImage);
         return (pictureAuto != null) ? new ResponseEntity<PictureAuto>(pictureAuto, HttpStatus.OK) : new ResponseEntity<PictureAuto>(HttpStatus.NOT_FOUND);
@@ -27,6 +28,7 @@ public class PictureAutoController {
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/pictureAuto/idAuto/{id}")
+    @ResponseBody
     public ResponseEntity<PictureAuto> getImageById(@PathVariable("id") Long id) {
         PictureAuto pictureAuto = pictureAutoService.findPictureAutoById(id);
         return (pictureAuto != null) ? new ResponseEntity<PictureAuto>(pictureAuto, HttpStatus.OK) : new ResponseEntity<PictureAuto>(HttpStatus.NOT_FOUND);

@@ -20,6 +20,7 @@ public class SearchAutoController {
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PostMapping("/search/page")
+    @ResponseBody
     public ResponseEntity<Map<String, Object>> searchAutoPage(@RequestBody DataSearchAuto dataAutoMultipleSearch,
                                                               @RequestParam(defaultValue = "0") String page,
                                                               @RequestParam(defaultValue = "3") String size) {

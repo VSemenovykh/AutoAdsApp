@@ -19,6 +19,7 @@ public class ListCompareAutoController {
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/search/list-compare-auto")
+    @ResponseBody
     public ResponseEntity<Map<String, Object>> getAllAutoComparePage(@RequestParam(defaultValue = "0") int page,
                                                                      @RequestParam(defaultValue = "3") int size,
                                                                      @RequestParam("idUser") Long idUser) {

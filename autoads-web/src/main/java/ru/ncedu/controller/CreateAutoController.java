@@ -19,6 +19,7 @@ public class CreateAutoController {
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PostMapping(path = "/add")
+    @ResponseBody
     public ResponseEntity<DataAuto> createAuto(@RequestBody DataAuto dataAuto, @RequestParam("idImage") String idImage) {
         createAutoService.saveAuto(dataAuto, new Long(idImage));
         return new ResponseEntity<DataAuto>(HttpStatus.CREATED);
