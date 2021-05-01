@@ -28,4 +28,8 @@
 ## Data model for the client-server application "Auto ads"
 ![screenshot-diagram](https://user-images.githubusercontent.com/71659506/108228392-df70d180-714f-11eb-9553-3fc005151973.JPG)
 # For auto ads
-![screenshot-diagram](https://github.com/VSemenovykh/Backend-AutoAdsApp/raw/main/C:/MyFilesByEdu/Necracker/AutoAdsApp/Diagrams/Untitled-Diagram-autoads.png)
+![text](C:/MyFilesByEdu/Necracker/AutoAdsApp/Diagrams/Untitled-Diagram-autoads.PNG)
+<div align="center">
+    <img src="C:/MyFilesByEdu/Necracker/AutoAdsApp/Diagrams/Untitled-Diagram-autoads.PNG" width="400px"</img> 
+</div>
+![Screenshot](Untitled-Diagram-autoads.PNG)
