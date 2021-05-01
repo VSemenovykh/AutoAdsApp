@@ -26,7 +26,7 @@
 - possibility of registration and authorization
 
 ## Data model for the client-server application "Auto ads"
-#For security
+# For security
 ![class-diagram-secutiry](https://user-images.githubusercontent.com/71659506/116765457-de043500-aa2d-11eb-9fa1-a2e86fda2e80.png)
 
 # For auto ads
