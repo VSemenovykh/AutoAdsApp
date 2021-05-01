@@ -26,10 +26,12 @@
 - possibility of registration and authorization
 
 ## Data model for the client-server application "Auto ads"
-![screenshot-diagram](https://user-images.githubusercontent.com/71659506/108228392-df70d180-714f-11eb-9553-3fc005151973.JPG)
+#For security
+![class-diagram-secutiry](https://user-images.githubusercontent.com/71659506/116765457-de043500-aa2d-11eb-9fa1-a2e86fda2e80.png)
+
 # For auto ads
-![text](C:/MyFilesByEdu/Necracker/AutoAdsApp/Diagrams/Untitled-Diagram-autoads.PNG)
-<div align="center">
-    <img src="C:/MyFilesByEdu/Necracker/AutoAdsApp/Diagrams/Untitled-Diagram-autoads.PNG" width="400px"</img> 
-</div>
-![Screenshot](Untitled-Diagram-autoads.PNG)
+![Untitled-Diagram-autoads](https://user-images.githubusercontent.com/71659506/116764555-24579500-aa2a-11eb-9d1e-908ffa83761d.PNG)
+
+# For compare auto
+![Untitled Diagram-compareauto](https://user-images.githubusercontent.com/71659506/116765420-a7c6b580-aa2d-11eb-82bb-dc3336943232.png)
+
