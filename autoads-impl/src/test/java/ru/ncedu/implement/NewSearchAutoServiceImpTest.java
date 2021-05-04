@@ -2,62 +2,67 @@ package ru.ncedu.implement;
 
 import java.util.*;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.CollectionUtils;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.interfaces.AutoRepository;
 import ru.ncedu.model.DataAuto;
-
-import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@ExtendWith(SpringExtension.class)
-@DataJpaTest
-@ContextConfiguration(classes = SearchAutoTestConfiguration.class)
-public class NewSearchAutoServiceImpTest {
+//@ExtendWith(SpringExtension.class)
+//@DataJpaTest
+//@ContextConfiguration(classes = NewSearchAutoTestConfiguration.class)
+public class NewSearchAutoServiceImpTest extends NewSearchAutoTestConfiguration {
 
-    @Autowired
+//    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
+//    @Autowired
     private DataSource dataSource;
 
-    @Autowired
+//    @Autowired
     private AutoRepository autorepository;
 
-    @Autowired
-    private EntityManager entityManager;
+//    private EmbeddedDatabase embeddedDatabase;
 
-    @Test
-    void injectedComponentsAreNotNull(){
-        assertThat(dataSource).isNotNull();
-        assertThat(jdbcTemplate).isNotNull();
-        assertThat(entityManager).isNotNull();
+    private AutoRepository autoRepository;
+
+    @BeforeEach
+    public void setUp() {
+//        embeddedDatabase = new EmbeddedDatabaseBuilder()
+//                .addDefaultScripts()
+//                .setType(EmbeddedDatabaseType.H2)
+//                .build();
+
+        jdbcTemplate = new JdbcTemplate();
+        autoRepository = autoRepository();
     }
 
     @Test
-    @Sql("data.sql")
+    void injectedComponentsAreNotNull(){
+        assertThat(jdbcTemplate).isNotNull();
+    }
+
+    @Test
+//    @Sql("data.sql")
     public void testSave() {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-        Brand brand = jdbcTemplate.queryForObject("Select * from brand where id = 1", Brand.class);
+//        jdbcTemplate = new JdbcTemplate(dataSource);
+        Brand brand = jdbcTemplate.queryForObject("SELECT * FROM brand WHERE id = ?1", Brand.class);
         System.out.println("");
     }
 
     @Test
-    @Sql("data.sql")
+//    @Sql("data.sql")
     public void testSearchAutoPage() {
         List<String> nameBrand = new ArrayList<>(Arrays.asList("BMW"));
         List<String> nameModel = new ArrayList<>();
