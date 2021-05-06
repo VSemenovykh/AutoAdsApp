@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ru.ncedu.services.ListCompareAutoService;
+import ru.ncedu.services.ListCompareAutoAdsService;
 import java.util.Map;
 
 @Slf4j
@@ -15,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/api/all")
 public class ListCompareAutoController {
 
-    private final ListCompareAutoService listCompareAutoService;
+    private final ListCompareAutoAdsService listCompareAutoAdsService;
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/search/list-compare-auto")
@@ -23,6 +23,6 @@ public class ListCompareAutoController {
     public ResponseEntity<Map<String, Object>> getAllAutoComparePage(@RequestParam(defaultValue = "0") int page,
                                                                      @RequestParam(defaultValue = "3") int size,
                                                                      @RequestParam("idUser") Long idUser) {
-        return listCompareAutoService.findAllAutoComparePage(page, size, idUser);
+        return listCompareAutoAdsService.findAllAutoAdsForCompare(page, size, idUser);
     }
 }

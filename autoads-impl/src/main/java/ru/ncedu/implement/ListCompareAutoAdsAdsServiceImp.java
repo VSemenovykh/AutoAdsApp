@@ -20,11 +20,11 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ListCompareAutoServiceImp implements ListCompareAutoService {
+public class ListCompareAutoAdsAdsServiceImp implements ListCompareAutoAdsService {
 
     private final CompareAutoRepository compareAutoRepository;
 
-    private final AutoService autoService;
+    private final AutoAdsService autoAdsService;
 
     private final BrandService brandService;
 
@@ -35,17 +35,19 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService {
     private final PictureAutoService imageAutoService;
 
     @Override
-    public ResponseEntity<Map<String, Object>> findAllAutoComparePage(int page, int size, Long idUser) {
+    public ResponseEntity<Map<String, Object>> findAllAutoAdsForCompare(int page, int size, Long idUser) {
         try {
             Pageable paging = PageRequest.of(page, size);
             Page<CompareAuto> pageTuts = compareAutoRepository.findAllByIdUser(paging, idUser);
 
             List<CompareAuto> compareAutoList = pageTuts.getContent();
-            List<DataCompareAuto> newListAutoJoin = new ArrayList<>();
+
 
             if (compareAutoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
+
+            List<DataCompareAuto> newListAutoJoin = new ArrayList<>();
 
             String brandName;
             String modelName;
@@ -56,7 +58,7 @@ public class ListCompareAutoServiceImp implements ListCompareAutoService {
             String phone;
 
             for (CompareAuto compareAuto : compareAutoList) {
-                Auto auto = autoService.findById(compareAuto.getIdAuto());
+                Auto auto = autoAdsService.findAutoById(compareAuto.getIdAuto());
                 Brand brand = brandService.findById(auto.getIdBrand());
                 Motor motor = motorService.findById(auto.getIdMotor());
                 Contact contact = contactService.findById(auto.getIdContact());

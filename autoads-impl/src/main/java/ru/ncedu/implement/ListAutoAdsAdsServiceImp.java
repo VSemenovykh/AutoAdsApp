@@ -9,9 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
-import ru.ncedu.entity.Brand;
-import ru.ncedu.entity.Contact;
-import ru.ncedu.entity.Motor;
 import ru.ncedu.model.DataAuto;
 import ru.ncedu.interfaces.AutoRepository;
 import ru.ncedu.services.*;
@@ -23,72 +20,34 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ListAutoServiceImp implements ListAutoService {
+public class ListAutoAdsAdsServiceImp implements ListAutoAdsService {
 
     private final AutoRepository autorepository;
 
-    private final BrandService brandService;
-
-    private final MotorService motorService;
-
-    private final ContactService contactService;
-
-    private final PictureAutoService imageAutoService;
-
     @Override
-    public ResponseEntity<Map<String, Object>> findAllAutoJoinPage(int page, int size) {
+    public ResponseEntity<Map<String, Object>> findAllAutoAds(int page, int size) {
         try {
             Pageable paging = PageRequest.of(page, size);
             Page<Auto> pageTuts = autorepository.findAll(paging);
-
             List<Auto> autoList = pageTuts.getContent();
-            List<DataAuto> listDataAuto = new ArrayList<>();
-
             if (autoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            String brandName;
-            String modelName;
-            String year;
-            String motorType;
-            double volume;
-            String email;
-            String phone;
-
+            List<DataAuto> listDataAuto = new ArrayList<>();
             for (Auto auto : autoList) {
-                Brand brand = brandService.findById(auto.getIdBrand());
-                Motor motor = motorService.findById(auto.getIdMotor());
-                Contact contact = contactService.findById(auto.getIdContact());
-
-                byte[] raster = null;
-
-                if (auto.getIdImage() != null) {
-                    raster = imageAutoService.findPictureAutoById(auto.getIdImage()).getRaster();
-                }
-
-                brandName = brand.getNameBrand();
-                modelName = brand.getNameModel();
-                year = brand.getYear();
-
-                motorType = motor.getMotorType();
-                volume = motor.getVolume();
-
-                email = contact.getEmail();
-                phone = contact.getPhone();
-
                 DataAuto dataAuto = new DataAuto(auto.getId(),
                                                  auto.getIdImage(),
-                                                 raster,
-                                                 email,
-                                                 phone,
-                                                 brandName,
-                                                 modelName,
-                                                 year,
+                                                 auto.getPictureAuto().getRaster(),
+                                                 auto.getContact().getEmail(),
+                                                 auto.getContact().getPhone(),
+                                                 auto.getBrand().getNameBrand(),
+                                                 auto.getBrand().getNameModel(),
+                                                 auto.getBrand().getYear(),
                                                  auto.getColor(),
                                                  auto.getPrice(),
-                                                 motorType,
-                                                 volume,
+                                                 auto.getMotor().getMotorType(),
+                                                 auto.getMotor().getVolume(),
                                                  auto.getDriveType(),
                                                  auto.getTransmissionType(),
                                                  auto.getBodyStyleType());

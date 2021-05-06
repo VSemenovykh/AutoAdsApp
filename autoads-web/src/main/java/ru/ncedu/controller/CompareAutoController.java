@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.CompareAuto;
-import ru.ncedu.services.CompareAutoService;
+import ru.ncedu.services.CompareAutoAdsService;
 
 @Slf4j
 @RestController
@@ -16,14 +16,14 @@ import ru.ncedu.services.CompareAutoService;
 @RequestMapping("/api/all")
 public class CompareAutoController {
 
-    private final CompareAutoService compareAutoService;
+    private final CompareAutoAdsService compareAutoAdsService;
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/search/compare-auto")
     @ResponseBody
     public ResponseEntity<CompareAuto> getCompareAuto(@RequestParam("idAuto") Long idAuto,
                                                       @RequestParam("idUser") Long idUser) {
-        CompareAuto compareAuto = compareAutoService.findCompareAutoByIdAuto(idAuto, idUser);
+        CompareAuto compareAuto = compareAutoAdsService.findCompareAutoAdsByIdAuto(idAuto, idUser);
         return (compareAuto != null) ? new ResponseEntity<CompareAuto>(compareAuto, HttpStatus.OK) : new ResponseEntity<CompareAuto>(HttpStatus.NOT_FOUND);
     }
 }

@@ -1,6 +1,5 @@
 package ru.ncedu.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -8,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "compare_auto")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class CompareAuto {
 
@@ -21,4 +19,10 @@ public class CompareAuto {
 
     @Column(name = "id_user")
     private Long idUser;
+
+    public CompareAuto(Long id, Long idAuto, Long idUser){
+        this.id = id;
+        this.idAuto = idAuto;
+        this.idUser = idUser;
+    }
 }

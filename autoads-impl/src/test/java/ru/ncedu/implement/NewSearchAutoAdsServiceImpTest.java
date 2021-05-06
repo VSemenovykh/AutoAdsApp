@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 //@ExtendWith(SpringExtension.class)
 //@DataJpaTest
 //@ContextConfiguration(classes = NewSearchAutoTestConfiguration.class)
-public class NewSearchAutoServiceImpTest extends NewSearchAutoTestConfiguration {
+public class NewSearchAutoAdsServiceImpTest extends NewSearchAutoTestConfiguration {
 
 //    @Autowired
     private JdbcTemplate jdbcTemplate;

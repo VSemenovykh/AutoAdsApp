@@ -34,7 +34,7 @@ import static org.mockito.Mockito.times;
 @DataJpaTest
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(classes = SearchAutoTestConfiguration.class)
-public class SearchAutoServiceImpTest {
+public class SearchAutoAdsServiceImpTest {
 
 //    @Autowired
     private JdbcTemplate jdbcTemplate;

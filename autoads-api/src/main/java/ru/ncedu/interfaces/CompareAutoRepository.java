@@ -11,7 +11,7 @@ public interface CompareAutoRepository extends JpaRepository<CompareAuto, Long> 
 
     Page<CompareAuto> findAllByIdUser(Pageable pageable, Long idUser);
 
-    CompareAuto findCompareAutoByIdUserAndIdAuto(Long idUser, Long idAuto);
+    CompareAuto findCompareAutoAdsByIdUserAndIdAuto(Long idUser, Long idAuto);
 
     CompareAuto findByIdUserAndIdAuto(Long idUser, Long idAuto);
 

@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Map;
 
-public interface SearchAutoService {
+public interface SearchAutoAdsService {
 
     ResponseEntity<Map<String, Object>> searchAutoPage(List<String> nameBrand,
                                                        List<String> nameModel,

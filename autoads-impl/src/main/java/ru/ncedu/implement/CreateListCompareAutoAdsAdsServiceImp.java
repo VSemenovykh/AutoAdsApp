@@ -11,12 +11,12 @@ import ru.ncedu.services.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CreateListCompareAutoServiceImp implements CreateListCompareAutoService {
+public class CreateListCompareAutoAdsAdsServiceImp implements CreateListCompareAutoAdsService {
 
     private final CompareAutoRepository compareAutoRepository;
 
     @Override
-    public CompareAuto addAutoToListCompare(DataAuto dataAuto, Long idUser) {
+    public CompareAuto addAutoAdsToListCompare(DataAuto dataAuto, Long idUser) {
         CompareAuto compareAuto = compareAutoRepository.findByIdUserAndIdAuto(idUser, dataAuto.getId());
         return (compareAuto != null) ? compareAuto : compareAutoRepository.save(new CompareAuto(null, dataAuto.getId(), idUser));
     }

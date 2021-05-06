@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import ru.ncedu.model.DataAuto;
 import ru.ncedu.interfaces.AutoRepository;
-import ru.ncedu.services.SearchAutoService;
+import ru.ncedu.services.SearchAutoAdsService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +19,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SearchAutoServiceImp implements SearchAutoService {
+public class SearchAutoAdsAdsServiceImp implements SearchAutoAdsService {
 
     private final AutoRepository autorepository;
 

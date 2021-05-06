@@ -8,7 +8,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.CompareAuto;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.services.CreateListCompareAutoService;
+import ru.ncedu.services.CreateListCompareAutoAdsService;
 
 @Slf4j
 @RestController
@@ -17,14 +17,14 @@ import ru.ncedu.services.CreateListCompareAutoService;
 @RequestMapping("/api/all")
 public class CreateListCompareAutoController {
 
-    private final CreateListCompareAutoService createListCompareAutoService;
+    private final CreateListCompareAutoAdsService createListCompareAutoAdsService;
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PostMapping("/add-auto-to-compare")
     @ResponseBody
     public ResponseEntity<CompareAuto> addAutoToCompare(@RequestBody DataAuto dataAuto,
                                                         @RequestParam("idUser") Long idUser) {
-        CompareAuto compareAuto = createListCompareAutoService.addAutoToListCompare(dataAuto, idUser);
+        CompareAuto compareAuto = createListCompareAutoAdsService.addAutoAdsToListCompare(dataAuto, idUser);
         return new ResponseEntity<CompareAuto>(HttpStatus.CREATED);
     }
 }

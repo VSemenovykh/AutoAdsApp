@@ -13,14 +13,14 @@ import ru.ncedu.interfaces.AutoRepository;
 import ru.ncedu.interfaces.BrandRepository;
 import ru.ncedu.interfaces.ContactRepository;
 import ru.ncedu.interfaces.MotorRepository;
-import ru.ncedu.services.CreateAutoService;
+import ru.ncedu.services.CreateAutoAdsService;
 import static org.springframework.util.StringUtils.isEmpty;
 
 @Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CreateAutoServiceImp implements CreateAutoService {
+public class CreateAutoAdsAdsServiceImp implements CreateAutoAdsService {
 
     private final AutoRepository autorepository;
 
