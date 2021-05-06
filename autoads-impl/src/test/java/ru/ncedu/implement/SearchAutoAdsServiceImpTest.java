@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -13,9 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.CollectionUtils;
 import ru.ncedu.entity.*;
 import ru.ncedu.entity.Auto;
@@ -109,7 +105,7 @@ public class SearchAutoAdsServiceImpTest {
             transmission = CollectionUtils.isEmpty(transmission) ? null : transmission;
             bodyStyle = CollectionUtils.isEmpty(bodyStyle) ? null : bodyStyle;
 
-            pageTuts = autorepository.searchAutoPage(nameBrand,
+            pageTuts = autorepository.searchAutoAds(nameBrand,
                                                      nameModel,
                                                      startYear,
                                                      endYear,

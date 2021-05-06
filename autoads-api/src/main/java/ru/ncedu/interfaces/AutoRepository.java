@@ -60,18 +60,18 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                     " and ((:bodyStyleType) is null or a.bodyStyleType IN (:bodyStyleType)) ";
 
     @Query(value = queryMultipleSearch, nativeQuery = false)
-    Page<DataAuto> searchAutoPage(@Param("nameBrand") List<String> nameBrand,
-                                  @Param("nameModel") List<String> nameModel,
-                                  @Param("startYear") String startYear,
-                                  @Param("endYear") String endYear,
-                                  @Param("color") List<String> color,
-                                  @Param("startPrice") Double startPrice,
-                                  @Param("endPrice") Double endPrice,
-                                  @Param("motorType") List<String> motorType,
-                                  @Param("startVolume") Double startVolume,
-                                  @Param("endVolume") Double endVolume,
-                                  @Param("driveType") List<String> driveType,
-                                  @Param("transmissionType") List<String> transmissionType,
-                                  @Param("bodyStyleType") List<String> bodyStyleType,
-                                  Pageable pageable);
+    Page<DataAuto> searchAutoAds(@Param("nameBrand") List<String> nameBrand,
+                                 @Param("nameModel") List<String> nameModel,
+                                 @Param("startYear") String startYear,
+                                 @Param("endYear") String endYear,
+                                 @Param("color") List<String> color,
+                                 @Param("startPrice") Double startPrice,
+                                 @Param("endPrice") Double endPrice,
+                                 @Param("motorType") List<String> motorType,
+                                 @Param("startVolume") Double startVolume,
+                                 @Param("endVolume") Double endVolume,
+                                 @Param("driveType") List<String> driveType,
+                                 @Param("transmissionType") List<String> transmissionType,
+                                 @Param("bodyStyleType") List<String> bodyStyleType,
+                                 Pageable pageable);
 }

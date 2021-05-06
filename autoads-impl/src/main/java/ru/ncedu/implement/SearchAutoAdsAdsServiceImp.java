@@ -24,21 +24,21 @@ public class SearchAutoAdsAdsServiceImp implements SearchAutoAdsService {
     private final AutoRepository autorepository;
 
     @Override
-    public ResponseEntity<Map<String, Object>> searchAutoPage(List<String> nameBrand,
-                                                              List<String> nameModel,
-                                                              String startYear,
-                                                              String endYear,
-                                                              List<String> color,
-                                                              Double startPrice,
-                                                              Double endPrice,
-                                                              List<String> motorType,
-                                                              Double startVolume,
-                                                              Double endVolume,
-                                                              List<String> drive,
-                                                              List<String> transmission,
-                                                              List<String> bodyStyle,
-                                                              int page,
-                                                              int size) {
+    public ResponseEntity<Map<String, Object>> searchAutoAds(List<String> nameBrand,
+                                                             List<String> nameModel,
+                                                             String startYear,
+                                                             String endYear,
+                                                             List<String> color,
+                                                             Double startPrice,
+                                                             Double endPrice,
+                                                             List<String> motorType,
+                                                             Double startVolume,
+                                                             Double endVolume,
+                                                             List<String> drive,
+                                                             List<String> transmission,
+                                                             List<String> bodyStyle,
+                                                             int page,
+                                                             int size) {
         try {
             List<DataAuto> listDataAuto;
             Pageable paging = PageRequest.of(page, size);
@@ -52,7 +52,7 @@ public class SearchAutoAdsAdsServiceImp implements SearchAutoAdsService {
             transmission = CollectionUtils.isEmpty(transmission) ? null : transmission;
             bodyStyle = CollectionUtils.isEmpty(bodyStyle) ? null : bodyStyle;
 
-            pageTuts = autorepository.searchAutoPage(nameBrand,
+            pageTuts = autorepository.searchAutoAds(nameBrand,
                                                      nameModel,
                                                      startYear,
                                                      endYear,
@@ -73,9 +73,9 @@ public class SearchAutoAdsAdsServiceImp implements SearchAutoAdsService {
             }
 
             Map<String, Object> response = new HashMap<>();
-            response.put("listAutoJoin", listDataAuto);
+            response.put("listAutoAds", listDataAuto);
             response.put("currentPage", pageTuts.getNumber());
-            response.put("totalAutoJoin", pageTuts.getTotalElements());
+            response.put("totalAutoAds", pageTuts.getTotalElements());
             response.put("totalPages", pageTuts.getTotalPages());
 
             return new ResponseEntity<>(response, HttpStatus.OK);

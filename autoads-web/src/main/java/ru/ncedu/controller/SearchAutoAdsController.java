@@ -14,17 +14,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/all")
-public class SearchAutoController {
+public class SearchAutoAdsController {
 
     private final SearchAutoAdsService searchAutoAdsService;
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
-    @PostMapping("/search/page")
+    @PostMapping("/search")
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> searchAutoPage(@RequestBody DataSearchAuto dataAutoMultipleSearch,
-                                                              @RequestParam(defaultValue = "0") String page,
-                                                              @RequestParam(defaultValue = "3") String size) {
-        return searchAutoAdsService.searchAutoPage(dataAutoMultipleSearch.getNameBrand(),
+    public ResponseEntity<Map<String, Object>> searchAutoAds(@RequestBody DataSearchAuto dataAutoMultipleSearch,
+                                                             @RequestParam(defaultValue = "0") String page,
+                                                             @RequestParam(defaultValue = "3") String size) {
+        return searchAutoAdsService.searchAutoAds(dataAutoMultipleSearch.getNameBrand(),
                                                 dataAutoMultipleSearch.getNameModel(),
                                                 dataAutoMultipleSearch.getStartYear(),
                                                 dataAutoMultipleSearch.getEndYear(),

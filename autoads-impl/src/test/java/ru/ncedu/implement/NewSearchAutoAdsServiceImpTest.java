@@ -4,12 +4,10 @@ import java.util.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.util.CollectionUtils;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.interfaces.AutoRepository;
@@ -93,7 +91,7 @@ public class NewSearchAutoAdsServiceImpTest extends NewSearchAutoTestConfigurati
             transmission = CollectionUtils.isEmpty(transmission) ? null : transmission;
             bodyStyle = CollectionUtils.isEmpty(bodyStyle) ? null : bodyStyle;
 
-            pageTuts = autorepository.searchAutoPage(nameBrand,
+            pageTuts = autorepository.searchAutoAds(nameBrand,
                     nameModel,
                     startYear,
                     endYear,
