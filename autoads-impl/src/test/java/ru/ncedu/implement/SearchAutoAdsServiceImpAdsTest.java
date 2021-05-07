@@ -45,8 +45,6 @@ public class SearchAutoAdsServiceImpAdsTest extends SearchAutoAdsTestConfigurati
     @Before
     public void setUp() {
         jdbcTemplate = jdbcTemplate();
-//        brandRepository = Mockito.mock(BrandRepository.class);
-//        autoRepository = Mockito.mock(AutoRepository.class);
     }
 
     @Test
