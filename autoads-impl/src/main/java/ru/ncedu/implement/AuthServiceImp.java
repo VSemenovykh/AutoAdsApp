@@ -12,11 +12,11 @@ import ru.ncedu.entity.Role;
 import ru.ncedu.entity.User;
 import ru.ncedu.jwt.JwtUtils;
 import ru.ncedu.model.ERole;
-import ru.ncedu.payload.request.LoginRequest;
-import ru.ncedu.payload.request.SignupRequest;
-import ru.ncedu.payload.response.MessageResponse;
-import ru.ncedu.interfaces.RoleRepository;
-import ru.ncedu.interfaces.UserRepository;
+import ru.ncedu.auth.request.LoginRequest;
+import ru.ncedu.auth.request.SignupRequest;
+import ru.ncedu.auth.response.MessageResponse;
+import ru.ncedu.repositoryes.RoleRepository;
+import ru.ncedu.repositoryes.UserRepository;
 import ru.ncedu.services.AuthService;
 import ru.ncedu.services.UserDetailsImpl;
 
