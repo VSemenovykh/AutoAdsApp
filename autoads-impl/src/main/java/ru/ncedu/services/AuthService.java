@@ -1,8 +1,8 @@
 package ru.ncedu.services;
 
-import ru.ncedu.payload.request.LoginRequest;
-import ru.ncedu.payload.request.SignupRequest;
-import ru.ncedu.payload.response.MessageResponse;
+import ru.ncedu.auth.request.LoginRequest;
+import ru.ncedu.auth.request.SignupRequest;
+import ru.ncedu.auth.response.MessageResponse;
 import java.util.Map;
 
 public interface AuthService {

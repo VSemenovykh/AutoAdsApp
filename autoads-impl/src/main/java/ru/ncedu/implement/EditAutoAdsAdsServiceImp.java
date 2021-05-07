@@ -8,10 +8,10 @@ import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Contact;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.interfaces.AutoRepository;
-import ru.ncedu.interfaces.BrandRepository;
-import ru.ncedu.interfaces.ContactRepository;
-import ru.ncedu.interfaces.MotorRepository;
+import ru.ncedu.repositoryes.AutoRepository;
+import ru.ncedu.repositoryes.BrandRepository;
+import ru.ncedu.repositoryes.ContactRepository;
+import ru.ncedu.repositoryes.MotorRepository;
 import ru.ncedu.services.EditAutoAdsService;
 import java.util.Optional;
 

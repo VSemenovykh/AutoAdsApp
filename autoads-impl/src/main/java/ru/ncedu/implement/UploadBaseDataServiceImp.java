@@ -10,7 +10,7 @@ import ru.ncedu.entity.Auto;
 import ru.ncedu.entity.Brand;
 import ru.ncedu.entity.Motor;
 import ru.ncedu.model.*;
-import ru.ncedu.interfaces.*;
+import ru.ncedu.repositoryes.*;
 import ru.ncedu.services.UploadBaseDataService;
 import java.io.*;
 import java.util.ArrayList;
