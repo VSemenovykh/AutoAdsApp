@@ -20,7 +20,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ListAutoAdsAdsServiceImp implements ListAutoAdsService {
+public class ListAutoAdsServiceImp implements ListAutoAdsService {
 
     private final AutoRepository autorepository;
 

@@ -1,6 +1,6 @@
 package ru.ncedu.services;
 
-public interface DeleteCompareAutoService {
+public interface DeleteCompareAutoAdsService {
 
     void deleteCompareAuto(Long idAuto, Long idUser);
 }

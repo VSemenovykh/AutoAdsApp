@@ -5,13 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ncedu.repositoryes.CompareAutoRepository;
-import ru.ncedu.services.DeleteCompareAutoService;
+import ru.ncedu.services.DeleteCompareAutoAdsService;
 
 @Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DeleteCompareAutoServiceImp implements DeleteCompareAutoService {
+public class DeleteCompareAutoAdsServiceImp implements DeleteCompareAutoAdsService {
 
     private final CompareAutoRepository compareAutoRepository;
 

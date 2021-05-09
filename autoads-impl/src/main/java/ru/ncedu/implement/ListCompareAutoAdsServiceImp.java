@@ -20,7 +20,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ListCompareAutoAdsAdsServiceImp implements ListCompareAutoAdsService {
+public class ListCompareAutoAdsServiceImp implements ListCompareAutoAdsService {
 
     private final CompareAutoRepository compareAutoRepository;
 
@@ -41,8 +41,6 @@ public class ListCompareAutoAdsAdsServiceImp implements ListCompareAutoAdsServic
             Page<CompareAuto> pageTuts = compareAutoRepository.findAllByIdUser(paging, idUser);
 
             List<CompareAuto> compareAutoList = pageTuts.getContent();
-
-
             if (compareAutoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -72,10 +70,8 @@ public class ListCompareAutoAdsAdsServiceImp implements ListCompareAutoAdsServic
                 brandName = brand.getNameBrand();
                 modelName = brand.getNameModel();
                 year = brand.getYear();
-
                 motorType = motor.getMotorType();
                 volume = motor.getVolume();
-
                 email = contact.getEmail();
                 phone = contact.getPhone();
 

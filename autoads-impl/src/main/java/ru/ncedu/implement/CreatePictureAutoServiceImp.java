@@ -22,9 +22,13 @@ public class CreatePictureAutoServiceImp implements CreatePictureAutoService {
         byte[] fileBytes = file.getBytes();
         String fileName = file.getOriginalFilename();
 
-        newPictureAuto.setNameImage(fileName.toLowerCase().replaceAll("([.jpg]|[.png])", ""));
-        newPictureAuto.setRaster((fileBytes));
-
-        return pictureAutoRepository.save(newPictureAuto).getId();
+        assert fileName != null;
+        if(fileName.toLowerCase().contains(".jpg") || fileName.toLowerCase().contains(".png")){
+            newPictureAuto.setNameImage(fileName.toLowerCase().replaceAll("([.jpg]|[.png])", ""));
+            newPictureAuto.setRaster((fileBytes));
+            return pictureAutoRepository.save(newPictureAuto).getId();
+        }else{
+            return null;
+        }
     }
 }

@@ -3,6 +3,9 @@ package ru.ncedu.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Data
@@ -18,14 +21,18 @@ public class DataSearchAuto {
 
     private List<String> nameModel;
 
+    @Pattern(regexp = "[0-9]{4}", message = "No more than 4 digits")
     private String startYear;
 
+    @Pattern(regexp = "[0-9]{4}", message = "No more than 4 digits")
     private String endYear;
 
     private List<String> color;
 
+    @Min(1)
     private Double startPrice;
 
+    @Max(100000000)
     private Double endPrice;
 
     private List<String> motorType;

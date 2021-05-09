@@ -1,6 +1,6 @@
 package ru.ncedu.services;
 
-public interface DeleteAutoService {
+public interface DeleteAutoAdsService {
 
     void deleteAuto(Long id);
 }
