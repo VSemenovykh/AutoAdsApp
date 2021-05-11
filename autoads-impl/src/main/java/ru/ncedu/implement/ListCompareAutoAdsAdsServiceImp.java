@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.*;
 import ru.ncedu.model.DataCompareAuto;
-import ru.ncedu.repositoryes.CompareAutoRepository;
+import ru.ncedu.repositories.CompareAutoRepository;
 import ru.ncedu.services.*;
 import java.util.ArrayList;
 import java.util.HashMap;

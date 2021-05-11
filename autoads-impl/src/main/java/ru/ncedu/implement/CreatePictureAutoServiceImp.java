@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.ncedu.entity.PictureAuto;
-import ru.ncedu.repositoryes.PictureAutoRepository;
+import ru.ncedu.repositories.PictureAutoRepository;
 import ru.ncedu.services.CreatePictureAutoService;
 import java.io.IOException;
 
@@ -22,9 +22,13 @@ public class CreatePictureAutoServiceImp implements CreatePictureAutoService {
         byte[] fileBytes = file.getBytes();
         String fileName = file.getOriginalFilename();
 
-        newPictureAuto.setNameImage(fileName.toLowerCase().replaceAll("([.jpg]|[.png])", ""));
-        newPictureAuto.setRaster((fileBytes));
-
-        return pictureAutoRepository.save(newPictureAuto).getId();
+        assert fileName != null;
+        if(fileName.toLowerCase().contains(".jpg") || fileName.toLowerCase().contains(".png")){
+            newPictureAuto.setNameImage(fileName.toLowerCase().replaceAll("([.jpg]|[.png])", ""));
+            newPictureAuto.setRaster((fileBytes));
+            return pictureAutoRepository.save(newPictureAuto).getId();
+        }else{
+            return null;
+        }
     }
 }

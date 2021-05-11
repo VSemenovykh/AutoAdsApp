@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.repositoryes.AutoRepository;
+import ru.ncedu.repositories.AutoRepository;
 import ru.ncedu.services.*;
 
 @Slf4j

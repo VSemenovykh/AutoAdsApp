@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.repositoryes.AutoRepository;
+import ru.ncedu.repositories.AutoRepository;
 import ru.ncedu.services.*;
 import java.util.ArrayList;
 import java.util.HashMap;

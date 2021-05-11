@@ -4,15 +4,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.ncedu.repositoryes.AutoRepository;
-import ru.ncedu.repositoryes.CompareAutoRepository;
-import ru.ncedu.services.DeleteAutoService;
+import ru.ncedu.repositories.AutoRepository;
+import ru.ncedu.repositories.CompareAutoRepository;
+import ru.ncedu.services.DeleteAutoAdsService;
 
 @Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DeleteAutoServiceImp implements DeleteAutoService {
+public class DeleteAutoAdsServiceImp implements DeleteAutoAdsService {
 
     private final AutoRepository autorepository;
 

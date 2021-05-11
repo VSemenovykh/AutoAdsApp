@@ -1,4 +1,4 @@
-package ru.ncedu.repositoryes;
+package ru.ncedu.repositories;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

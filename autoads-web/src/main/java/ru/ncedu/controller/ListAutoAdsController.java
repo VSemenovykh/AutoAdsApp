@@ -13,7 +13,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/all")
-public class ListAutoController {
+public class ListAutoAdsController {
 
     private final ListAutoAdsService listAutoAdsService;
 

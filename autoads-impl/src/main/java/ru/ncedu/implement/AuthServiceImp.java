@@ -15,8 +15,8 @@ import ru.ncedu.model.ERole;
 import ru.ncedu.auth.request.LoginRequest;
 import ru.ncedu.auth.request.SignupRequest;
 import ru.ncedu.auth.response.MessageResponse;
-import ru.ncedu.repositoryes.RoleRepository;
-import ru.ncedu.repositoryes.UserRepository;
+import ru.ncedu.repositories.RoleRepository;
+import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.AuthService;
 import ru.ncedu.services.UserDetailsImpl;
 
