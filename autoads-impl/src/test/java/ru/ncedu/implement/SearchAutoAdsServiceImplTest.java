@@ -46,6 +46,7 @@ public class SearchAutoAdsServiceImplTest {
                 null, null, null, null, null,
                 null, null, null, null, null,
                 null, null, 0, 5);
+
         assertEquals(HttpStatus.OK, searchResponse.getStatusCode());
         assertEquals(3, ((List<DataAuto>) searchResponse.getBody().get("listAutoAds")).size());
     }
@@ -64,6 +65,7 @@ public class SearchAutoAdsServiceImplTest {
                 null, null, null, color, null,
                 null, null, null, null, null,
                 null, null, 0, 5);
+
         assertEquals(HttpStatus.NO_CONTENT, searchResponse.getStatusCode());
     }
 
@@ -89,6 +91,7 @@ public class SearchAutoAdsServiceImplTest {
                 nameModel, startYear, null, color,startPrice,
                 null, motorType,startVolume , null, driveType,
                 transmissionType,bodyStyle, 0, 5);
+
         assertEquals(HttpStatus.OK, searchResponse.getStatusCode());
         assertEquals(1, ((List<DataAuto>) searchResponse.getBody().get("listAutoAds")).size());
     }
@@ -108,6 +111,7 @@ public class SearchAutoAdsServiceImplTest {
                 null, null, null, color,null,
                 null, null,null , null, null,
                 null,null, 0, 5);
+
         assertEquals(HttpStatus.OK, searchResponse.getStatusCode());
         assertEquals(2, ((List<DataAuto>) searchResponse.getBody().get("listAutoAds")).size());
     }
@@ -127,6 +131,7 @@ public class SearchAutoAdsServiceImplTest {
                 null, null, null, null,null,
                 null, null,startVolume , endVolume, null,
                 null,bodyStyle, 0, 5);
+
         assertEquals(HttpStatus.OK, searchResponse.getStatusCode());
         assertEquals(1, ((List<DataAuto>) searchResponse.getBody().get("listAutoAds")).size());
     }

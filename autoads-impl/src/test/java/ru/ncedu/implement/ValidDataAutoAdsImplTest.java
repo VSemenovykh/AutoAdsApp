@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import ru.ncedu.model.DataAuto;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @DataJpaTest
@@ -29,8 +30,7 @@ class ValidDataAutoAdsImplTest {
         dataAuto.setEmail("audi@gmail.com");
         dataAuto.setPhone("+7(111)-111-11-11");
 
-        boolean result = validDataAutoAdsImpl.checkDataAutoAds(dataAuto);
-        assertEquals(true, result);
+        assertTrue(validDataAutoAdsImpl.checkDataAutoAds(dataAuto));
     }
 
     @Test
@@ -48,8 +48,7 @@ class ValidDataAutoAdsImplTest {
         dataAuto.setEmail("audi@gmail.com");
         dataAuto.setPhone("+7(111)+111-11-11");
 
-        boolean result = validDataAutoAdsImpl.checkDataAutoAds(dataAuto);
-        assertEquals(false, result);
+        assertFalse(validDataAutoAdsImpl.checkDataAutoAds(dataAuto));
     }
 
 }

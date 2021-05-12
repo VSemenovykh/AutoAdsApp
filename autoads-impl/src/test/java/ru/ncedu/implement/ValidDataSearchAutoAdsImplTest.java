@@ -21,8 +21,7 @@ class ValidDataSearchAutoAdsImplTest {
         dataSearchAuto.setNameBrand(Collections.singletonList("AUDI"));
         dataSearchAuto.setBodyStyleType(Collections.singletonList("SEDAN"));
 
-        boolean result = validDataSearchAutoAds.checkDataSearchAutoAds(dataSearchAuto);
-        assertEquals(true, result);
+        assertTrue(validDataSearchAutoAds.checkDataSearchAutoAds(dataSearchAuto));
     }
 
     @Test
@@ -32,8 +31,7 @@ class ValidDataSearchAutoAdsImplTest {
         dataSearchAuto.setBodyStyleType(Collections.singletonList("SEDAN"));
         dataSearchAuto.setColor(Collections.singletonList("AUDI"));
 
-        boolean result = validDataSearchAutoAds.checkDataSearchAutoAds(dataSearchAuto);
-        assertEquals(false, result);
+        assertFalse(validDataSearchAutoAds.checkDataSearchAutoAds(dataSearchAuto));
     }
 
 }
