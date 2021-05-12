@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.PictureAuto;
+import ru.ncedu.repositories.PictureAutoRepository;
 import ru.ncedu.services.PictureAutoService;
+import javax.validation.ValidationException;
 
 @Slf4j
 @RestController
@@ -17,6 +19,7 @@ import ru.ncedu.services.PictureAutoService;
 public class PictureAutoController {
 
     private final PictureAutoService pictureAutoService;
+    private final PictureAutoRepository pictureAutoRepository;
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/pictureAuto/{name}")
@@ -30,7 +33,15 @@ public class PictureAutoController {
     @GetMapping(path = "/pictureAuto/idAuto/{id}")
     @ResponseBody
     public ResponseEntity<PictureAuto> getImageById(@PathVariable("id") Long id) {
-        PictureAuto pictureAuto = pictureAutoService.findPictureAutoById(id);
-        return (pictureAuto != null) ? new ResponseEntity<PictureAuto>(pictureAuto, HttpStatus.OK) : new ResponseEntity<PictureAuto>(HttpStatus.NOT_FOUND);
+        if (checkId(id)) {
+            PictureAuto pictureAuto = pictureAutoService.findPictureAutoById(id);
+            return (pictureAuto != null) ? new ResponseEntity<PictureAuto>(pictureAuto, HttpStatus.OK) : new ResponseEntity<PictureAuto>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public boolean checkId(Long id) {
+        return pictureAutoRepository.existsById(id);
     }
 }
