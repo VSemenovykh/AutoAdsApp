@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.ncedu.service.CreatePictureAutoService;
+import ru.ncedu.services.CreatePictureAutoService;
 import java.io.IOException;
 
 @Slf4j
@@ -19,6 +19,7 @@ public class CreatePictureAutoController {
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PostMapping(path = "/pictureAuto")
+    @ResponseBody
     public Long pictureAuto(@RequestParam(name = "imageFile") MultipartFile file) {
         if (file != null) {
             try {

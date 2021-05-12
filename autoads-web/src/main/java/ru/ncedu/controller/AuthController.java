@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.ncedu.payload.request.LoginRequest;
-import ru.ncedu.payload.request.SignupRequest;
-import ru.ncedu.payload.response.JwtResponse;
-import ru.ncedu.service.AuthService;
+import ru.ncedu.auth.request.LoginRequest;
+import ru.ncedu.auth.request.SignupRequest;
+import ru.ncedu.auth.response.JwtResponse;
+import ru.ncedu.services.AuthService;
 import ru.ncedu.services.UserDetailsImpl;
 
 @Slf4j
