@@ -30,9 +30,10 @@ public class CreateListCompareAutoAdsController {
     @ResponseBody
     public ResponseEntity<CompareAuto> addAutoToCompare(@Valid @RequestBody DataAuto dataAuto,
                                                         @RequestParam("idUser") Long idUser) {
+
         if (validDataAutoAds.checkDataAutoAds(dataAuto) && checkId(idUser)) {
             CompareAuto compareAuto = createListCompareAutoAdsService.addAutoAdsToListCompare(dataAuto, idUser);
-
+            log.info("idUser: " + idUser);
             return new ResponseEntity<CompareAuto>(HttpStatus.CREATED);
         } else {
            return new ResponseEntity<CompareAuto>(HttpStatus.BAD_REQUEST);
