@@ -10,7 +10,6 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>groupId</groupId>
     <artifactId>autoads</artifactId>
 
     <dependencies>

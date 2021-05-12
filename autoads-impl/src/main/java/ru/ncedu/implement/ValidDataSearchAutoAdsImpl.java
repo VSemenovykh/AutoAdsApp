@@ -11,13 +11,13 @@ import java.util.List;
 public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Value("${autoads.years}")
-    List<String> yearList;
+    private List<String> yearList;
     @Value("${autoads.model.names}")
-    List<String> nameModelList;
+    private List<String> nameModelList;
     @Value("${autoads.brand.names}")
-    List<String> nameBrandList;
+    private List<String> nameBrandList;
     @Value("${autoads.volumes}")
-    List<Double> volumeList;
+    private List<Double> volumeList;
 
     @Override
     public boolean checkDataSearchAutoAds(DataSearchAuto dataSearchAuto) {

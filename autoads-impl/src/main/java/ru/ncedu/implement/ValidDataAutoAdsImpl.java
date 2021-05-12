@@ -12,13 +12,16 @@ import java.util.regex.Pattern;
 public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     @Value("${autoads.years}")
-    List<String> yearList;
+    private List<String> yearList;
     @Value("${autoads.model.names}")
-    List<String> nameModelList;
+    private List<String> nameModelList;
     @Value("${autoads.brand.names}")
-    List<String> nameBrandList;
+    private List<String> nameBrandList;
     @Value("${autoads.volumes}")
-    List<Double> volumeList;
+    private List<Double> volumeList;
+
+    private final String EMAIL_PATTERN = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+    private final String PHONE_PATTERN = "^(\\+7)\\([0-9]{3}\\)+\\-[0-9]{3}\\-[0-9]{2}-[0-9]{2}$";
 
     @Override
     public boolean checkDataAutoAds(DataAuto dataAuto) {
@@ -134,8 +137,6 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     @Override
     public boolean EmailValidator(String email) {
-        final String EMAIL_PATTERN = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-
         Pattern pattern;
         Matcher matcher;
 
@@ -147,7 +148,6 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     @Override
     public boolean PhoneValidator(String phone) {
-        final String PHONE_PATTERN = "^(\\+7)\\([0-9]{3}\\)+\\-[0-9]{3}\\-[0-9]{2}-[0-9]{2}$";
 
         Pattern pattern;
         Matcher matcher;

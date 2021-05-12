@@ -34,12 +34,12 @@ public class SearchAutoAdsServiceImplTest {
     }
 
     @Test
-    @Sql(scripts={"classpath:create_schema.sql",
-            "classpath:brand.sql",
-            "classpath:motor.sql",
-            "classpath:contact.sql",
-            "classpath:image_auto.sql",
-            "classpath:auto.sql"})
+    @Sql(scripts={"classpath:sql/create_schema.sql",
+            "classpath:sql/brand.sql",
+            "classpath:sql/motor.sql",
+            "classpath:sql/contact.sql",
+            "classpath:sql/image_auto.sql",
+            "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd3AutoFoundByAudiSearch(){
         List<String> nameBrand = Collections.singletonList("AUDI");
         ResponseEntity<Map<String, Object>> searchResponse = searchAutoAdsAdsServiceImpl.searchAutoAds(nameBrand,
@@ -52,12 +52,12 @@ public class SearchAutoAdsServiceImplTest {
     }
 
     @Test
-    @Sql(scripts={"classpath:create_schema.sql",
-            "classpath:brand.sql",
-            "classpath:motor.sql",
-            "classpath:contact.sql",
-            "classpath:image_auto.sql",
-            "classpath:auto.sql"})
+    @Sql(scripts={"classpath:sql/create_schema.sql",
+            "classpath:sql/brand.sql",
+            "classpath:sql/motor.sql",
+            "classpath:sql/contact.sql",
+            "classpath:sql/image_auto.sql",
+            "classpath:sql/auto.sql"})
     public void testResponseHasNoResponseStatusByBlackAudiSearch(){
         List<String> nameBrand = Collections.singletonList("AUDI");
         List<String> color = Collections.singletonList("BLACK");
@@ -70,12 +70,12 @@ public class SearchAutoAdsServiceImplTest {
     }
 
     @Test
-    @Sql(scripts={"classpath:create_schema.sql",
-            "classpath:brand.sql",
-            "classpath:motor.sql",
-            "classpath:contact.sql",
-            "classpath:image_auto.sql",
-            "classpath:auto.sql"})
+    @Sql(scripts={"classpath:sql/create_schema.sql",
+            "classpath:sql/brand.sql",
+            "classpath:sql/motor.sql",
+            "classpath:sql/contact.sql",
+            "classpath:sql/image_auto.sql",
+            "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd1AutoFoundByAllPairSearch(){
         List<String> nameBrand = Collections.singletonList("FORD");
         List<String> nameModel = Collections.singletonList("FOCUS");
@@ -97,12 +97,12 @@ public class SearchAutoAdsServiceImplTest {
     }
 
     @Test
-    @Sql(scripts={"classpath:create_schema.sql",
-            "classpath:brand.sql",
-            "classpath:motor.sql",
-            "classpath:contact.sql",
-            "classpath:image_auto.sql",
-            "classpath:auto.sql"})
+    @Sql(scripts={"classpath:sql/create_schema.sql",
+            "classpath:sql/brand.sql",
+            "classpath:sql/motor.sql",
+            "classpath:sql/contact.sql",
+            "classpath:sql/image_auto.sql",
+            "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd2AutoFoundByColorSearch(){
         List<String> color = new ArrayList<>();
         color.add("RED");
@@ -117,12 +117,12 @@ public class SearchAutoAdsServiceImplTest {
     }
 
     @Test
-    @Sql(scripts={"classpath:create_schema.sql",
-            "classpath:brand.sql",
-            "classpath:motor.sql",
-            "classpath:contact.sql",
-            "classpath:image_auto.sql",
-            "classpath:auto.sql"})
+    @Sql(scripts={"classpath:sql/create_schema.sql",
+            "classpath:sql/brand.sql",
+            "classpath:sql/motor.sql",
+            "classpath:sql/contact.sql",
+            "classpath:sql/image_auto.sql",
+            "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd2AutoFoundByVolumeAndBodyStyleSearch(){
         List<String> bodyStyle =  Collections.singletonList("SEDAN");
         double startVolume = 2.0;
