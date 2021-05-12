@@ -10,7 +10,7 @@ import ru.ncedu.services.MotorService;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MotorServiceImp implements MotorService {
+public class MotorServiceImpl implements MotorService {
 
     private final MotorRepository motorRepository;
 

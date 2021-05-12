@@ -2,6 +2,7 @@ package ru.ncedu.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,6 @@ import java.util.Map;
 public class ListCompareAutoAdsController {
 
     private final ListCompareAutoAdsService listCompareAutoAdsService;
-
     private final UserRepository userRepository;
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
@@ -30,7 +30,7 @@ public class ListCompareAutoAdsController {
         if (checkId(idUser)) {
             return listCompareAutoAdsService.findAllAutoAdsForCompare(page, size, idUser);
         } else {
-            throw new ValidationException();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 

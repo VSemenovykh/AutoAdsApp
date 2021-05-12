@@ -20,18 +20,13 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ListCompareAutoAdsAdsServiceImp implements ListCompareAutoAdsService {
+public class ListCompareAutoAdsAdsServiceImpl implements ListCompareAutoAdsService {
 
     private final CompareAutoRepository compareAutoRepository;
-
     private final AutoAdsService autoAdsService;
-
     private final BrandService brandService;
-
     private final MotorService motorService;
-
     private final ContactService contactService;
-
     private final PictureAutoService imageAutoService;
 
     @Override

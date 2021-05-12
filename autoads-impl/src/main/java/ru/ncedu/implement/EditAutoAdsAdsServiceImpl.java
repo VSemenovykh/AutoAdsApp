@@ -19,14 +19,11 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class EditAutoAdsAdsServiceImp implements EditAutoAdsService {
+public class EditAutoAdsAdsServiceImpl implements EditAutoAdsService {
 
     private final AutoRepository autorepository;
-
     private final BrandRepository brandRepository;
-
     private final MotorRepository motorRepository;
-
     private final ContactRepository contactRepository;
 
     @Override

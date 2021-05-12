@@ -21,26 +21,17 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UploadBaseDataServiceImp implements UploadBaseDataService {
+public class UploadBaseDataServiceImpl implements UploadBaseDataService {
 
     private final JdbcTemplate jdbcTemplate;
-
     private final AutoRepository autorepository;
-
     private final BrandRepository brandRepository;
-
     private final MotorRepository motorRepository;
-
     private final PictureAutoRepository pictureAutoRepository;
-
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
-
     private final UserRoleRepository userRoleRepository;
-
     private final ContactRepository contactRepository;
-
     private final PasswordEncoder encoder;
 
     public Map<String, List> createTables() {

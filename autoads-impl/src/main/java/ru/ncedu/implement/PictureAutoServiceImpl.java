@@ -10,7 +10,7 @@ import ru.ncedu.services.PictureAutoService;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PictureAutoServiceImp implements PictureAutoService {
+public class PictureAutoServiceImpl implements PictureAutoService {
 
     private final PictureAutoRepository pictureAutoRepository;
 

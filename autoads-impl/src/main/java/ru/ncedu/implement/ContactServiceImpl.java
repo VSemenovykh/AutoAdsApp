@@ -10,7 +10,7 @@ import ru.ncedu.services.ContactService;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ContactServiceImp implements ContactService {
+public class ContactServiceImpl implements ContactService {
 
     final private ContactRepository contactRepository;
 

@@ -21,7 +21,6 @@ import java.util.*;
 public class SearchAutoAdsController {
 
     private final SearchAutoAdsService searchAutoAdsService;
-
     private final ValidDataSearchAutoAds validDataSearchAutoAds;
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")

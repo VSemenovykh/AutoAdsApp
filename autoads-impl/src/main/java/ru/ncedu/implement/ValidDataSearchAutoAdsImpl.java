@@ -1,14 +1,23 @@
 package ru.ncedu.implement;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.ncedu.model.*;
 import ru.ncedu.services.ValidDataSearchAutoAds;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 @Service
 public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
+
+    @Value("${autoads.years}")
+    List<String> yearList;
+    @Value("${autoads.model.names}")
+    List<String> nameModelList;
+    @Value("${autoads.brand.names}")
+    List<String> nameBrandList;
+    @Value("${autoads.volumes}")
+    List<Double> volumeList;
 
     @Override
     public boolean checkDataSearchAutoAds(DataSearchAuto dataSearchAuto) {
@@ -25,8 +34,7 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByNameBrand(DataSearchAuto dataSearchAuto) {
-        List<String> nameBrandList = new ArrayList<>(Arrays.asList("AUDI", "FORD", "HONDA", "HYUNDAI", "BMW", "MERCEDES-BENZ", "KIA"));
-        if ((dataSearchAuto.getNameBrand() != null) && (!dataSearchAuto.getNameBrand().isEmpty())) {
+         if ((dataSearchAuto.getNameBrand() != null) && (!dataSearchAuto.getNameBrand().isEmpty())) {
             for (String brand : dataSearchAuto.getNameBrand()) {
                 for (String brandList : nameBrandList) {
                     if (brand.equals(brandList)) {
@@ -43,9 +51,7 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByNameModel(DataSearchAuto dataSearchAuto) {
-        List<String> nameModelList = new ArrayList<>(Arrays.asList("A3", "A4", "A8", "FIESTA", "FOCUS", "MONDEO", "ACCORD", "CROSSTOUR", "HONDA", "SOLARIS", "ELANTRA", "SONATA", "M8",
-                "M5", "M6", "GLE AMG", "AMG GT", "MAYBACH GLS", "CERATO", "KIA", "KIA"));
-        if ((dataSearchAuto.getNameModel() != null) && (!dataSearchAuto.getNameModel().isEmpty())) {
+          if ((dataSearchAuto.getNameModel() != null) && (!dataSearchAuto.getNameModel().isEmpty())) {
             for (String model : dataSearchAuto.getNameModel()) {
                 for (String modelList : nameModelList) {
                     if (model.equals(modelList)) {
@@ -61,8 +67,6 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByStartYear(DataSearchAuto dataSearchAuto) {
-        List<String> yearList = new ArrayList<>(Arrays.asList("2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010",
-                "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"));
         if (dataSearchAuto.getStartYear() != null) {
             for (String year : yearList) {
                 if ((dataSearchAuto.getStartYear().equals(year))) {
@@ -77,9 +81,7 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByEndYear(DataSearchAuto dataSearchAuto) {
-        List<String> yearList = new ArrayList<>(Arrays.asList("2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010",
-                "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"));
-        if (dataSearchAuto.getEndYear() != null) {
+         if (dataSearchAuto.getEndYear() != null) {
             for (String year : yearList) {
                 if ((dataSearchAuto.getEndYear().equals(year))) {
                     return true;
@@ -125,8 +127,7 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByStartVolume(DataSearchAuto dataSearchAuto) {
-        List<Double> volumeList = new ArrayList<>(Arrays.asList(0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6, 2.7, 2.8, 3.0, 3.2, 4.0, 5.0, 5.5));
-        if (dataSearchAuto.getStartVolume() != null) {
+          if (dataSearchAuto.getStartVolume() != null) {
             for (Double volume : volumeList) {
                 if ((dataSearchAuto.getStartVolume().equals(volume))) {
                     return true;
@@ -140,7 +141,6 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByEndVolume(DataSearchAuto dataSearchAuto) {
-        List<Double> volumeList = new ArrayList<>(Arrays.asList(0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6, 2.7, 2.8, 3.0, 3.2, 4.0, 5.0, 5.5));
         if (dataSearchAuto.getEndVolume() != null) {
             for (Double volume : volumeList) {
                 if ((dataSearchAuto.getEndVolume().equals(volume))) {

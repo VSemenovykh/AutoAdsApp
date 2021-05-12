@@ -11,7 +11,7 @@ import ru.ncedu.services.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CreateListCompareAutoAdsAdsServiceImp implements CreateListCompareAutoAdsService {
+public class CreateListCompareAutoAdsAdsServiceImpl implements CreateListCompareAutoAdsService {
 
     private final CompareAutoRepository compareAutoRepository;
 

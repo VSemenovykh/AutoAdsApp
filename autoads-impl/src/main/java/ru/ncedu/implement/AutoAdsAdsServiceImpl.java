@@ -11,7 +11,7 @@ import ru.ncedu.services.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AutoAdsAdsServiceImp implements AutoAdsService {
+public class AutoAdsAdsServiceImpl implements AutoAdsService {
 
     private final AutoRepository autorepository;
 

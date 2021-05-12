@@ -10,7 +10,7 @@ import ru.ncedu.services.BrandService;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class BrandServiceImp implements BrandService {
+public class BrandServiceImpl implements BrandService {
 
     private final BrandRepository brandRepository;
 

@@ -19,13 +19,13 @@ import lombok.RequiredArgsConstructor;
 public class AutoController {
 
     private final AutoAdsService autoAdsService;
-
     private final AutoRepository autoRepository;
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/{id}")
     @ResponseBody
     public ResponseEntity<Auto> getAutoById(@PathVariable("id") Long autoId) {
+        log.info("autoId: " + autoId);
         if (checkId(autoId)) {
             Auto auto = autoAdsService.findAutoById(autoId);
             return (auto != null) ? new ResponseEntity<Auto>(auto, HttpStatus.OK) : new ResponseEntity<Auto>(HttpStatus.NOT_FOUND);

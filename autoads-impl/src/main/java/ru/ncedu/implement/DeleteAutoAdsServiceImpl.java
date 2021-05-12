@@ -12,10 +12,9 @@ import ru.ncedu.services.DeleteAutoAdsService;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DeleteAutoAdsServiceImp implements DeleteAutoAdsService {
+public class DeleteAutoAdsServiceImpl implements DeleteAutoAdsService {
 
     private final AutoRepository autorepository;
-
     private final CompareAutoRepository compareAutoRepository;
 
     public void deleteAuto(Long id) {

@@ -22,9 +22,7 @@ import javax.validation.ValidationException;
 public class CreateListCompareAutoAdsController {
 
     private final CreateListCompareAutoAdsService createListCompareAutoAdsService;
-
     private final UserRepository userRepository;
-
     private final ValidDataAutoAds validDataAutoAds;
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
@@ -37,7 +35,7 @@ public class CreateListCompareAutoAdsController {
 
             return new ResponseEntity<CompareAuto>(HttpStatus.CREATED);
         } else {
-            throw new ValidationException();
+           return new ResponseEntity<CompareAuto>(HttpStatus.BAD_REQUEST);
         }
     }
 

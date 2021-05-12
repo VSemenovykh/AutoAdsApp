@@ -10,7 +10,7 @@ import ru.ncedu.services.CompareAutoAdsService;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CompareAutoAdsAdsServiceImp implements CompareAutoAdsService {
+public class CompareAutoAdsAdsServiceImpl implements CompareAutoAdsService {
 
     private final CompareAutoRepository compareAutoRepository;
 

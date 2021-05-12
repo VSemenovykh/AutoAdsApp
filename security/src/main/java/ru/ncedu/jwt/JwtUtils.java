@@ -14,7 +14,6 @@ public class JwtUtils {
 
     @Value("${autoadsapp.app.jwtSecret}")
     private String jwtSecret;
-
     @Value("${autoadsapp.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 

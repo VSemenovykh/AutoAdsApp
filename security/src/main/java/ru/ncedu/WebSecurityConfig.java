@@ -24,7 +24,6 @@ import ru.ncedu.services.UserDetailsServiceImpl;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
-
     private final AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
@@ -56,8 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/all/**").permitAll()
-                .antMatchers("/api/admin/**").permitAll()
-                .antMatchers("/api/user/**").permitAll()
+                .antMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/api/user/**").hasAuthority("ROLE_USER")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

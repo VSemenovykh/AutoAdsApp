@@ -17,7 +17,6 @@ import javax.validation.ValidationException;
 public class DeleteAutoAdsController {
 
     private final DeleteAutoAdsService deleteAutoAdsService;
-
     private final AutoRepository autoRepository;
 
     @PostAuthorize("hasRole('ROLE_ADMIN')")
@@ -28,7 +27,7 @@ public class DeleteAutoAdsController {
 
             return HttpStatus.OK;
         } else {
-            throw new ValidationException();
+            return HttpStatus.BAD_REQUEST;
         }
     }
 

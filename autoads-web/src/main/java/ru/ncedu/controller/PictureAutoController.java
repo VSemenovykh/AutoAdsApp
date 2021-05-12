@@ -19,7 +19,6 @@ import javax.validation.ValidationException;
 public class PictureAutoController {
 
     private final PictureAutoService pictureAutoService;
-
     private final PictureAutoRepository pictureAutoRepository;
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
@@ -38,7 +37,7 @@ public class PictureAutoController {
             PictureAuto pictureAuto = pictureAutoService.findPictureAutoById(id);
             return (pictureAuto != null) ? new ResponseEntity<PictureAuto>(pictureAuto, HttpStatus.OK) : new ResponseEntity<PictureAuto>(HttpStatus.NOT_FOUND);
         } else {
-            throw new ValidationException();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 

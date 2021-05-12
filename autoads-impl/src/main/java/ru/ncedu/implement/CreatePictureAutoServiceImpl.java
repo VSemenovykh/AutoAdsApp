@@ -12,7 +12,7 @@ import java.io.IOException;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CreatePictureAutoServiceImp implements CreatePictureAutoService {
+public class CreatePictureAutoServiceImpl implements CreatePictureAutoService {
 
     final private PictureAutoRepository pictureAutoRepository;
 

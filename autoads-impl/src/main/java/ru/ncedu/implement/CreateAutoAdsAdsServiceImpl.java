@@ -20,14 +20,11 @@ import static org.springframework.util.StringUtils.isEmpty;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CreateAutoAdsAdsServiceImp implements CreateAutoAdsService {
+public class CreateAutoAdsAdsServiceImpl implements CreateAutoAdsService {
 
     private final AutoRepository autorepository;
-
     private final BrandRepository brandRepository;
-
     private final MotorRepository motorRepository;
-
     private final ContactRepository contactRepository;
 
     @Override

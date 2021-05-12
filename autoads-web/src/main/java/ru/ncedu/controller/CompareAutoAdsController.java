@@ -19,9 +19,7 @@ import ru.ncedu.services.CompareAutoAdsService;
 public class CompareAutoAdsController {
 
     private final CompareAutoAdsService compareAutoAdsService;
-
     private final AutoRepository autoRepository;
-
     private final UserRepository userRepository;
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")

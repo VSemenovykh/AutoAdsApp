@@ -17,7 +17,6 @@ import javax.validation.ValidationException;
 public class DeleteListCompareAutoAdsController {
 
     private final DeleteListCompareAutoAdsService deleteListCompareAutoAdsService;
-
     private final UserRepository userRepository;
 
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
@@ -28,7 +27,7 @@ public class DeleteListCompareAutoAdsController {
 
             return HttpStatus.OK;
         } else {
-            throw new ValidationException();
+            return HttpStatus.BAD_REQUEST;
         }
     }
 
