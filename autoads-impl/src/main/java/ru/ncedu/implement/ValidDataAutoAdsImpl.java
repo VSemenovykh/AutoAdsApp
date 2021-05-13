@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.ncedu.model.*;
 import ru.ncedu.services.ValidDataAutoAds;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,8 +14,20 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     @Value("${autoads.years}")
     private List<String> yearList;
-    @Value("${autoads.model.names}")
-    private List<String> nameModelList;
+    @Value("${autoads.audi.model.names}")
+    private List<String> audiModelList;
+    @Value("${autoads.ford.model.names}")
+    private List<String> fordModelList;
+    @Value("${autoads.honda.model.names}")
+    private List<String> hondaModelList;
+    @Value("${autoads.hyundai.model.names}")
+    private List<String> hyundaiModelList;
+    @Value("${autoads.mercedes.benz.model.names}")
+    private List<String> mercedesBenzModelList;
+    @Value("${autoads.bmw.model.names}")
+    private List<String> bmwModelList;
+    @Value("${autoads.kia.model.names}")
+    private List<String> kiaModelList;
     @Value("${autoads.brand.names}")
     private List<String> nameBrandList;
     @Value("${autoads.volumes}")
@@ -49,7 +62,43 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByNameModel(DataAuto dataAuto) {
-        for (String model : nameModelList) {
+        for (String model : audiModelList) {
+            if ((model.equals(dataAuto.getNameModel()))) {
+                return true;
+            }
+        }
+
+        for (String model : fordModelList) {
+            if ((model.equals(dataAuto.getNameModel()))) {
+                return true;
+            }
+        }
+
+        for (String model : hondaModelList) {
+            if ((model.equals(dataAuto.getNameModel()))) {
+                return true;
+            }
+        }
+
+        for (String model : hyundaiModelList) {
+            if ((model.equals(dataAuto.getNameModel()))) {
+                return true;
+            }
+        }
+
+        for (String model : mercedesBenzModelList) {
+            if ((model.equals(dataAuto.getNameModel()))) {
+                return true;
+            }
+        }
+
+        for (String model : bmwModelList) {
+            if ((model.equals(dataAuto.getNameModel()))) {
+                return true;
+            }
+        }
+
+        for (String model : kiaModelList) {
             if ((model.equals(dataAuto.getNameModel()))) {
                 return true;
             }
@@ -93,7 +142,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByVolume(DataAuto dataAuto) {
-         for (Double volume : volumeList) {
+        for (Double volume : volumeList) {
             if ((volume.equals(dataAuto.getVolume()))) {
                 return true;
             }

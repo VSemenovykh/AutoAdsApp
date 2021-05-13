@@ -8,7 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.ListCompareAutoAdsService;
-import javax.validation.ValidationException;
+
 import java.util.Map;
 
 @Slf4j

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.PictureAuto;
 import ru.ncedu.repositories.PictureAutoRepository;
 import ru.ncedu.services.PictureAutoService;
-import javax.validation.ValidationException;
 
 @Slf4j
 @RestController

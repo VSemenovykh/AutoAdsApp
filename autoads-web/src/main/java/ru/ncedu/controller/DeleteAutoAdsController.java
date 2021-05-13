@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 import ru.ncedu.repositories.AutoRepository;
 import ru.ncedu.services.DeleteAutoAdsService;
-import javax.validation.ValidationException;
 
 @Slf4j
 @RestController

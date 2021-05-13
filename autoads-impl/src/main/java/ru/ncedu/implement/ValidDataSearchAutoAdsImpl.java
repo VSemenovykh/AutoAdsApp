@@ -12,8 +12,20 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Value("${autoads.years}")
     private List<String> yearList;
-    @Value("${autoads.model.names}")
-    private List<String> nameModelList;
+    @Value("${autoads.audi.model.names}")
+    private List<String> audiModelList;
+    @Value("${autoads.ford.model.names}")
+    private List<String> fordModelList;
+    @Value("${autoads.honda.model.names}")
+    private List<String> hondaModelList;
+    @Value("${autoads.hyundai.model.names}")
+    private List<String> hyundaiModelList;
+    @Value("${autoads.mercedes.benz.model.names}")
+    private List<String> mercedesBenzModelList;
+    @Value("${autoads.bmw.model.names}")
+    private List<String> bmwModelList;
+    @Value("${autoads.kia.model.names}")
+    private List<String> kiaModelList;
     @Value("${autoads.brand.names}")
     private List<String> nameBrandList;
     @Value("${autoads.volumes}")
@@ -34,7 +46,7 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByNameBrand(DataSearchAuto dataSearchAuto) {
-         if ((dataSearchAuto.getNameBrand() != null) && (!dataSearchAuto.getNameBrand().isEmpty())) {
+        if ((dataSearchAuto.getNameBrand() != null) && (!dataSearchAuto.getNameBrand().isEmpty())) {
             for (String brand : dataSearchAuto.getNameBrand()) {
                 for (String brandList : nameBrandList) {
                     if (brand.equals(brandList)) {
@@ -51,13 +63,50 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByNameModel(DataSearchAuto dataSearchAuto) {
-          if ((dataSearchAuto.getNameModel() != null) && (!dataSearchAuto.getNameModel().isEmpty())) {
+        if ((dataSearchAuto.getNameModel() != null) && (!dataSearchAuto.getNameModel().isEmpty())) {
             for (String model : dataSearchAuto.getNameModel()) {
-                for (String modelList : nameModelList) {
+                for (String modelList : audiModelList) {
                     if (model.equals(modelList)) {
                         return true;
                     }
                 }
+
+                for (String modelList : fordModelList) {
+                    if (model.equals(modelList)) {
+                        return true;
+                    }
+                }
+
+                for (String modelList : hondaModelList) {
+                    if (model.equals(modelList)) {
+                        return true;
+                    }
+                }
+
+                for (String modelList : hyundaiModelList) {
+                    if (model.equals(modelList)) {
+                        return true;
+                    }
+                }
+
+                for (String modelList : mercedesBenzModelList) {
+                    if (model.equals(modelList)) {
+                        return true;
+                    }
+                }
+
+                for (String modelList : bmwModelList) {
+                    if (model.equals(modelList)) {
+                        return true;
+                    }
+                }
+
+                for (String modelList : kiaModelList) {
+                    if (model.equals(modelList)) {
+                        return true;
+                    }
+                }
+
             }
             return false;
         }
@@ -81,7 +130,7 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByEndYear(DataSearchAuto dataSearchAuto) {
-         if (dataSearchAuto.getEndYear() != null) {
+        if (dataSearchAuto.getEndYear() != null) {
             for (String year : yearList) {
                 if ((dataSearchAuto.getEndYear().equals(year))) {
                     return true;
@@ -127,7 +176,7 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Override
     public boolean checkDataSearchAutoAdsByStartVolume(DataSearchAuto dataSearchAuto) {
-          if (dataSearchAuto.getStartVolume() != null) {
+        if (dataSearchAuto.getStartVolume() != null) {
             for (Double volume : volumeList) {
                 if ((dataSearchAuto.getStartVolume().equals(volume))) {
                     return true;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.ncedu.repositories.PictureAutoRepository;
 import ru.ncedu.services.EditPictureService;
-import javax.validation.ValidationException;
+
 import java.io.IOException;
 
 @Slf4j
