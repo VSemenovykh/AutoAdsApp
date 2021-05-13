@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.ncedu.repositories.AutoRepository;
 import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.DeleteCompareAutoAdsService;
-import javax.validation.ValidationException;
 
 @Slf4j
 @RestController

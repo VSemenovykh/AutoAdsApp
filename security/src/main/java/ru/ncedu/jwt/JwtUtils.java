@@ -12,9 +12,9 @@ import io.jsonwebtoken.*;
 @Component
 public class JwtUtils {
 
-    @Value("${autoadsapp.app.jwtSecret}")
+    @Value("${autoads.app.jwtSecret}")
     private String jwtSecret;
-    @Value("${autoadsapp.app.jwtExpirationMs}")
+    @Value("${autoads.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {

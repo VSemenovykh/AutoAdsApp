@@ -7,12 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.entity.CompareAuto;
-import ru.ncedu.model.*;
+import ru.ncedu.model.DataAuto;
 import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.CreateListCompareAutoAdsService;
 import ru.ncedu.services.ValidDataAutoAds;
+
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 
 @Slf4j
 @RestController

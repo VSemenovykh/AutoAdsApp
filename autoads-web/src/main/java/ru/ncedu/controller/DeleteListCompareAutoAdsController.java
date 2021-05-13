@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.DeleteListCompareAutoAdsService;
-import javax.validation.ValidationException;
 
 @Slf4j
 @RestController
