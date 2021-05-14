@@ -1,8 +1,10 @@
 package ru.ncedu.implement;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.ncedu.model.*;
+import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.ValidDataAutoAds;
 
 import java.util.List;
@@ -10,7 +12,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+@RequiredArgsConstructor
 public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
+
+    private final UserRepository userRepository;
 
     @Value("${autoads.years}")
     private List<String> yearList;
@@ -38,9 +43,9 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     @Override
     public boolean checkDataAutoAds(DataAuto dataAuto) {
-        if (checkDataSearchAutoAdsByNameBrand(dataAuto) && checkDataSearchAutoAdsByNameModel(dataAuto) && checkDataSearchAutoAdsByYear(dataAuto) &&
-                checkDataSearchAutoAdsByColor(dataAuto) && checkDataSearchAutoAdsByMotorType(dataAuto) && checkDataSearchAutoAdsByVolume(dataAuto) &&
-                checkDataSearchAutoAdsByDrive(dataAuto) && checkDataSearchAutoAdsByTransmission(dataAuto) && checkDataSearchAutoAdsByBodyStyle(dataAuto) &&
+        if (checkDataAutoAdsByNameBrand(dataAuto) && checkDataAutoAdsByNameModel(dataAuto) && checkDataAutoAdsByYear(dataAuto) &&
+                checkDataAutoAdsByColor(dataAuto) && checkDataAutoAdsByMotorType(dataAuto) && checkDataAutoAdsByVolume(dataAuto) &&
+                checkDataAutoAdsByDrive(dataAuto) && checkDataAutoAdsByTransmission(dataAuto) && checkDataAutoAdsByBodyStyle(dataAuto) &&
                 EmailValidator(dataAuto.getEmail()) && PhoneValidator(dataAuto.getPhone())) {
 
             return true;
@@ -50,7 +55,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByNameBrand(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByNameBrand(DataAuto dataAuto) {
         for (String brand : nameBrandList) {
             if ((brand.equals(dataAuto.getNameBrand()))) {
                 return true;
@@ -61,7 +66,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByNameModel(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByNameModel(DataAuto dataAuto) {
         for (String model : audiModelList) {
             if ((model.equals(dataAuto.getNameModel()))) {
                 return true;
@@ -108,7 +113,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByYear(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByYear(DataAuto dataAuto) {
         for (String year : yearList) {
             if ((year.equals(dataAuto.getYear()))) {
                 return true;
@@ -119,7 +124,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByColor(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByColor(DataAuto dataAuto) {
         Color[] colors = Color.values();
         for (int i = 0; i < Color.values().length; i++) {
             if (!(colors[i].name().equals(dataAuto.getColor()))) {
@@ -130,7 +135,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByMotorType(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByMotorType(DataAuto dataAuto) {
         Fuel[] fuels = Fuel.values();
         for (int i = 0; i < Fuel.values().length; i++) {
             if (!(fuels[i].name().equals(dataAuto.getMotorType()))) {
@@ -141,7 +146,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByVolume(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByVolume(DataAuto dataAuto) {
         for (Double volume : volumeList) {
             if ((volume.equals(dataAuto.getVolume()))) {
                 return true;
@@ -152,7 +157,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByDrive(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByDrive(DataAuto dataAuto) {
         Drive[] drives = Drive.values();
         for (int i = 0; i < Drive.values().length; i++) {
             if (!(drives[i].name().equals(dataAuto.getDriveType()))) {
@@ -163,7 +168,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByTransmission(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByTransmission(DataAuto dataAuto) {
         Transmission[] transmissions = Transmission.values();
         for (int i = 0; i < Transmission.values().length; i++) {
             if (!(transmissions[i].name().equals(dataAuto.getTransmissionType()))) {
@@ -174,7 +179,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     }
 
     @Override
-    public boolean checkDataSearchAutoAdsByBodyStyle(DataAuto dataAuto) {
+    public boolean checkDataAutoAdsByBodyStyle(DataAuto dataAuto) {
         BodyStyle[] bodyStyles = BodyStyle.values();
         for (int i = 0; i < BodyStyle.values().length; i++) {
             if (!(bodyStyles[i].name().equals(dataAuto.getBodyStyleType()))) {
@@ -206,6 +211,5 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
         return matcher.matches();
     }
-
 }
 

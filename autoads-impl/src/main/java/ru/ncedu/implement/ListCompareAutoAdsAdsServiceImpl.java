@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import ru.ncedu.entity.*;
 import ru.ncedu.model.DataCompareAuto;
 import ru.ncedu.repositories.CompareAutoRepository;
+import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class ListCompareAutoAdsAdsServiceImpl implements ListCompareAutoAdsServi
     private final MotorService motorService;
     private final ContactService contactService;
     private final PictureAutoService imageAutoService;
+    private final UserRepository userRepository;
 
     @Override
     public ResponseEntity<Map<String, Object>> findAllAutoAdsForCompare(int page, int size, Long idUser) {
@@ -36,7 +38,6 @@ public class ListCompareAutoAdsAdsServiceImpl implements ListCompareAutoAdsServi
             Page<CompareAuto> pageTuts = compareAutoRepository.findAllByIdUser(paging, idUser);
 
             List<CompareAuto> compareAutoList = pageTuts.getContent();
-
 
             if (compareAutoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -57,6 +58,7 @@ public class ListCompareAutoAdsAdsServiceImpl implements ListCompareAutoAdsServi
                 Brand brand = brandService.findById(auto.getIdBrand());
                 Motor motor = motorService.findById(auto.getIdMotor());
                 Contact contact = contactService.findById(auto.getIdContact());
+                User user = userRepository.getOne(auto.getIdUser());
 
                 byte[] raster = null;
 
@@ -76,6 +78,7 @@ public class ListCompareAutoAdsAdsServiceImpl implements ListCompareAutoAdsServi
 
                 DataCompareAuto newDataCompareAuto = new DataCompareAuto(auto.getId(),
                                                                          raster,
+                                                                         user.getUsername(),
                                                                          brandName,
                                                                          modelName,
                                                                          year,
@@ -87,7 +90,8 @@ public class ListCompareAutoAdsAdsServiceImpl implements ListCompareAutoAdsServi
                                                                          auto.getTransmissionType(),
                                                                          auto.getBodyStyleType(),
                                                                          email,
-                                                                         phone);
+                                                                         phone,
+                                                                         auto.getAddingDate());
 
                 newListAutoJoin.add(newDataCompareAuto);
             }

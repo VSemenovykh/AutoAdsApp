@@ -7,23 +7,23 @@ public interface ValidDataAutoAds {
 
     boolean checkDataAutoAds(DataAuto dataAuto);
 
-    boolean checkDataSearchAutoAdsByNameBrand(DataAuto dataAuto);
+    boolean checkDataAutoAdsByNameBrand(DataAuto dataAuto);
 
-    boolean checkDataSearchAutoAdsByNameModel(DataAuto dataAuto);
+    boolean checkDataAutoAdsByNameModel(DataAuto dataAuto);
 
-    boolean checkDataSearchAutoAdsByYear(DataAuto dataAuto);
+    boolean checkDataAutoAdsByYear(DataAuto dataAuto);
 
-    boolean checkDataSearchAutoAdsByColor(DataAuto dataAutouto);
+    boolean checkDataAutoAdsByColor(DataAuto dataAutouto);
 
-    boolean checkDataSearchAutoAdsByMotorType(DataAuto dataAutoo);
+    boolean checkDataAutoAdsByMotorType(DataAuto dataAutoo);
 
-    boolean checkDataSearchAutoAdsByVolume(DataAuto dataAuto);
+    boolean checkDataAutoAdsByVolume(DataAuto dataAuto);
 
-    boolean checkDataSearchAutoAdsByDrive(DataAuto dataAuto);
+    boolean checkDataAutoAdsByDrive(DataAuto dataAuto);
 
-    boolean checkDataSearchAutoAdsByTransmission(DataAuto dataAutoo);
+    boolean checkDataAutoAdsByTransmission(DataAuto dataAutoo);
 
-    boolean checkDataSearchAutoAdsByBodyStyle(DataAuto dataAuto);
+    boolean checkDataAutoAdsByBodyStyle(DataAuto dataAuto);
 
     boolean EmailValidator(String email);
 

@@ -17,6 +17,9 @@ public class Auto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "id_user")
+    private Long idUser;
+
     @Column(name = "id_image")
     private Long idImage;
 
@@ -59,6 +62,9 @@ public class Auto implements Serializable {
     @Column(name = "body_style")
     private String bodyStyleType;
 
+    @Column(name = "adding_date")
+    private String addingDate;
+
     @ManyToOne()
     @JoinColumn(name = "id_brand", insertable = false, updatable = false)
     private Brand brand;
@@ -75,10 +81,15 @@ public class Auto implements Serializable {
     @JoinColumn(name = "id_contact", insertable = false, updatable = false)
     private Contact contact;
 
-    public Auto(Long id, Long idImage, Long idBrand, Long idContact, Long idMotor,
+    @ManyToOne()
+    @JoinColumn(name="id_user", insertable = false, updatable = false)
+    private User user;
+
+    public Auto(Long id, Long idUser, Long idImage, Long idBrand, Long idContact, Long idMotor,
                 String color, double price, String transmissionType, String driveType,
-                String bodyStyleType) {
+                String bodyStyleType, String addingDate) {
         this.id = id;
+        this.idUser = idUser;
         this.idImage = idImage;
         this.idBrand = idBrand;
         this.idContact = idContact;
@@ -88,5 +99,6 @@ public class Auto implements Serializable {
         this.driveType = driveType;
         this.transmissionType = transmissionType;
         this.bodyStyleType = bodyStyleType;
+        this.addingDate = addingDate;
     }
 }

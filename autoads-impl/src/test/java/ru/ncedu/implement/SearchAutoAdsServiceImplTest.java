@@ -39,6 +39,9 @@ public class SearchAutoAdsServiceImplTest {
             "classpath:sql/motor.sql",
             "classpath:sql/contact.sql",
             "classpath:sql/image_auto.sql",
+            "classpath:sql/users.sql",
+            "classpath:sql/roles.sql",
+            "classpath:sql/user_roles.sql",
             "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd3AutoFoundByAudiSearch(){
         List<String> nameBrand = Collections.singletonList("AUDI");
@@ -57,6 +60,9 @@ public class SearchAutoAdsServiceImplTest {
             "classpath:sql/motor.sql",
             "classpath:sql/contact.sql",
             "classpath:sql/image_auto.sql",
+            "classpath:sql/users.sql",
+            "classpath:sql/roles.sql",
+            "classpath:sql/user_roles.sql",
             "classpath:sql/auto.sql"})
     public void testResponseHasNoResponseStatusByBlackAudiSearch(){
         List<String> nameBrand = Collections.singletonList("AUDI");
@@ -74,6 +80,9 @@ public class SearchAutoAdsServiceImplTest {
             "classpath:sql/brand.sql",
             "classpath:sql/motor.sql",
             "classpath:sql/contact.sql",
+            "classpath:sql/image_auto.sql",
+            "classpath:sql/users.sql",
+            "classpath:sql/roles.sql",
             "classpath:sql/image_auto.sql",
             "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd1AutoFoundByAllPairSearch(){
@@ -102,6 +111,9 @@ public class SearchAutoAdsServiceImplTest {
             "classpath:sql/motor.sql",
             "classpath:sql/contact.sql",
             "classpath:sql/image_auto.sql",
+            "classpath:sql/users.sql",
+            "classpath:sql/roles.sql",
+            "classpath:sql/image_auto.sql",
             "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd2AutoFoundByColorSearch(){
         List<String> color = new ArrayList<>();
@@ -121,6 +133,9 @@ public class SearchAutoAdsServiceImplTest {
             "classpath:sql/brand.sql",
             "classpath:sql/motor.sql",
             "classpath:sql/contact.sql",
+            "classpath:sql/image_auto.sql",
+            "classpath:sql/users.sql",
+            "classpath:sql/roles.sql",
             "classpath:sql/image_auto.sql",
             "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd2AutoFoundByVolumeAndBodyStyleSearch(){

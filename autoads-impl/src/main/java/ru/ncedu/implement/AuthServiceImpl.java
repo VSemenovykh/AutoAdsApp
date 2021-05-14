@@ -18,6 +18,7 @@ import ru.ncedu.auth.response.MessageResponse;
 import ru.ncedu.repositories.RoleRepository;
 import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.AuthService;
+import ru.ncedu.services.EmailService;
 import ru.ncedu.services.UserDetailsImpl;
 
 import javax.validation.Valid;
@@ -34,6 +35,7 @@ public class AuthServiceImpl implements AuthService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
+    private final EmailService emailService;
 
     @Override
     public Map<String, Object> authenticateUser(@Valid LoginRequest loginRequest) {
@@ -105,6 +107,10 @@ public class AuthServiceImpl implements AuthService {
 
         user.setRoles(roles);
         userRepository.save(user);
+
+        String message = user.getUsername() + ", registered successfully!";
+        String subject = "Registration AutoAdsApplication";
+        emailService.sendMail(user.getEmail(), subject, message);
 
         return new MessageResponse("User registered successfully!");
     }

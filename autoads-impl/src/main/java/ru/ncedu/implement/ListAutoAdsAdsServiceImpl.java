@@ -39,6 +39,7 @@ public class ListAutoAdsAdsServiceImpl implements ListAutoAdsService {
                 DataAuto dataAuto = new DataAuto(auto.getId(),
                                                  auto.getIdImage(),
                                                  auto.getPictureAuto().getRaster(),
+                                                 auto.getUser().getUsername(),
                                                  auto.getContact().getEmail(),
                                                  auto.getContact().getPhone(),
                                                  auto.getBrand().getNameBrand(),
@@ -50,7 +51,8 @@ public class ListAutoAdsAdsServiceImpl implements ListAutoAdsService {
                                                  auto.getMotor().getVolume(),
                                                  auto.getDriveType(),
                                                  auto.getTransmissionType(),
-                                                 auto.getBodyStyleType());
+                                                 auto.getBodyStyleType(),
+                                                 auto.getAddingDate());
 
                 listDataAuto.add(dataAuto);
             }

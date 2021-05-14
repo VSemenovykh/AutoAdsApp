@@ -3,6 +3,7 @@ package ru.ncedu.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.*;
 
 @Data
@@ -13,6 +14,10 @@ public class DataCompareAuto {
     private Long id;
 
     private byte[] raster;
+
+    @NotNull
+    @Size(min = 3, max = 20)
+    private String username;
 
     @Size(min = 1, max = 128)
     private String nameBrand;
@@ -50,4 +55,7 @@ public class DataCompareAuto {
 
     @Pattern(regexp = "^(\\+7)\\([0-9]{3}\\)+\\-[0-9]{3}\\-[0-9]{2}-[0-9]{2}$", message = "ex: +7(000)-000-00-00")
     private String phone;
+
+    @Pattern(regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)/ ([\\d]{1,2}\\:+[\\d]{1,2}\\:+[\\d]{1,2})")
+    private String addingDate;
 }
