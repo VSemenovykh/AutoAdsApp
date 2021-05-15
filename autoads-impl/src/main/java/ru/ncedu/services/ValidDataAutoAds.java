@@ -28,4 +28,6 @@ public interface ValidDataAutoAds {
     boolean EmailValidator(String email);
 
     boolean PhoneValidator(String phone);
+
+    boolean DateValidator(String date);
 }

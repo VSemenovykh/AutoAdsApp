@@ -40,13 +40,14 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     private final String EMAIL_PATTERN = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
     private final String PHONE_PATTERN = "^(\\+7)\\([0-9]{3}\\)+\\-[0-9]{3}\\-[0-9]{2}-[0-9]{2}$";
+    private final String DATE_PATTERN = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)/ ([\\d]{1,2}\\:+[\\d]{1,2}\\:+[\\d]{1,2})";
 
     @Override
     public boolean checkDataAutoAds(DataAuto dataAuto) {
         if (checkDataAutoAdsByNameBrand(dataAuto) && checkDataAutoAdsByNameModel(dataAuto) && checkDataAutoAdsByYear(dataAuto) &&
                 checkDataAutoAdsByColor(dataAuto) && checkDataAutoAdsByMotorType(dataAuto) && checkDataAutoAdsByVolume(dataAuto) &&
                 checkDataAutoAdsByDrive(dataAuto) && checkDataAutoAdsByTransmission(dataAuto) && checkDataAutoAdsByBodyStyle(dataAuto) &&
-                EmailValidator(dataAuto.getEmail()) && PhoneValidator(dataAuto.getPhone())) {
+                EmailValidator(dataAuto.getEmail()) && PhoneValidator(dataAuto.getPhone()) && DateValidator(dataAuto.getAddingDate())) {
 
             return true;
         } else {
@@ -202,7 +203,6 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
     @Override
     public boolean PhoneValidator(String phone) {
-
         Pattern pattern;
         Matcher matcher;
 
@@ -211,5 +211,17 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
 
         return matcher.matches();
     }
+
+    @Override
+    public boolean DateValidator(String date){
+        Pattern pattern;
+        Matcher matcher;
+
+        pattern = Pattern.compile(DATE_PATTERN);
+        matcher = pattern.matcher(date);
+
+        return matcher.matches();
+    }
+
 }
 
