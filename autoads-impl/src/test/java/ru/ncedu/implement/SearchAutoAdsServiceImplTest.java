@@ -83,7 +83,7 @@ public class SearchAutoAdsServiceImplTest {
             "classpath:sql/image_auto.sql",
             "classpath:sql/users.sql",
             "classpath:sql/roles.sql",
-            "classpath:sql/image_auto.sql",
+            "classpath:sql/user_roles.sql",
             "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd1AutoFoundByAllPairSearch(){
         List<String> nameBrand = Collections.singletonList("FORD");
@@ -96,7 +96,7 @@ public class SearchAutoAdsServiceImplTest {
         List<String> driveType = Collections.singletonList("FWD");
         List<String> transmissionType = Collections.singletonList("AUTOMATIC");
         List<String> bodyStyle = Collections.singletonList("SEDAN");
-        ResponseEntity<Map<String, Object>> searchResponse = searchAutoAdsAdsServiceImpl.searchAutoAds(null,
+        ResponseEntity<Map<String, Object>> searchResponse = searchAutoAdsAdsServiceImpl.searchAutoAds(nameBrand,
                 nameModel, startYear, null, color,startPrice,
                 null, motorType,startVolume , null, driveType,
                 transmissionType,bodyStyle, 0, 5);
@@ -113,7 +113,7 @@ public class SearchAutoAdsServiceImplTest {
             "classpath:sql/image_auto.sql",
             "classpath:sql/users.sql",
             "classpath:sql/roles.sql",
-            "classpath:sql/image_auto.sql",
+            "classpath:sql/user_roles.sql",
             "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd2AutoFoundByColorSearch(){
         List<String> color = new ArrayList<>();
@@ -136,7 +136,7 @@ public class SearchAutoAdsServiceImplTest {
             "classpath:sql/image_auto.sql",
             "classpath:sql/users.sql",
             "classpath:sql/roles.sql",
-            "classpath:sql/image_auto.sql",
+            "classpath:sql/user_roles.sql",
             "classpath:sql/auto.sql"})
     public void testResponseHasOkStatusAnd2AutoFoundByVolumeAndBodyStyleSearch(){
         List<String> bodyStyle =  Collections.singletonList("SEDAN");

@@ -30,7 +30,7 @@ class ValidDataAutoAdsImplTest {
     @Test
     public void testValidDataAutoAdsOk(){
         Date date = new GregorianCalendar().getTime();
-        String formattedDate = new SimpleDateFormat("d MMM yyyy HH:mm:ss", Locale.US).format(date);
+        String formattedDate = new SimpleDateFormat("d/M/yyyy/ HH:mm:ss", Locale.US).format(date);
 
         DataAuto dataAuto = new DataAuto();
         dataAuto.setNameBrand("AUDI");
@@ -45,13 +45,16 @@ class ValidDataAutoAdsImplTest {
         dataAuto.setEmail("audi@gmail.com");
         dataAuto.setPhone("+7(111)-111-11-11");
         dataAuto.setUsername("Admin");
-        dataAuto.setAddingDate("5/May/2021/14:00:00");
+        dataAuto.setAddingDate(formattedDate);
 
         assertTrue(validDataAutoAdsImpl.checkDataAutoAds(dataAuto));
     }
 
     @Test
     public void testNotValidDataAutoAds(){
+        Date date = new GregorianCalendar().getTime();
+        String formattedDate = new SimpleDateFormat("d/M/yyyy/HH:mm:ss", Locale.US).format(date);
+
         DataAuto dataAuto = new DataAuto();
         dataAuto.setNameBrand("AUDI");
         dataAuto.setNameModel("A3");
@@ -65,7 +68,7 @@ class ValidDataAutoAdsImplTest {
         dataAuto.setEmail("audi@gmail.com");
         dataAuto.setPhone("+7(111)+111-11-11");
         dataAuto.setUsername("Admin");
-        dataAuto.setAddingDate("5 May 2021 14:00:00");
+        dataAuto.setAddingDate(formattedDate);
 
         assertFalse(validDataAutoAdsImpl.checkDataAutoAds(dataAuto));
     }
