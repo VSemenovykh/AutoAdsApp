@@ -1,10 +1,9 @@
 package ru.ncedu.services;
 
 import org.springframework.http.ResponseEntity;
-
-import java.util.Map;
+import ru.ncedu.entity.ChangeHistoryAutoAds;
 
 public interface ChangeHistoryAutoAdsService {
 
-    ResponseEntity<Map<String, Object>> findAllChangeAutoAds(int page, int size, Long idAuto);
+     ResponseEntity<ChangeHistoryAutoAds> findAllChangeAutoAds(Long idAuto);
 }

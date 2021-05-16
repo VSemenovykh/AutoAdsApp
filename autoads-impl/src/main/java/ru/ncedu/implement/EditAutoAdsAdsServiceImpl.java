@@ -67,8 +67,17 @@ public class EditAutoAdsAdsServiceImpl implements EditAutoAdsService {
                     auto.setTransmissionType(dataAuto.getTransmissionType());
                     auto.setBodyStyleType(dataAuto.getBodyStyleType());
 
-                    ChangeHistoryAutoAds changeHistoryAutoAds = new ChangeHistoryAutoAds(null, autoId, newUser.getUsername(), formattedDate);
-                    changeHistoryAutoAdsRepository.save(changeHistoryAutoAds);
+                    ChangeHistoryAutoAds modifyChangeHistoryAutoAds = changeHistoryAutoAdsRepository.findByIdAuto(autoId);
+                    if (modifyChangeHistoryAutoAds != null) {
+                        modifyChangeHistoryAutoAds.setId(modifyChangeHistoryAutoAds.getId());
+                        modifyChangeHistoryAutoAds.setIdAuto(modifyChangeHistoryAutoAds.getIdAuto());
+                        modifyChangeHistoryAutoAds.setUsername(newUser.getUsername());
+                        modifyChangeHistoryAutoAds.setChangeData(formattedDate);
+                        changeHistoryAutoAdsRepository.save(modifyChangeHistoryAutoAds);
+                    } else {
+                        ChangeHistoryAutoAds changeHistoryAutoAds = new ChangeHistoryAutoAds(null, autoId, newUser.getUsername(), formattedDate);
+                        changeHistoryAutoAdsRepository.save(changeHistoryAutoAds);
+                    }
                 });
     }
 }

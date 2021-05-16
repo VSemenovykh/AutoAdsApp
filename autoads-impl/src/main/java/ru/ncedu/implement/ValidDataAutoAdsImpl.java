@@ -217,10 +217,14 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
         Pattern pattern;
         Matcher matcher;
 
-        pattern = Pattern.compile(DATE_PATTERN);
-        matcher = pattern.matcher(date);
+        if(date != null){
+            pattern = Pattern.compile(DATE_PATTERN);
+            matcher = pattern.matcher(date);
 
-        return matcher.matches();
+            return matcher.matches();
+        }else{
+            return true;
+        }
     }
 
 }

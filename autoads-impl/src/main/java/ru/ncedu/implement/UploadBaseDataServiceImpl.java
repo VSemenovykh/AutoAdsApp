@@ -2,6 +2,7 @@ package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -86,7 +87,9 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
                 "id bigserial NOT NULL PRIMARY KEY," +
                 "email character varying(50) UNIQUE, " +
                 "password character varying(120), " +
-                "username character varying(20) UNIQUE" +
+                "username character varying(20) UNIQUE," +
+                "verification_code character varying(64)," +
+                "enabled boolean NOT NULL"+
                 ")";
 
         String createUserRole = "CREATE TABLE public.user_roles (" +
@@ -165,8 +168,8 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
 
     public List<User> getUserList() {
         List<User> userList = new ArrayList<>();
-        userList.add(new User(1L, "Admin", "admin@yandex.ru", encoder.encode("adminAutoAds")));
-        userList.add(new User(2L, "Moderator", "moderator@yandex.ru", encoder.encode("moderatorAutoAds")));
+        userList.add(new User(1L, "Admin", "admin@yandex.ru", encoder.encode("adminAutoAds"), RandomString.make(64), true));
+        userList.add(new User(2L, "Moderator", "moderator@yandex.ru", encoder.encode("moderatorAutoAds"), RandomString.make(64), true));
         return userList;
     }
 

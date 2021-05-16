@@ -39,22 +39,36 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "verification_code", length = 64)
+    private String verificationCode;
+
+    @Column(name = "enabled")
+    private boolean verifyEnabled;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<Role>();
 
-    public User(Long id, String username, String email, String password) {
+    public User(Long id, String username, String email, String password, String verificationCode, boolean verifyEnabled ) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.verificationCode = verificationCode;
+        this.verifyEnabled = verifyEnabled;
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, String verificationCode, boolean verifyEnabled) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.verificationCode = verificationCode;
+        this.verifyEnabled = verifyEnabled;
+    }
+
+    public boolean getVerifyEnabled(){
+        return verifyEnabled;
     }
 }
