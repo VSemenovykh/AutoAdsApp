@@ -183,7 +183,7 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
     public boolean checkDataAutoAdsByBodyStyle(DataAuto dataAuto) {
         BodyStyle[] bodyStyles = BodyStyle.values();
         for (int i = 0; i < BodyStyle.values().length; i++) {
-            if (!(bodyStyles[i].name().equals(dataAuto.getBodyStyleType()))) {
+            if (!(bodyStyles[i].name().equals(dataAuto.getBodyStyleType().replace(" ", "_")))) {
                 return true;
             }
         }
@@ -226,6 +226,5 @@ public class ValidDataAutoAdsImpl implements ValidDataAutoAds {
             return true;
         }
     }
-
 }
 

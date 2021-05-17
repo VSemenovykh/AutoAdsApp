@@ -2,11 +2,16 @@ package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
+import ru.ncedu.entity.Brand;
 import ru.ncedu.model.DataAuto;
 import ru.ncedu.repositories.AutoRepository;
 import ru.ncedu.services.*;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -52,5 +57,12 @@ public class AutoAdsAdsServiceImpl implements AutoAdsService {
                                              auto.getTransmissionType(),
                                              auto.getBodyStyleType(),
                                              auto.getAddingDate()) : null;
+    }
+
+    @Override
+    public ResponseEntity<List<Auto>> findAll() {
+        List<Auto> autoList = autorepository.findAll();
+        return (!autoList.isEmpty()) ? new ResponseEntity<>(autoList, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 }
