@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.ncedu.services.UploadBaseDataService;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 @Slf4j
 @SpringBootApplication
@@ -22,7 +23,7 @@ public class AutoAdsApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws IOException {
+    public void run(String... args) throws IOException, ParseException {
         log.info("StartApplication...");
         log.info("Load data to postgresql");
 

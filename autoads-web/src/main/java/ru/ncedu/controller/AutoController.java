@@ -22,7 +22,7 @@ public class AutoController {
     private final AutoRepository autoRepository;
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
-    @GetMapping(path = "/{id}")
+    @GetMapping("/autoads/{id}")
     @ResponseBody
     public ResponseEntity<Auto> getAutoById(@PathVariable("id") Long autoId) {
         log.info("autoId: " + autoId);
@@ -35,11 +35,11 @@ public class AutoController {
     }
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
-    @GetMapping(path = "/join/{id}")
+    @GetMapping("/autoads/join/{id}")
     @ResponseBody
-    public ResponseEntity<DataAuto> getAutoJoinById(@PathVariable("id") String autoId) {
-        if (checkId(new Long(autoId))) {
-            DataAuto dataAuto = autoAdsService.findAutoAdsById(new Long(autoId));
+    public ResponseEntity<DataAuto> getAutoJoinById(@PathVariable("id") Long autoId) {
+        if (checkId(autoId)) {
+            DataAuto dataAuto = autoAdsService.findAutoAdsById(autoId);
             return (dataAuto != null) ? new ResponseEntity<DataAuto>(dataAuto, HttpStatus.OK) : new ResponseEntity<DataAuto>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

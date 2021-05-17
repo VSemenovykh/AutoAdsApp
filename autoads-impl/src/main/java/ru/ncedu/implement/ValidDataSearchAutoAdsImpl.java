@@ -1,5 +1,6 @@
 package ru.ncedu.implement;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.ncedu.model.*;
@@ -8,6 +9,7 @@ import ru.ncedu.services.ValidDataSearchAutoAds;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
 
     @Value("${autoads.years}")

@@ -2,6 +2,7 @@ package ru.ncedu.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,10 @@ import ru.ncedu.model.*;
 import ru.ncedu.repositories.*;
 import ru.ncedu.services.UploadBaseDataService;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -34,7 +35,7 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
     private final ContactRepository contactRepository;
     private final PasswordEncoder encoder;
 
-    public Map<String, List> createTables() {
+    public Map<String, List> createTables() throws ParseException {
         log.info("Creating tables");
 
         String createBrand = "CREATE TABLE public.brand( " +
@@ -63,16 +64,18 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
                 ")";
 
         String createAuto = "CREATE TABLE public.auto (" +
-                " id bigserial NOT NULL PRIMARY KEY," +
-                "id_image bigint REFERENCES image_auto (id)," +
+                "id bigserial NOT NULL PRIMARY KEY," +
+                "id_user bigint NOT NULL REFERENCES users (id)," +
+                "id_image bigint NOT NULL REFERENCES image_auto (id)," +
                 "id_brand bigint NOT NULL REFERENCES brand (id)," +
-                "id_contact bigint REFERENCES contact (id)," +
+                "id_contact bigint NOT NULL REFERENCES contact (id)," +
                 "id_motor bigint NOT NULL REFERENCES motor (id)," +
                 "color character varying(32) NOT NULL," +
                 "price double precision NOT NULL," +
                 "transmission_type character varying(32) NOT NULL," +
                 "drive_type character varying(32) NOT NULL," +
-                "body_style character varying(32) NOT NULL " +
+                "body_style character varying(32) NOT NULL," +
+                "adding_date character varying(64) NOT NULL" +
                 ")";
 
         String createRole = "CREATE TABLE public.roles (" +
@@ -84,7 +87,9 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
                 "id bigserial NOT NULL PRIMARY KEY," +
                 "email character varying(50) UNIQUE, " +
                 "password character varying(120), " +
-                "username character varying(20) UNIQUE" +
+                "username character varying(20) UNIQUE," +
+                "verification_code character varying(64)," +
+                "enabled boolean NOT NULL"+
                 ")";
 
         String createUserRole = "CREATE TABLE public.user_roles (" +
@@ -99,6 +104,13 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
                 "id_user bigint NOT NULL REFERENCES users (id)" +
                 ")";
 
+        String createChangeHistoryAutoAds = "CREATE TABLE public.change_history (" +
+                "id bigserial NOT NULL PRIMARY KEY," +
+                "id_auto bigint NOT NULL REFERENCES auto (id)," +
+                "id_username character varying(20) NOT NULL," +
+                "change_data character varying(64) NOT NULL" +
+                ")";
+
         jdbcTemplate.execute("DROP TABLE auto CASCADE");
         jdbcTemplate.execute("DROP TABLE brand CASCADE");
         jdbcTemplate.execute("DROP TABLE motor CASCADE");
@@ -108,16 +120,18 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
         jdbcTemplate.execute("DROP TABLE roles CASCADE");
         jdbcTemplate.execute("DROP TABLE user_roles CASCADE");
         jdbcTemplate.execute("DROP TABLE compare_auto CASCADE");
+        jdbcTemplate.execute("DROP TABLE change_history CASCADE");
 
         jdbcTemplate.execute(createBrand);
         jdbcTemplate.execute(createMotor);
         jdbcTemplate.execute(createImageAuto);
         jdbcTemplate.execute(createContact);
-        jdbcTemplate.execute(createAuto);
         jdbcTemplate.execute(createUser);
         jdbcTemplate.execute(createRole);
         jdbcTemplate.execute(createUserRole);
+        jdbcTemplate.execute(createAuto);
         jdbcTemplate.execute(createCompareAuto);
+        jdbcTemplate.execute(createChangeHistoryAutoAds);
 
         List<Brand> brandList = getBrandList();
         List<Motor> motorList = getMotorList();
@@ -131,11 +145,11 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
         Map<String, List> mapTable = new HashMap();
         mapTable.put("Brand", brandList);
         mapTable.put("Motor", motorList);
-        mapTable.put("Auto", autoList);
-        mapTable.put("ImageAuto", pictureAutoList);
         mapTable.put("User", userList);
         mapTable.put("Role", roleList);
         mapTable.put("UserRole", userRoleList);
+        mapTable.put("Auto", autoList);
+        mapTable.put("ImageAuto", pictureAutoList);
         mapTable.put("Contact", contactList);
 
         return mapTable;
@@ -154,8 +168,8 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
 
     public List<User> getUserList() {
         List<User> userList = new ArrayList<>();
-        userList.add(new User(1L, "Admin", "admin@yandex.ru", encoder.encode("adminAutoAds")));
-        userList.add(new User(2L, "Moderator", "moderator@yandex.ru", encoder.encode("moderatorAutoAds")));
+        userList.add(new User(1L, "Admin", "admin@yandex.ru", encoder.encode("adminAutoAds"), RandomString.make(64), true));
+        userList.add(new User(2L, "Moderator", "moderator@yandex.ru", encoder.encode("moderatorAutoAds"), RandomString.make(64), true));
         return userList;
     }
 
@@ -257,36 +271,39 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
         return pictureAutoList;
     }
 
-    public List<Auto> getAutoList() {
+    public List<Auto> getAutoList() throws ParseException {
+        Date date = new GregorianCalendar().getTime();
+        String formattedDate = new SimpleDateFormat("d/M/yyyy/ HH:mm:ss", Locale.US).format(date);
+
         List<Auto> autoList = new ArrayList<>();
         //audi
-        autoList.add(new Auto(1L, 1L, 1L, 1L, 4L, Color.GRAY.name(), 1935000, Transmission.DSG.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
-        autoList.add(new Auto(2L, 2L, 2L, 1L, 4L, Color.BLUE.name(), 2850000, Transmission.DSG.name(), Drive.FWD.name(), BodyStyle.STATION_WAGON.name().replace("_", " ")));
-        autoList.add(new Auto(3L, 3L, 3L, 1L, 6L, Color.WHITE.name(), 10000000, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
+        autoList.add(new Auto(1L, 1L, 1L, 1L, 1L, 4L, Color.GRAY.name(), 1935000, Transmission.DSG.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(2L, 1L, 2L, 2L, 1L, 4L, Color.BLUE.name(), 2850000, Transmission.DSG.name(), Drive.FWD.name(), BodyStyle.STATION_WAGON.name().replace("_", " "),  formattedDate));
+        autoList.add(new Auto(3L, 1L, 3L, 3L, 1L, 6L, Color.WHITE.name(), 10000000, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.SEDAN.name().replace("_", " "),  formattedDate));
         //ford
-        autoList.add(new Auto(4L, 4L, 4L, 2L, 3L, Color.RED.name(), 726000, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
-        autoList.add(new Auto(5L, 5L, 5L, 2L, 3L, Color.BLUE.name(), 1440500, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
-        autoList.add(new Auto(6L, 6L, 6L, 2L, 4L, Color.WHITE.name(), 2106000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
+        autoList.add(new Auto(4L, 1L, 4L, 4L, 2L, 3L, Color.RED.name(), 726000, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "),  formattedDate));
+        autoList.add(new Auto(5L, 1L, 5L, 5L, 2L, 3L, Color.BLUE.name(), 1440500, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate ));
+        autoList.add(new Auto(6L, 1L, 6L, 6L, 2L, 4L, Color.WHITE.name(), 2106000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate));
         //honda
-        autoList.add(new Auto(7L, 7L, 7L, 3L, 4L, Color.WHITE.name(), 1149000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
-        autoList.add(new Auto(8L, 8L, 8L, 3L, 4L, Color.WHITE.name(), 2484000, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.SUV.name().replace("_", " ")));
-        autoList.add(new Auto(9L, 9L, 9L, 3L, 2L, Color.PURPLE.name(), 454000, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.HATCHBACK.name().replace("_", " ")));
+        autoList.add(new Auto(7L, 1L, 7L, 7L, 3L, 4L, Color.WHITE.name(), 1149000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(8L,1L,  8L, 8L, 3L, 4L, Color.WHITE.name(), 2484000, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.SUV.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(9L, 1L, 9L, 9L, 3L, 2L, Color.PURPLE.name(), 454000, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.HATCHBACK.name().replace("_", " "), formattedDate));
         //hyudai
-        autoList.add(new Auto(10L, 10L, 10L, 4L, 3L, Color.BROWN.name(), 867000, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
-        autoList.add(new Auto(11L, 11L, 11L, 4L, 4L, Color.WHITE.name(), 1305000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
-        autoList.add(new Auto(12L, 12L, 12L, 4L, 4L, Color.GRAY.name(), 1425000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
+        autoList.add(new Auto(10L, 1L, 10L, 10L, 4L, 3L, Color.BROWN.name(), 867000, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(11L, 1L, 11L, 11L, 4L, 4L, Color.WHITE.name(), 1305000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(12L, 1L, 12L, 12L, 4L, 4L, Color.GRAY.name(), 1425000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate));
         //bmw
-        autoList.add(new Auto(13L, 13L, 13L, 5L, 9L, Color.BLACK.name(), 20000000, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.COUPE.name().replace("_", " ")));
-        autoList.add(new Auto(14L, 14L, 14L, 5L, 9L, Color.GREEN.name(), 15000000, Transmission.MANUAL.name(), Drive.RWD.name(), BodyStyle.SUV.name().replace("_", " ")));
-        autoList.add(new Auto(15L, 15L, 15L, 5L, 9L, Color.GRAY.name(), 10000000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.STATION_WAGON.name().replace("_", " ")));
+        autoList.add(new Auto(13L,1L, 13L, 13L, 5L, 9L, Color.BLACK.name(), 20000000, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.COUPE.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(14L, 1L, 14L, 14L, 5L, 9L, Color.GREEN.name(), 15000000, Transmission.MANUAL.name(), Drive.RWD.name(), BodyStyle.SUV.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(15L, 1L, 15L, 15L, 5L, 9L, Color.GRAY.name(), 10000000, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.STATION_WAGON.name().replace("_", " "), formattedDate));
         //mercedes
-        autoList.add(new Auto(16L, 16L, 16L, 6L, 3L, Color.RED.name(), 18000000, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.COUPE.name().replace("_", " ")));
-        autoList.add(new Auto(17L, 17L, 17L, 6L, 8L, Color.GRAY.name(), 11999999, Transmission.DSG.name(), Drive.AWD.name(), BodyStyle.LIFTBACK.name().replace("_", " ")));
-        autoList.add(new Auto(18L, 18L, 18L, 6L, 8L, Color.RED.name(), 19566308, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.SUV.name().replace("_", " ")));
+        autoList.add(new Auto(16L, 1L,16L, 16L, 6L, 3L, Color.RED.name(), 18000000, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.COUPE.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(17L, 1L,17L, 17L, 6L, 8L, Color.GRAY.name(), 11999999, Transmission.DSG.name(), Drive.AWD.name(), BodyStyle.LIFTBACK.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(18L, 1L, 18L, 18L, 6L, 8L, Color.RED.name(), 19566308, Transmission.AUTOMATIC.name(), Drive.AWD.name(), BodyStyle.SUV.name().replace("_", " "), formattedDate));
         //kia
-        autoList.add(new Auto(19L, 19L, 19L, 7L, 6L, Color.RED.name(), 1231900, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
-        autoList.add(new Auto(20L, 20L, 20L, 7L, 2L, Color.BLUE.name(), 1592900, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " ")));
-        autoList.add(new Auto(21L, 21L, 21L, 7L, 6L, Color.BLUE.name(), 1005900, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.HATCHBACK.name().replace("_", " ")));
+        autoList.add(new Auto(19L, 1L,19L, 19L, 7L, 6L, Color.RED.name(), 1231900, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(20L, 1L,20L, 20L, 7L, 2L, Color.BLUE.name(), 1592900, Transmission.AUTOMATIC.name(), Drive.FWD.name(), BodyStyle.SEDAN.name().replace("_", " "), formattedDate));
+        autoList.add(new Auto(21L, 1L,21L, 21L, 7L, 6L, Color.BLUE.name(), 1005900, Transmission.MANUAL.name(), Drive.FWD.name(), BodyStyle.HATCHBACK.name().replace("_", " "), formattedDate));
         return autoList;
     }
 
@@ -302,25 +319,25 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
         return contactList;
     }
 
-    public void uploadBaseData() {
+    public void uploadBaseData() throws ParseException {
         Map<String, List> listTable = createTables();
 
         List<Brand> brandList = listTable.get("Brand");
         List<Motor> motorList = listTable.get("Motor");
-        List<Auto> autoList = listTable.get("Auto");
-        List<PictureAuto> pictureAuto = listTable.get("ImageAuto");
         List<User> userList = listTable.get("User");
         List<Role> roleList = listTable.get("Role");
         List<UserRole> userRoleList = listTable.get("UserRole");
+        List<Auto> autoList = listTable.get("Auto");
+        List<PictureAuto> pictureAuto = listTable.get("ImageAuto");
         List<Contact> contactList = listTable.get("Contact");
 
         brandRepository.saveAll(brandList);
         motorRepository.saveAll(motorList);
         pictureAutoRepository.saveAll(pictureAuto);
         contactRepository.saveAll(contactList);
-        autorepository.saveAll(autoList);
         userRepository.saveAll(userList);
         roleRepository.saveAll(roleList);
         userRoleRepository.saveAll(userRoleList);
+        autorepository.saveAll(autoList);
     }
 }

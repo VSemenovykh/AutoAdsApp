@@ -27,9 +27,8 @@ public class CreateAutoAdsController {
     @ResponseBody
     public ResponseEntity<DataAuto> createAuto(@Valid @RequestBody DataAuto dataAuto, @RequestParam("idImage") Long idImage) {
         if (validDataAutoAds.checkDataAutoAds(dataAuto)) {
-            createAutoAdsService.saveAuto(dataAuto, idImage);
 
-            return new ResponseEntity<DataAuto>(HttpStatus.CREATED);
+            return createAutoAdsService.saveAuto(dataAuto, idImage);
         } else {
             return new ResponseEntity<DataAuto>(HttpStatus.BAD_REQUEST);
         }

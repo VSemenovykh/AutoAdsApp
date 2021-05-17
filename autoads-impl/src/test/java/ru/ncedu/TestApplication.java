@@ -7,12 +7,15 @@ import ru.ncedu.implement.SearchAutoAdsServiceImpl;
 import ru.ncedu.implement.ValidDataAutoAdsImpl;
 import ru.ncedu.implement.ValidDataSearchAutoAdsImpl;
 import ru.ncedu.repositories.AutoRepository;
+import ru.ncedu.repositories.UserRepository;
 
 @SpringBootApplication
 public class TestApplication {
 
     @Autowired
     private AutoRepository autoRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Bean
     public SearchAutoAdsServiceImpl searchAutoAdsAdsServiceImpl() {
@@ -21,12 +24,11 @@ public class TestApplication {
 
     @Bean
     public ValidDataAutoAdsImpl validDataAutoAds() {
-        return new ValidDataAutoAdsImpl();
+        return new ValidDataAutoAdsImpl(userRepository);
     }
 
     @Bean
     public ValidDataSearchAutoAdsImpl validDataSearchAutoAds() {
         return new ValidDataSearchAutoAdsImpl();
     }
-
 }

@@ -3,19 +3,25 @@ package ru.ncedu.services;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import  ru.ncedu.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import ru.ncedu.repositories.UserRepository;
+import ru.ncedu.repositories.UserRoleRepository;
 
 @Data
 @NoArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
+//    private static User user;
+    private UserRepository userRepository;
     private static final long serialVersionUID = 1L;
     private Long id;
     private String username;
@@ -26,9 +32,9 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String email, String password,
+    public UserDetailsImpl(UserRepository userRepository, Long id, String username, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
-
+        this.userRepository = userRepository;
         this.id = id;
         this.username = username;
         this.email = email;
@@ -36,18 +42,24 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetailsImpl build(User user) {
-
+    public static UserDetailsImpl build(UserRepository userRepository, User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
 
         return new UserDetailsImpl(
+                userRepository,
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
                 authorities);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        Optional<User> user = userRepository.findByUsername(username);
+        return user.map(User::getVerifyEnabled).orElse(false);
     }
 
     @Override
@@ -70,10 +82,10 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 
     @Override
     public boolean equals(Object o) {

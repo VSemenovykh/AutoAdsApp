@@ -3,7 +3,10 @@ package ru.ncedu.auth.request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
+
 import java.util.Set;
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 
 @Data
@@ -26,4 +29,14 @@ public class SignupRequest {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+
+    @Column(name = "verification_code", length = 64)
+    @Length(max = 64, message = "length 64")
+    private String verificationCode;
+
+    private boolean verifyEnabled;
+
+    public boolean getVerifyEnabled(){
+        return this.verifyEnabled;
+    }
 }

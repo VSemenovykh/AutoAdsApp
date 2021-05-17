@@ -19,8 +19,9 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
     Auto getAutoById(Long id);
 
     String queryMultipleSearch = "SELECT new ru.ncedu.model.DataAuto( a.id," +
-                                                                    " ia.id," +
-                                                                    " ia.raster," +
+                                                                    " pa.id," +
+                                                                    " pa.raster," +
+                                                                    " us.username," +
                                                                     " c.email," +
                                                                     " c.phone," +
                                                                     " b.nameBrand, " +
@@ -32,11 +33,13 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                                                     " m.volume," +
                                                                     " a.driveType, " +
                                                                     " a.transmissionType, " +
-                                                                    " a.bodyStyleType ) " +
+                                                                    " a.bodyStyleType," +
+                                                                    " a.addingDate) " +
                                     " FROM Auto a " +
                                     " JOIN Brand b on a.brand = b " +
                                     " JOIN Motor m on a.motor = m " +
-                                    " LEFT JOIN PictureAuto ia on a.pictureAuto = ia " +
+                                    " JOIN User us on a.user = us" +
+                                    " LEFT JOIN PictureAuto pa on a.pictureAuto = pa " +
                                     " LEFT JOIN Contact c on a.contact = c " +
                                     " WHERE " +
                                     " ((:nameBrand) is null or b.nameBrand IN (:nameBrand)) " +
@@ -75,3 +78,4 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                                  @Param("bodyStyleType") List<String> bodyStyleType,
                                  Pageable pageable);
 }
+

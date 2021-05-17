@@ -1,8 +1,9 @@
 package ru.ncedu.services;
 
+import org.springframework.http.ResponseEntity;
 import ru.ncedu.model.DataAuto;
 
 public interface CreateAutoAdsService {
 
-    DataAuto saveAuto(DataAuto dataAuto, Long idImage);
+    ResponseEntity<DataAuto> saveAuto(DataAuto dataAuto, Long idImage);
 }
