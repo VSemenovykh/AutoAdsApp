@@ -125,7 +125,8 @@ public class AuthServiceImpl implements AuthService {
         user.setVerifyEnabled(false);
         userRepository.save(user);
 
-        outRegisterUser.remove("message", "User registered successfully!");
+        outRegisterUser.remove("message");
+        outRegisterUser.put("message", "User registered successfully!");
         return new ResponseEntity<>(outRegisterUser, HttpStatus.OK);
     }
 }

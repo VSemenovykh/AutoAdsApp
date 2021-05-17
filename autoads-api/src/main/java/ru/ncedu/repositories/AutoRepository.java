@@ -18,6 +18,8 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
 
     Auto getAutoById(Long id);
 
+    List<Auto> findAll();
+
     String queryMultipleSearch = "SELECT new ru.ncedu.model.DataAuto( a.id," +
                                                                     " pa.id," +
                                                                     " pa.raster," +

@@ -242,7 +242,7 @@ public class ValidDataSearchAutoAdsImpl implements ValidDataSearchAutoAds {
         if ((dataSearchAuto.getBodyStyleType() != null) && (!dataSearchAuto.getBodyStyleType().isEmpty())) {
             for (String bodyStyle : dataSearchAuto.getBodyStyleType()) {
                 for (BodyStyle bodyStyleEnum : bodyStyles) {
-                    if (bodyStyle.equals(bodyStyleEnum.name())) {
+                    if (bodyStyle.replace(" ","_").equals(bodyStyleEnum.name())) {
                         return true;
                     }
                 }
