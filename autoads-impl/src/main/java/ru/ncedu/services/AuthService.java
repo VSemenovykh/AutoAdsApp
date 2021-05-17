@@ -3,7 +3,6 @@ package ru.ncedu.services;
 import org.springframework.http.ResponseEntity;
 import ru.ncedu.auth.request.LoginRequest;
 import ru.ncedu.auth.request.SignupRequest;
-import ru.ncedu.auth.response.MessageResponse;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;

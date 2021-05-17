@@ -1,5 +1,6 @@
 package ru.ncedu.implement;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import java.io.UnsupportedEncodingException;
 public class EmailServiceImpl implements EmailService {
 
     private JavaMailSender javaMailSender;
+    @Value("${autoads.url.verification.email}")
+    private String verificationEmailURL;
 
     public EmailServiceImpl(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
@@ -35,7 +38,8 @@ public class EmailServiceImpl implements EmailService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getUsername());
-        String verifyURL = siteURL + "/api/verify?code=" + user.getVerificationCode();
+        String verifyURL = siteURL + verificationEmailURL + user.getVerificationCode();
+
         content = content.replace("[[URL]]", verifyURL);
         helper.setText(content, true);
 

@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.ncedu.services.CreatePictureAutoService;
+
 import java.io.IOException;
 
 @Slf4j

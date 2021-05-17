@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import ru.ncedu.services.UploadBaseDataService;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.text.ParseException;
 @Slf4j
 @SpringBootApplication
 @RequiredArgsConstructor
+@EnableScheduling
 public class AutoAdsApplication implements CommandLineRunner {
 
     final private UploadBaseDataService uploadBaseDataService;

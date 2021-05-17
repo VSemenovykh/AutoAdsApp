@@ -27,10 +27,10 @@ public class EditAutoAdsController {
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<DataAuto>  updateAuto(@Valid @RequestBody DataAuto auto, @PathVariable("id") Long autoId, @RequestParam("idImage") Long idImage){
+    public ResponseEntity<DataAuto> editAutoAds(@Valid @RequestBody DataAuto auto, @PathVariable("id") Long autoId, @RequestParam("idImage") Long idImage) {
         if (checkId(autoId, idImage)) {
             editAutoAdsService.editAutoAds(auto, autoId, idImage);
-            return new ResponseEntity<>(auto,  HttpStatus.OK);
+            return new ResponseEntity<>(auto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

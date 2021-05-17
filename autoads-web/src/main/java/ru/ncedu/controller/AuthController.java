@@ -32,10 +32,10 @@ public class AuthController {
         List<String> roles = (List<String>) outDataAuthenticateUser.get("roles");
 
         return ResponseEntity.ok(new JwtResponse(jwt,
-                                 userDetails.getId(),
-                                 userDetails.getUsername(),
-                                 userDetails.getEmail(),
-                                 roles));
+                                                 userDetails.getId(),
+                                                 userDetails.getUsername(),
+                                                 userDetails.getEmail(),
+                                                 roles));
     }
 
     @PostMapping("/signup")
