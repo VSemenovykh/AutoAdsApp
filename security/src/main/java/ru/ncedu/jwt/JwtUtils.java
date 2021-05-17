@@ -1,6 +1,8 @@
 package ru.ncedu.jwt;
 
 import java.util.Date;
+import java.util.Map;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -16,6 +18,8 @@ public class JwtUtils {
     private String jwtSecret;
     @Value("${autoads.app.jwtExpirationMs}")
     private int jwtExpirationMs;
+
+    private Map<Date, String> repositoryNotActiveJWT;
 
     public String generateJwtToken(Authentication authentication) {
 
