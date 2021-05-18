@@ -16,11 +16,11 @@ public class VerifyUserServiceImpl implements VerifyUserService {
     public boolean verify(String verificationCode) {
         User user = userRepository.findByVerificationCode(verificationCode);
 
-        if (user == null || user.getVerifyEnabled()) {
+        if (user == null || user.getVerified()) {
             return false;
         } else {
             user.setId(user.getId());
-            user.setVerifyEnabled(true);
+            user.setVerified(true);
             userRepository.save(user);
 
             return true;

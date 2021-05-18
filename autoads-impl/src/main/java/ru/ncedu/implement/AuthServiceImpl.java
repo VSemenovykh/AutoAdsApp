@@ -20,9 +20,11 @@ import ru.ncedu.model.ERole;
 import ru.ncedu.repositories.RoleRepository;
 import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.AuthService;
+import ru.ncedu.services.EmailService;
 import ru.ncedu.services.UserDetailsImpl;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
@@ -38,6 +40,7 @@ public class AuthServiceImpl implements AuthService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
+    private final EmailService emailService;
 
     @Override
     public Map<String, Object> authenticateUser(@Valid LoginRequest loginRequest) {
@@ -120,11 +123,19 @@ public class AuthServiceImpl implements AuthService {
 
         String randomCode = RandomString.make(64);
         user.setVerificationCode(randomCode);
-        user.setVerifyEnabled(false);
+        user.setVerified(false);
         userRepository.save(user);
+
+        user = userRepository.findByEmail(user.getEmail());
+        sendVerificationEmail(user, siteURL);
 
         outRegisterUser.remove("message");
         outRegisterUser.put("message", "User registered successfully!");
         return new ResponseEntity<>(outRegisterUser, HttpStatus.OK);
+    }
+
+    @Override
+    public void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException {
+        emailService.sendMail(user, siteURL);
     }
 }

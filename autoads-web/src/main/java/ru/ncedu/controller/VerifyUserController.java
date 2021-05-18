@@ -48,7 +48,9 @@ public class VerifyUserController {
 
     @GetMapping("/verify")
     public ResponseEntity<Object> verifyUser(@RequestParam("code") String code) throws URISyntaxException {
+
         if (verifyUserService.verify(code)) {
+            user = userRepository.findByVerificationCode(code);
             URI redirect_login_ui = new URI(REDIRECT_LOGIN_UI + true + "&username="+user.getUsername());
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setLocation(redirect_login_ui);

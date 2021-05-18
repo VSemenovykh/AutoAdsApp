@@ -57,7 +57,7 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         Optional<User> user = userRepository.findByUsername(username);
-        return user.map(User::getVerifyEnabled).orElse(false);
+        return user.map(User::getVerified).orElse(false);
     }
 
     @Override

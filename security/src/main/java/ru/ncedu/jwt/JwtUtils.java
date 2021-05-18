@@ -49,14 +49,10 @@ public class JwtUtils {
     public boolean validateJwtToken(String authToken) {
 
         try {
-            log.info("validateJwtToken before signing: {}", authToken);
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
-            /*Check token user, where authentication*/
-            log.info("validateJwtToken after signing: {}", authToken);
-            return !mapNotActiveJWT.containsValue(authToken);
-//            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
 
-//            return true;
+            /*Check token user, where authentication*/
+            return !mapNotActiveJWT.containsValue(authToken);
 
         } catch (SignatureException e) {
             log.error("Invalid JWT signature: {}", e.getMessage());
@@ -103,6 +99,7 @@ public class JwtUtils {
 
         for (ExpiredTokenKey expiredTokenKey : mapNotActiveJWT.keySet()) {
             if (expiredTokenKey.getExp() < new Date().toInstant().toEpochMilli()) {
+                log.info("Removing the JWT = {}", mapNotActiveJWT.get(expiredTokenKey));
                 log.info("Removing the JWT with expiration time = {} since it's already expired", new Date(expiredTokenKey.getExp()));
                 mapNotActiveJWT.remove(expiredTokenKey);
             }
