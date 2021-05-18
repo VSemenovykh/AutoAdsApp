@@ -72,10 +72,7 @@ public class JwtUtils {
     public ResponseEntity setNotActiveToken(String token) {
         String userName = getUserNameFromJwtToken(token);
         long expTime = getExpTimeFromJwtToken(token).toInstant().toEpochMilli();
-        log.info("LogOut user = {}: ", userName);
-
-        String formattedDate = new SimpleDateFormat("ms", Locale.US).format(expTime);
-        log.info("Time not active token: " + formattedDate);
+        log.info("LogOut user = {} ", userName);
 
         ExpiredTokenKey expiredTokenKey = ExpiredTokenKey.builder()
                 .userName(userName)
@@ -86,8 +83,8 @@ public class JwtUtils {
         Date currentTime = new Date();
         String formattedCurrentTime = new SimpleDateFormat("d M HH:mm:ss yyyy", Locale.US).format(currentTime);
 
-        log.info("Saving token into map not active tokens: {}", token);
-        log.info("Time add token the map not active tokens = {}", formattedCurrentTime);
+        log.info("Saving token into map of not active tokens: {}", token);
+        log.info("Time add token the map of not active tokens = {}", formattedCurrentTime);
 
         return new ResponseEntity<>(new MessageResponse("token kill"), HttpStatus.OK);
     }
