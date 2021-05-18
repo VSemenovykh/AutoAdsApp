@@ -54,6 +54,9 @@ public class JwtUtils {
             /*Check token user, where authentication*/
             log.info("validateJwtToken after signing: {}", authToken);
             return !mapNotActiveJWT.containsValue(authToken);
+//            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+
+//            return true;
 
         } catch (SignatureException e) {
             log.error("Invalid JWT signature: {}", e.getMessage());
@@ -73,6 +76,7 @@ public class JwtUtils {
     public ResponseEntity setNotActiveToken(String token) {
         String userName = getUserNameFromJwtToken(token);
         long expTime = getExpTimeFromJwtToken(token).toInstant().toEpochMilli();
+        log.info("LogOut user = {}: ", userName);
 
         String formattedDate = new SimpleDateFormat("ms", Locale.US).format(expTime);
         log.info("Time not active token: " + formattedDate);
@@ -82,7 +86,12 @@ public class JwtUtils {
                 .exp(expTime)
                 .build();
         mapNotActiveJWT.put(expiredTokenKey, token);
-        log.info("Saving token into map: {}", token);
+
+        Date currentTime = new Date();
+        String formattedCurrentTime = new SimpleDateFormat("d M HH:mm:ss yyyy", Locale.US).format(currentTime);
+
+        log.info("Saving token into map not active tokens: {}", token);
+        log.info("Time add token the map not active tokens = {}", formattedCurrentTime);
 
         return new ResponseEntity<>(new MessageResponse("token kill"), HttpStatus.OK);
     }
@@ -90,8 +99,6 @@ public class JwtUtils {
     @Scheduled(cron = "*/30 * * * * *")
     public void cleaningFromMapNotActiveJWT() {
         Date currentTime = new Date();
-        String formattedCurrentTime = new SimpleDateFormat("ms", Locale.US).format(currentTime);
-        String formattedNotActiveTime;
         log.info("Time cleaning tokens from map not active JWT");
 
         for (ExpiredTokenKey expiredTokenKey : mapNotActiveJWT.keySet()) {
