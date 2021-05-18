@@ -1,7 +1,6 @@
 package ru.ncedu.services;
 
 import ru.ncedu.model.DataAuto;
-import ru.ncedu.model.DataSearchAuto;
 
 public interface ValidDataAutoAds {
 

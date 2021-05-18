@@ -10,10 +10,7 @@ import ru.ncedu.entity.*;
 import ru.ncedu.model.DataAuto;
 import ru.ncedu.repositories.*;
 import ru.ncedu.services.CreateAutoAdsService;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -45,41 +42,41 @@ public class CreateAutoAdsAdsServiceImpl implements CreateAutoAdsService {
 
             if(user != null){
                 Auto auto = new Auto(dataAuto.getId(),
-                        user.getId(),
-                        idImage,
-                        brand.getId(),
-                        contact.getId(),
-                        motor.getId(),
-                        dataAuto.getColor(),
-                        dataAuto.getPrice(),
-                        dataAuto.getDriveType(),
-                        dataAuto.getTransmissionType(),
-                        dataAuto.getBodyStyleType(),
-                        formattedDate);
+                                     user.getId(),
+                                     idImage,
+                                     brand.getId(),
+                                     contact.getId(),
+                                     motor.getId(),
+                                     dataAuto.getColor(),
+                                     dataAuto.getPrice(),
+                                     dataAuto.getDriveType(),
+                                     dataAuto.getTransmissionType(),
+                                     dataAuto.getBodyStyleType(),
+                                     formattedDate);
 
                 autorepository.save(auto);
 
                 return new ResponseEntity<DataAuto>(new DataAuto(auto.getId(),
-                        auto.getIdImage(),
-                        null,
-                        user.getUsername(),
-                        contact.getEmail(),
-                        contact.getPhone(),
-                        brand.getNameBrand(),
-                        brand.getNameModel(),
-                        brand.getYear(),
-                        auto.getColor(),
-                        auto.getPrice(),
-                        motor.getMotorType(),
-                        motor.getVolume(),
-                        auto.getDriveType(),
-                        auto.getTransmissionType(),
-                        auto.getBodyStyleType(),
-                        formattedDate), HttpStatus.CREATED);
+                                                                 auto.getIdImage(),
+                                                                 null,
+                                                                 user.getUsername(),
+                                                                 contact.getEmail(),
+                                                                 contact.getPhone(),
+                                                                 brand.getNameBrand(),
+                                                                 brand.getNameModel(),
+                                                                 brand.getYear(),
+                                                                 auto.getColor(),
+                                                                 auto.getPrice(),
+                                                                 motor.getMotorType(),
+                                                                 motor.getVolume(),
+                                                                 auto.getDriveType(),
+                                                                 auto.getTransmissionType(),
+                                                                 auto.getBodyStyleType(),
+                                                                 formattedDate),
+                                                        HttpStatus.CREATED);
             }else{
                 return new ResponseEntity<DataAuto>(HttpStatus.BAD_REQUEST);
             }
-
         } else {
             return null;
         }

@@ -31,20 +31,20 @@ public class SearchAutoAdsController {
                                                              @RequestParam(defaultValue = "3") int size) {
         if(validDataSearchAutoAds.checkDataSearchAutoAds(dataSearchAuto)){
             return searchAutoAdsService.searchAutoAds(dataSearchAuto.getNameBrand(),
-                    dataSearchAuto.getNameModel(),
-                    dataSearchAuto.getStartYear(),
-                    dataSearchAuto.getEndYear(),
-                    dataSearchAuto.getColor(),
-                    dataSearchAuto.getStartPrice(),
-                    dataSearchAuto.getEndPrice(),
-                    dataSearchAuto.getMotorType(),
-                    dataSearchAuto.getStartVolume(),
-                    dataSearchAuto.getEndVolume(),
-                    dataSearchAuto.getDriveType(),
-                    dataSearchAuto.getTransmissionType(),
-                    dataSearchAuto.getBodyStyleType(),
-                    page,
-                    size);
+                                                       dataSearchAuto.getNameModel(),
+                                                       dataSearchAuto.getStartYear(),
+                                                       dataSearchAuto.getEndYear(),
+                                                       dataSearchAuto.getColor(),
+                                                       dataSearchAuto.getStartPrice(),
+                                                       dataSearchAuto.getEndPrice(),
+                                                       dataSearchAuto.getMotorType(),
+                                                       dataSearchAuto.getStartVolume(),
+                                                       dataSearchAuto.getEndVolume(),
+                                                       dataSearchAuto.getDriveType(),
+                                                       dataSearchAuto.getTransmissionType(),
+                                                       dataSearchAuto.getBodyStyleType(),
+                                                       page,
+                                                       size);
         }else{
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

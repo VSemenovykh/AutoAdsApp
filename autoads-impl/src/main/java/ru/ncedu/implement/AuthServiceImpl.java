@@ -20,7 +20,6 @@ import ru.ncedu.model.ERole;
 import ru.ncedu.repositories.RoleRepository;
 import ru.ncedu.repositories.UserRepository;
 import ru.ncedu.services.AuthService;
-import ru.ncedu.services.EmailService;
 import ru.ncedu.services.UserDetailsImpl;
 
 import javax.mail.MessagingException;
@@ -39,7 +38,6 @@ public class AuthServiceImpl implements AuthService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
-    private final EmailService emailService;
 
     @Override
     public Map<String, Object> authenticateUser(@Valid LoginRequest loginRequest) {
@@ -83,10 +81,10 @@ public class AuthServiceImpl implements AuthService {
 
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
-                            signUpRequest.getEmail(),
-                            encoder.encode(signUpRequest.getPassword()),
-                            signUpRequest.getVerificationCode(),
-                            signUpRequest.getVerifyEnabled());
+                             signUpRequest.getEmail(),
+                             encoder.encode(signUpRequest.getPassword()),
+                             signUpRequest.getVerificationCode(),
+                             signUpRequest.getVerifyEnabled());
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 

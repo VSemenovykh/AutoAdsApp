@@ -34,7 +34,7 @@ public class ListCompareAutoAdsController {
         }
     }
 
-    public boolean checkId(Long id){
+    public boolean checkId(Long id) {
         return userRepository.existsById(id);
     }
 }

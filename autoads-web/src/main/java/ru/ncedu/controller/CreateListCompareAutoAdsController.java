@@ -36,11 +36,11 @@ public class CreateListCompareAutoAdsController {
             log.info("idUser: " + idUser);
             return new ResponseEntity<CompareAuto>(HttpStatus.CREATED);
         } else {
-           return new ResponseEntity<CompareAuto>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<CompareAuto>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    public boolean checkId(Long id){
+    public boolean checkId(Long id) {
         return userRepository.existsById(id);
     }
 }

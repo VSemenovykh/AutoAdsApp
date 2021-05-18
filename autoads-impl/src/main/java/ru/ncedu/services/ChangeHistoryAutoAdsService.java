@@ -5,5 +5,5 @@ import ru.ncedu.entity.ChangeHistoryAutoAds;
 
 public interface ChangeHistoryAutoAdsService {
 
-     ResponseEntity<ChangeHistoryAutoAds> findAllChangeAutoAds(Long idAuto);
+    ResponseEntity<ChangeHistoryAutoAds> findAllChangeAutoAds(Long idAuto);
 }

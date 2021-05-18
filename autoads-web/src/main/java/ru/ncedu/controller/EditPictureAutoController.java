@@ -25,7 +25,7 @@ public class EditPictureAutoController {
     @PostAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     @PutMapping("/update/{idImage}")
     public ResponseEntity<Long> editPictureAuto(@RequestParam(name = "imageFile", required = false) MultipartFile file,
-                                               @PathVariable("idImage") Long idImage) {
+                                                @PathVariable("idImage") Long idImage) {
         if (checkId(idImage)) {
             if (file != null && idImage != null) {
                 try {
@@ -42,7 +42,7 @@ public class EditPictureAutoController {
         }
     }
 
-    public boolean checkId(Long id){
+    public boolean checkId(Long id) {
         return pictureAutoRepository.existsById(id);
     }
 }

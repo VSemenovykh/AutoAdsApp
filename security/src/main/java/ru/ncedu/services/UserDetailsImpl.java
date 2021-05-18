@@ -1,26 +1,24 @@
 package ru.ncedu.services;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import ru.ncedu.entity.User;
+import ru.ncedu.repositories.UserRepository;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import  ru.ncedu.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import ru.ncedu.repositories.UserRepository;
-import ru.ncedu.repositories.UserRoleRepository;
 
 @Data
 @NoArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
-//    private static User user;
     private UserRepository userRepository;
     private static final long serialVersionUID = 1L;
     private Long id;
@@ -81,11 +79,6 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
 
     @Override
     public boolean equals(Object o) {

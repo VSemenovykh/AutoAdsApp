@@ -72,7 +72,7 @@ public class EditAutoAdsAdsServiceImpl implements EditAutoAdsService {
                         modifyChangeHistoryAutoAds.setId(modifyChangeHistoryAutoAds.getId());
                         modifyChangeHistoryAutoAds.setIdAuto(modifyChangeHistoryAutoAds.getIdAuto());
                         modifyChangeHistoryAutoAds.setUsername(newUser.getUsername());
-                        modifyChangeHistoryAutoAds.setChangeData(formattedDate);
+                        modifyChangeHistoryAutoAds.setModifyData(formattedDate);
                         changeHistoryAutoAdsRepository.save(modifyChangeHistoryAutoAds);
                     } else {
                         ChangeHistoryAutoAds changeHistoryAutoAds = new ChangeHistoryAutoAds(null, autoId, newUser.getUsername(), formattedDate);

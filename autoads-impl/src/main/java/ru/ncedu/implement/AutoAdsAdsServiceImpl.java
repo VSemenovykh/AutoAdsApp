@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.ncedu.entity.Auto;
-import ru.ncedu.entity.Brand;
 import ru.ncedu.model.DataAuto;
 import ru.ncedu.repositories.AutoRepository;
 import ru.ncedu.services.*;
@@ -63,6 +62,5 @@ public class AutoAdsAdsServiceImpl implements AutoAdsService {
     public ResponseEntity<List<Auto>> findAll() {
         List<Auto> autoList = autorepository.findAll();
         return (!autoList.isEmpty()) ? new ResponseEntity<>(autoList, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
     }
 }
